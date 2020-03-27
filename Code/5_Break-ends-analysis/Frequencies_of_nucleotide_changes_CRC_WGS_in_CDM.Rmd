@@ -1,0 +1,76 @@
+---
+title: "Positional frequencies of nucleotide changes of the CRC WGS cohort in CDMs"
+author: "Hilmar Berger"
+output: 
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE, warning=FALSE}
+# scirpt from HB, edited by PDK
+rm(list=ls())
+library(reshape2)
+library(ggplot2)
+library(data.table)
+library(ggthemes)
+```
+
+# Introduction
+Please write how data were obtained by Helsinki.
+
+# Visualization
+```{r}
+input_folder = "../../Data/WGS_cohort/positional_mutation_counts" 
+all_files = list.files(file.path(input_folder), full.names = T)
+#setwd(input_folder)
+
+all_tabs = list()
+for (ff in all_files) {
+  sn = gsub(".tsv","", basename(ff))
+  tmp = read.table(ff, sep="\t", header=F, stringsAsFactors = F)
+  empty_first_col = which(tmp$V1=="")
+  tmp$pattern = rep(apply(tmp[empty_first_col,], 1, paste, collapse=""), each=nrow(tmp)/length(empty_first_col))
+  tmp = tmp[-empty_first_col,]
+  colnames(tmp) = c("nuc_change", paste0("p",1:6), "pattern")
+  d_ts = reshape2::melt(tmp, id.vars=c("pattern","nuc_change"))
+  d_ts$position = as.numeric(gsub("p","",d_ts$variable))
+  colnames(d_ts) = c("pattern", "nuc_change","pos_cat","count", "position")
+  d_ts$group = sn
+  d_ts$count = as.integer(d_ts$count)
+  all_tabs[[sn]] = d_ts
+}
+
+all_tables = as.data.table(do.call(rbind, all_tabs))
+all_tables$mut_type = ifelse(all_tables$nuc_change %in% c("INS","DEL"), "Indel","SNV")
+all_tables[, analysis_set:=ifelse(group %in% c("bottom20","top20"), "top_bottom", ifelse(group %in% c("distal","proximal"),"prox_dist", "location"))]
+
+load("../../Data/Pattern_frequencies/oligo_freqs_genomic_hg19_HN.Rdata")
+all_tables[, pattern_freq_genomic:=oligofreqs_genomic[pattern]]
+all_tables[, prop_genomic:=count/pattern_freq_genomic]
+```
+
+```{r, fig.height=4, fig.width=7}
+tmp = subset(all_tables, nuc_change %in% c("A","T","C","G") & analysis_set == "top_bottom")
+tmp$group = factor(tmp$group, levels=c("top20", "bottom20"))
+
+p = ggplot(tmp, aes(x=position, y=prop_genomic, fill=nuc_change)) + geom_bar(stat="identity") + facet_grid(group  ~ pattern) + theme_few() + theme(text = element_text(size=12), strip.text.x = element_text(size = 18), strip.text.y = element_text(size = 14)) + ylab("Proportion of mutated motifs in genome") + xlab("Position in Motif")
+print(p)
+
+pdf(file="../../Results/5_Break-ends-analysis/Mutation_positional_Top20_Bottom20_genomic_proportion.pdf", width = 7, height = 4)
+print(p)
+dev.off()
+
+```
+
+# Software versions
+```{r}
+sessionInfo()
+```

@@ -1,0 +1,202 @@
+---
+title: "Positional distribution of break ends in selected motifs"
+author: "Hilmar Berger"
+output: 
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE, warning=FALSE}
+rm(list=ls())
+#script from HB, edited by PDK for the figures
+library(data.table)
+library(GenomicRanges)
+library(GenomicFeatures)
+
+library(Biostrings)
+
+library(BSgenome.Hsapiens.UCSC.hg19)
+
+library(directlabels)
+library(reshape2)
+library(ggplot2)
+library(ggpubr)
+library(pheatmap)
+library(ggthemes)
+```
+
+```{r}
+source("./compute_distance_to_motif_center.R")
+```
+
+
+# Introduction
+
+We want to understand the positional distribution of BLISS break ends in selected hexanucleotide patterns. 
+
+```{r}
+pattern_dict = DNAStringSet(c("AAATTT","AAAATT","AATATT", "TAAAAA","CAAAAA", "AAAAAG", "ATATAG", "AACGTT", "AAGCTT","TTCGTA" ,"TTGGTA","TTCTTA","CGCGCT", "TTTAAA"))
+
+pattern_pos = vmatchPDict(pattern_dict, Hsapiens)
+pattern_pos$pattern = as.character(pattern_dict)[as.integer(pattern_pos$index)]
+
+palindromic = (pattern_dict==reverseComplement(pattern_dict))
+pattern_pos$palindromic = palindromic[as.integer(pattern_pos$index)]
+
+standard_chroms = standardChromosomes(pattern_pos)
+pattern_pos = keepSeqlevels(pattern_pos, standard_chroms, pruning.mode = "coarse")
+
+```
+
+# Analysis
+
+We use the following hexanucleotide (HN) pattern: `r as.character(pattern_dict)` and determine their positions genomewide in hg19 (GRCh37).
+
+```{r}
+breaks_tmp = fread("../../Data/Breaks_filtered/breaks_agg.txt", sep="\t")
+break_ranges_excluded_difficult_regions = with(breaks_tmp, GRanges(chr, IRanges(ifelse(strand=="+", start+1, end), ifelse(strand=="+", start+1, end)), strand=strand, sampleID = sampleID, count=count, umis_str = umis_str) )
+
+suppressMessages(seqlevelsStyle(break_ranges_excluded_difficult_regions) <- "UCSC")
+ed = read.table("../../Data/ExpDesign_fixed.txt", sep="\t", header=T, stringsAsFactors = F)
+
+included_samples = ed$sampleID
+```
+
+
+We define regions of motif sites as the motif itself +/- 2 bp around motif boundaries. For each motif site we define the center of the motif (the middle nucleotide for odd length motifs or (start+width/2) in 5'->3' direction for even length motifs).  The center is marked with position 0 while 5' positions are shown as negative distances and 3' positions as positive positions on plus strand. Distances are computed accordingly if the motif was mapped to the minus strand. For non-palindromic motifs we select only one of the original and reverse complement sequences and map to both plus and minus strand. for palindromic sequences we only map against the plus strand. 
+
+For each breakpoint end we determine the nearest midpoint of the selected motif sites if falling with that motif +/- 2bp range. 
+
+
+```{r, warning=FALSE}
+all_bp_distances = list()
+bp_regions_all = list()
+
+
+for (n in 1:length(pattern_dict)) {
+  p = as.character(pattern_dict[n])
+  
+  tmp_regions = pattern_pos[pattern_pos$index==n]
+
+  rr = compute_distances(break_ranges_excluded_difficult_regions, tmp_regions, break_between_nucleotides = T, palindrome_ref_strand = "+")
+  
+  tmp_dsb_ends = break_ranges_excluded_difficult_regions
+  tmp_dsb_ends$min_bp_dist = NA_real_
+  tmp_dsb_ends[rr$query_index]$min_bp_dist = rr$distance
+  tmp_dsb_ends$motif_strand = NA_character_
+  tmp_dsb_ends[rr$query_index]$motif_strand = strand(tmp_regions[rr$subject_index])
+  tmp_dsb_ends = tmp_dsb_ends[!is.na(tmp_dsb_ends$min_bp_dist)]
+
+  tmp_dsb_ends$final_strand = ifelse(tmp_dsb_ends$motif_strand=="+", ifelse(strand(tmp_dsb_ends)=="+","f","r"), ifelse(strand(tmp_dsb_ends)=="+","r","f"))
+  
+  bp_regions_all[[p]] = tmp_dsb_ends
+  
+  tmp2 = data.table(sampleID=tmp_dsb_ends$sampleID, strand=as.character(tmp_dsb_ends$final_strand), dist = tmp_dsb_ends$min_bp_dist)
+  tmp3 = tmp2[, .(count=.N), by=c("sampleID","strand","dist")]
+  
+  all_bp_distances[[p]] = tmp3
+  
+}
+
+```
+
+## All conditions
+```{r, fig.height=8, fig.width=12}
+sel_motifs = c( "AAATTT", "AAAATT", "AATATT", "TAAAAA","TTTAAA","ATATAG")
+
+tmp_tab = do.call(rbind, Map(function(n) {x=all_bp_distances[[n]]; x$pattern=n; return(x)}, sel_motifs))
+tmp_tab[, count_dir := ifelse(strand=="f", count, -count) ]
+tmp_tab[, total:=sum(count), by=c("sampleID", "pattern")]
+tmp_tab[, prop_dir:=count_dir / total]
+tmp_tab_anno = merge(tmp_tab, ed, by="sampleID", all.x=T)
+
+sel_conditions = c("EcoliMut", "EcoliWT", "Ctrl")
+
+final_tab = subset(tmp_tab_anno, cells == "Caco2" & condition %in% sel_conditions & !technical_replicate)
+final_tab_agg = final_tab[, .(mean_count_dir = mean(count_dir), sd_count_dir = sd(count_dir), mean_prop_dir = mean(prop_dir), sd_prop_dir = sd(prop_dir), rep_cnt=.N) , by=c("strand","condition","pattern", "dist")]
+final_tab_agg = final_tab_agg[, CI_prop_dir:=qt(0.975, rep_cnt)*(sd_prop_dir/sqrt(rep_cnt))]
+
+text_labels = data.frame(t = unlist(strsplit(sel_motifs, "")), x=0:5, y=rep(0,6))
+text_labels$pattern = rep(sel_motifs, each=6)
+
+text_lines = data.frame(t = rep("|",7*length(sel_motifs)), x=seq(-0.5, 5.5,1), y=rep(0,7*length(sel_motifs)))
+text_lines$pattern = rep(sel_motifs, each=7)
+
+text_all = rbind(text_labels, text_lines)
+```
+
+```{r, fig.height=9, fig.width=8}
+pdf(file="../../Results/5_Break-ends-analysis/Break_ends_HN_all_conditions.pdf", width = 8, height = 9)
+p = ggplot(final_tab_agg, aes(x=dist, y=mean_prop_dir, fill=strand)) + geom_bar(stat = "identity", width = 0.8) + 
+  geom_errorbar(width=.1, aes(ymin=mean_prop_dir-CI_prop_dir, ymax=mean_prop_dir+CI_prop_dir), alpha=0.4, col="grey30") + 
+  facet_grid( condition ~ pattern) + 
+  geom_hline(yintercept = 0, col="red") + scale_x_continuous(limits=c(-1, 6)) + 
+  #geom_text(data=text_labels, aes(x=x, y=y, label=t), inherit.aes = F, size=4, col="black") +
+  #geom_text(data=text_lines, aes(x=x, y=y, label=t), inherit.aes = F, size=4, col="blue1") + 
+  theme_few() +
+  theme(text = element_text(size=16), strip.text.x = element_text(size = 16), strip.text.y = element_text(size = 20)) + 
+  xlab("Break position") + ylab("Mean proportion of break ends at position") + 
+  theme(legend.position="none", axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank() ) 
+print(p) 
+dev.off()
+```
+
+
+## EcoliWT vs. EcoliMut
+```{r, fig.height=6, fig.width=12}
+sel_motifs = c( "AAATTT", "AAAATT", "AATATT", "TAAAAA","TTTAAA","ATATAG")
+
+tmp_tab = do.call(rbind, Map(function(n) {x=all_bp_distances[[n]]; x$pattern=n; return(x)}, sel_motifs))
+tmp_tab[, count_dir := ifelse(strand=="f", count, -count) ]
+tmp_tab[, total:=sum(count), by=c("sampleID", "pattern")]
+tmp_tab[, prop_dir:=count_dir / total]
+tmp_tab_anno = merge(tmp_tab, ed, by="sampleID", all.x=T)
+
+sel_conditions = c("EcoliMut", "EcoliWT")
+tmp_wt_mut = subset(tmp_tab_anno, cells == "Caco2" & condition %in% sel_conditions & !technical_replicate)
+tmp_wt_mut_sw = dcast.data.table(tmp_wt_mut, strand + dist + library + pattern ~ condition, value.var="prop_dir")
+tmp_wt_mut_sw[, diff:=EcoliWT-EcoliMut]
+
+final_tab = tmp_wt_mut_sw
+final_tab_agg = final_tab[, .(mean_diff = mean(diff), sd_diff = sd(diff), rep_cnt=.N) , by=c("strand","pattern", "dist")]
+final_tab_agg = final_tab_agg[, CI_diff:=qt(0.975, rep_cnt)*(sd_diff/sqrt(rep_cnt))]
+
+text_labels = data.frame(t = unlist(strsplit(sel_motifs, "")), x=0:5, y=rep(0,6))
+text_labels$pattern = rep(sel_motifs, each=6)
+
+text_lines = data.frame(t = rep("|",7*length(sel_motifs)), x=seq(-0.5, 5.5,1), y=rep(0,7*length(sel_motifs)))
+text_lines$pattern = rep(sel_motifs, each=7)
+
+text_all = rbind(text_labels, text_lines)
+```
+
+```{r, fig.height=3.8, fig.width=10}
+pdf(file="../../Results/5_Break-ends-analysis/Break_ends_HN_WT_vs_Mut.pdf", width = 10, height = 3.8)
+
+p = ggplot(subset(final_tab_agg, mean_diff*ifelse(strand=="f",1,-1) > 0), aes(x=dist, y=mean_diff, fill=strand)) + 
+  geom_bar(stat = "identity", width = 0.8) + 
+  geom_errorbar(width=.1, aes(ymin=mean_diff-CI_diff, ymax=mean_diff+CI_diff), alpha=0.4,col="grey30") +
+  facet_grid( . ~ pattern) + 
+  geom_hline(yintercept = 0, col="red") + scale_x_continuous(limits=c(-1, 6)) + 
+  #geom_text(data=text_labels, aes(x=x, y=y, label=t), inherit.aes = F, size=4, col="black") +
+  #geom_text(data=text_lines, aes(x=x, y=y, label=t), inherit.aes = F, size=4, col="blue1") + 
+  theme_few() + 
+  theme(text = element_text(size=12), strip.text.x = element_text(size = 16), strip.text.y = element_text(size = 20)) + 
+  xlab("Break position") + ylab("Mean difference EcoliWT - EcoliMut") +
+  theme(legend.position="none", axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank() )
+  print(p)
+dev.off()
+```
+
+# Software versions
+```{r}
+sessionInfo()
+```

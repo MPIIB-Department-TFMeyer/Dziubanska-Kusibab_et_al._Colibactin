@@ -1,0 +1,16 @@
+FASTA_FOLDER=../../../Data/FASTA_around_DSB/dsb_pm_10
+
+# adjust this to your MEME installation
+export PATH=/data_genome1/SharedSoftware/MEME/genome2/bin:/data_genome1/SharedSoftware/MEME/genome2/libexec/meme-5.0.5:$PATH
+
+#BB191_Ctrl_window20.fasta  BB76_Ctrl_window20.fasta  BB82_Ctrl_window20.fasta
+#BB191_ETO_window20.fasta   BB76_ETO_window20.fasta   BB82_ETO_window20.fasta
+#BB192_Mut_window20.fasta   BB77_Mut_window20.fasta   BB78_Ctrl_window20.fasta   BB79_Mut_window20.fasta   BB83_Mut_window20.fasta
+#BB192_WT_window20.fasta    BB77_WT_window20.fasta    BB78_ETO_window20.fasta    BB79_WT_window20.fasta    BB83_WT_window20.fasta
+
+dreme -verbosity 1 -oc BB191 -dna -p ${FASTA_FOLDER}/BB191_ETO_window20.fasta -n ${FASTA_FOLDER}/BB191_Ctrl_window20.fasta -e 0.05 -m 50 &> log_1 &
+dreme -verbosity 1 -oc BB76 -dna -p ${FASTA_FOLDER}/BB76_ETO_window20.fasta -n ${FASTA_FOLDER}/BB76_Ctrl_window20.fasta -e 0.05 -m 50 &> log_2 &
+dreme -verbosity 1 -oc BB78 -dna -p ${FASTA_FOLDER}/BB78_ETO_window20.fasta -n ${FASTA_FOLDER}/BB78_Ctrl_window20.fasta -e 0.05 -m 50 &> log_3 &
+dreme -verbosity 1 -oc BB82 -dna -p ${FASTA_FOLDER}/BB82_ETO_window20.fasta -n ${FASTA_FOLDER}/BB82_Ctrl_window20.fasta -e 0.05 -m 50 &> log_4 &
+
+

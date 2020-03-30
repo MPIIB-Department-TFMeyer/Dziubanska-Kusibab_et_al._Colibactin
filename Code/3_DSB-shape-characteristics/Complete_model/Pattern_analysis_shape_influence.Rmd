@@ -1,0 +1,133 @@
+---
+title: "Pattern_analysis"
+author: "Hilmar Berger"
+date: "23 1 2020"
+output: 
+  html_document:
+    toc: true
+    toc_float: false
+    collapsed: false
+    smooth_scroll: false
+    code_folding: hide
+    
+---
+
+```{r, message=FALSE, warning=FALSE}
+rm(list=ls())
+library(data.table)
+library(ggplot2)
+library(pheatmap)
+library(gridExtra)
+library(ggthemes)
+```
+
+```{r}
+load("../../../Data/Shape_correlations/ShapePrediction/Hexanucleotide_Shape_and_Enrichment.Rdata")
+lr_shape = subset(lr_shape, bc == "no BC")
+```
+
+```{r}
+lr_shape$MGW_avg_loess = predict(loess(Mean ~ MGW.avgV3V4, data=lr_shape, span=0.2), lr_shape$MGW.avgV3V4)
+lr_shape$ProT_avg_loess = predict(loess(Mean ~ ProT.avgV3V4, data=lr_shape, span=0.2), lr_shape$ProT.avgV3V4)
+lr_shape$EP_avg_loess = predict(loess(Mean ~ EP.avgV3V4, data=lr_shape, span=0.2), lr_shape$EP.avgV3V4)
+lr_shape$HelT_avg_loess = predict(loess(Mean ~ HelT.avgV2V3V4, data=lr_shape, span=0.2), lr_shape$HelT.avgV2V3V4)
+lr_shape$Roll_avg_loess = predict(loess(Mean ~ Roll.avgV2V3V4, data=lr_shape, span=0.2), lr_shape$Roll.avgV2V3V4)
+lr_shape$Stiff_avg_loess = predict(loess(Mean ~ Stiffness.avgV2V3V4, data=lr_shape, span=0.2), lr_shape$Stiffness.avgV2V3V4)
+
+lr_shape$MGW_residual = lr_shape$Mean - lr_shape$MGW_avg_loess
+lr_shape$ProT_residual = lr_shape$Mean - lr_shape$ProT_avg_loess
+lr_shape$HelT_residual = lr_shape$Mean - lr_shape$HelT_avg_loess
+lr_shape$Roll_residual = lr_shape$Mean - lr_shape$Roll_avg_loess
+lr_shape$EP_residual = lr_shape$Mean - lr_shape$EP_avg_loess
+lr_shape$Stiff_residual = lr_shape$Mean - lr_shape$Stiff_avg_loess
+
+lr_shape[, CI_l:=Mean-CI]
+lr_shape[, central2:=substr(as.character(Nt),3,4)]
+lr_shape[, central2_short:=factor(ifelse(central2 %in% c("AA","AT","TA","TT"), central2, "SS/WS/SW"), levels = c("SS/WS/SW","AA","AT","TA","TT") ) ]
+lr_shape[, central2_short3:=factor(ifelse(central2 %in% c("AA","AT","TA","TT"), "WW", ifelse(central2 %in% c("CC","CG","GC"), "SS","SW/WS")), levels = c("SS","SW/WS","WW") ) ]
+lr_shape[, first:=substr(as.character(Nt),1,1)]
+lr_shape[, last:=substr(as.character(Nt),6,6)]
+lr_shape[, first2:=substr(as.character(Nt),1,2)]
+lr_shape[, last2:=substr(as.character(Nt),5,6)]
+lr_shape[, pattern:=ifelse(Nt %in% c("AAAATT","AATTTT","AAATTT","AATATT"), "AAWWTT","other")]
+lr_shape[, at_backbone1:=grepl("AA..T.|.A..TT",as.character(Nt), perl=T)] 
+lr_shape[, at_backbone2:=grepl(".A..T.|A..T..|..A..T",as.character(Nt), perl=T)] 
+lr_shape[, at_backbone3:=grepl("A...T.|.A...T",as.character(Nt), perl=T)] 
+
+lr_shape[, at_backbone1r:=grepl("TT..A.|.T..AA",as.character(Nt), perl=T)]
+lr_shape[, at_backbone2r:=grepl(".T..A.|T..A..|..T..A",as.character(Nt), perl=T)]
+lr_shape[, at_backbone3r:=grepl("T...A.|.T...A",as.character(Nt), perl=T)]
+
+lr_shape[, backbone_class:= paste0(ifelse(at_backbone1, "BB1","other"), "_", ifelse(at_backbone2, "BB2","other") ) ]
+
+lr_shape[, backbone_class2:= factor(ifelse((!at_backbone2 & !at_backbone2r), "other", ifelse(at_backbone2, ifelse(at_backbone1, "BB1", "BB2"), ifelse(at_backbone1r, "BB1-r","BB2-r"))), levels=c("BB1","BB1-r","BB2","BB2-r") ) ]
+
+lr_shape[, at_4a5bp:=grepl("AA..T.|.A..TT",as.character(Nt), perl=T)] 
+lr_shape[, at_4bp:=grepl(".A..T.",as.character(Nt), perl=T)] 
+lr_shape[, at_5bp:=grepl("A...T.|.A...T",as.character(Nt), perl=T)] 
+
+lr_shape[, at_4a5bp_r:=grepl("TT..A.|.T..AA",as.character(Nt), perl=T)] 
+lr_shape[, at_4bp_r:=grepl(".T..A.",as.character(Nt), perl=T)] 
+lr_shape[, at_5bp_r:=grepl("T...A.|.T...A",as.character(Nt), perl=T)] 
+
+lr_shape[, backbone_class_4a5:= factor(ifelse(!(at_4bp | at_5bp | at_4bp_r | at_5bp_r ), "no A-T 4/5", 
+                                       ifelse(at_4bp | at_5bp, 
+                                              ifelse(at_4bp, ifelse(at_4a5bp, "A-T_4a5", "A-T_4"), "A-T_5"),
+                                              ifelse(at_4bp_r, ifelse(at_4a5bp_r, "A-T_4a5-rev", "A-T_4-rev"), "A-T_5-rev") )), 
+                                       levels=c("A-T_4","A-T_5", "A-T_4a5", "A-T_4-rev","A-T_5-rev", "A-T_4a5-rev","no A-T 4/5") )]
+
+```
+
+# DNA shape parameters and fits
+
+
+```{r}
+nn_means = lr_shape[central2_short3=="SS", .(values=list(Mean)), by=c("backbone_class_4a5")]
+nn_means[, backbone_class_4a5:=as.character(backbone_class_4a5)]
+setkey(nn_means, "backbone_class_4a5")
+
+bb = unique(as.character(lr_shape$backbone_class_4a5))
+
+test_fun = function(b, n) wilcox.test(subset(lr_shape, backbone_class_4a5==b & central2_short3==n)$Mean, unlist(nn_means[b]$values))
+
+backbone_n = rep(bb, each=2)
+nuc_n = rep(c("WW","SW/WS"), times=length(bb))
+aa = Map(test_fun, backbone_n, nuc_n)
+names(aa) =  paste0(backbone_n, "_", nuc_n)
+
+test_res = data.frame(central2_short3 = nuc_n, backbone_class_4a5 = factor(backbone_n, levels=levels(lr_shape$backbone_class_4a5)), test_pval = unlist(lapply(aa, `[` , "p.value") ), stringsAsFactors = F)
+test_res$adjp = p.adjust(test_res$test_pval, "BH")
+test_res$sig_label = ifelse(test_res$adjp < 0.1, "*","")
+```
+
+
+```{r, fig.width=16, fig.height=14}
+t_no_y = theme_bw() + theme(text=element_text(size=22), legend.position = "none" , axis.title.y=element_blank(),  axis.text.y=element_blank(), axis.ticks.y=element_blank())
+t_y = theme_bw() + theme(text=element_text(size=22), legend.position = "none" )
+
+p1 = ggplot(lr_shape, aes(y=Mean, x=MGW.avgV3V4)) + geom_point(aes(col=central2_short3), size=2) + geom_smooth() + facet_grid(backbone_class_4a5 ~ .) + geom_hline(yintercept = 0, col="red") + ylab("Mean Log2 Ratio") + xlab("Avg. MGW N3,N4") + t_y + coord_cartesian(ylim=c(-0.1,1.1)) + theme(strip.text.y=element_blank())
+
+p1b = ggplot(lr_shape, aes(y=Mean, x=EP.avgV3V4)) + geom_point(aes(col=central2_short3), size=2) + geom_smooth() + facet_grid(backbone_class_4a5 ~ .) + geom_hline(yintercept = 0, col="red") + ylab("Mean Log2 Ratio") + xlab("Avg. EP N3,N4") + t_no_y + coord_cartesian(ylim=c(-0.1,1.1)) + theme(strip.text.y=element_blank())
+
+p1c = ggplot(lr_shape, aes(y=Mean, x=Stiffness.avgV2V3V4)) + geom_point(aes(col=central2_short3), size=2) + geom_smooth() + facet_grid(backbone_class_4a5 ~ .) + geom_hline(yintercept = 0, col="red") + ylab("Mean Log2 Ratio") + xlab("Avg. Stiffness S2,S3,S4") + t_no_y + coord_cartesian(ylim=c(-0.1,1.1)) + theme(strip.text.y=element_blank())
+
+
+p2 = ggplot(lr_shape, aes(y=Mean, x=central2_short3)) + geom_boxplot(aes(fill=central2_short3)) + facet_grid(backbone_class_4a5 ~ .) + geom_hline(yintercept = 0, col="red") + geom_text(data=test_res, aes(label=sig_label, y=1, x=central2_short3), inherit.aes = FALSE, col="red", size=10) + coord_cartesian(ylim=c(-0.1,1.1)) + ylab("Mean Log2 Ratio") + t_no_y + xlab("central 2 nucleotides")
+
+marrangeGrob(list(p1,p1b,p1c, p2), ncol=4, nrow=1, top = "" )
+
+```
+
+```{r}
+pdf("../../../Results/3_DSB-shape-characteristics/Pattern_shape_model.pdf", width=16, height = 14)
+marrangeGrob(list(p1,p1b,p1c, p2), ncol=4, nrow=1, top = "" )
+dev.off()
+```
+
+
+# Software versions
+
+```{r}
+sessionInfo()
+```
+

@@ -1,0 +1,180 @@
+---
+title: "Nucleotide enrichment in windows DSB+/-7nt  - pentanucleotide patterns"
+author: "Hilmar Berger"
+output: 
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: show
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE}
+rm(list=ls())
+library(Biostrings)
+library(ggplot2)
+library(data.table)
+```
+
+# Introduction
+
+Nucleotide enrichment data for pentanucleotides for all replicates and conditions: E.coli WT infection, E.coli mutant infection and controls are imported.  
+
+Since we noticed that many of the top ranking hits are similar to barcodes used in BLISS for those samples we mark nucleotide patterns which match known barcode patterns in forward or reverse complement direction with at most one mismatch as Barcode associated. Those patterns will be excluded.
+
+# Importing data and analysis
+```{r}
+pattern_length=5
+input_folder = "../../Data/Sequence_enrichment/Pentanucleotides/"
+```
+
+```{r, message=FALSE, warning=FALSE}
+source("./read_tables_and_barcodes.R")
+
+bc_info = get_barcode_matches(pattern_length, "/data_genome2/projects/MB222-GuideSeq/BLISS/MPIIB_Pipeline/metadata/Barcodes_all.txt", max_mismatch=0)
+
+all_nuc_enrichment_tabs = read_enrichment_tables(input_folder, bc_info)
+```
+
+```{r}
+fill_manual = scale_fill_manual(values=c("AT4"="red3", "AT5"="royalblue3", "other" = "grey70"))
+col_manual =  scale_color_manual(breaks=c("AT4", "AT5", "other"), values=c("red3", "royalblue3", "grey70"))
+```
+
+```{r}
+all_nuc_enrichment_tabs_agg = all_nuc_enrichment_tabs[, .(Mean=mean(logRatio, na.rm=T), SD=sd(logRatio, na.rm=T), rep_cnt=sum(!is.na(logRatio)), bc=ifelse(any(barcode_match_library!="no BC"),"BC f/r", "no BC"), SEM_err_prop= sqrt(sum(sd_log2ratio**2)/sum(!is.na(logRatio))) ), by=c("Nt","condition", "at_cnt")]
+all_nuc_enrichment_tabs_agg[, SEM:=pmax(SEM_err_prop, SD/sqrt(rep_cnt), na.rm=T ) ]
+all_nuc_enrichment_tabs_agg[, CI:=SEM * qt(0.975, rep_cnt)]
+setorder(all_nuc_enrichment_tabs_agg, condition, -Mean)
+
+```
+
+# Visualization
+
+## WT vs Mutant
+```{r}
+sel_tab = subset(all_nuc_enrichment_tabs, condition == "WTvsMut")
+
+sel_tab[, mean_logratio:=mean(logRatio), by="Nt"]
+
+sel_tab_agg = subset(all_nuc_enrichment_tabs_agg, condition == "WTvsMut")
+setorder(sel_tab_agg, -Mean)
+sel_tab_agg[, Nt:=factor(Nt, levels=Nt)]
+
+```
+
+### Overview
+
+```{r, fig.width=8, fig.height=6}
+tmp= sel_tab_agg[sel_tab_agg$bc=="no BC"]
+tmp[, AT_content := ifelse(at_cnt==5, "AT5", ifelse(at_cnt==4, "AT4", "other"))]
+p = ggplot(tmp, aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") +
+  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank(), text=element_text(size=14), legend.position=c(0.9, 0.85)) +
+  geom_hline(yintercept = 0) + coord_cartesian(ylim=c(-.4, 0.5), xlim=c(-20,nrow(tmp)+10)) + 
+  fill_manual + theme(plot.title = element_text(size=14)) + theme(plot.subtitle = element_text(size=12)) +
+  labs(x="Pentanucleotide sequences", y="Mean Log2 Ratio",  title="Log2Ratio for each pattern (patterns similar to BC  and including 0 in CI removed)", subtitle = "Error bars are 95%CI of the mean") 
+
+print(p)
+
+```
+
+
+```{r}
+pdf("../../Results/2_DSB-sequence-specificity/PN_WTvsMut_all_bars.pdf", width=8, height = 6)
+print(p)
+dev.off()
+
+```
+
+
+### Top 50 patterns
+
+```{r, fig.width=8, fig.height=8}
+tmp= sel_tab_agg[sel_tab_agg$bc=="no BC"  ] # & sel_tab_agg$Mean-sel_tab_agg$CI > 0
+tmp[, AT_content := ifelse(at_cnt==5, "AT5", ifelse(at_cnt==4, "AT4", "other"))]
+
+p = ggplot(tmp[1:50], aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") + theme_classic() + #geom_point(alpha=0.52, size=2) +
+  geom_errorbar(width=.1, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.6) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size=9), text=element_text(size=16), legend.position=c(0.92, 0.85)) +
+  fill_manual + coord_cartesian(ylim=c(-.5, 1)) + theme(plot.title = element_text(size=14)) + theme(plot.subtitle = element_text(size=12)) + labs(x="Top 50 pentanucleotide sequences", y="Mean Log2 Ratio", title="Log2Ratio for top50 patterns (patterns similar to BC and including 0 in CI removed)", subtitle = "Error bars are 95%CI of the mean") 
+
+print(p)
+
+```
+
+```{r}
+pdf("../../Results/2_DSB-sequence-specificity/PN_WTvsMut_top50_bars.pdf", width=8, height = 8)
+print(p)
+dev.off()
+```
+
+
+## Mut vs NT
+
+```{r}
+sel_tab = subset(all_nuc_enrichment_tabs, condition == "MutvsCtrl")
+
+sel_tab[, mean_logratio:=mean(logRatio), by="Nt"]
+
+sel_tab_agg = subset(all_nuc_enrichment_tabs_agg, condition == "MutvsCtrl")
+setorder(sel_tab_agg, -Mean)
+sel_tab_agg[, Nt:=factor(Nt, levels=Nt)]
+
+```
+
+### Overview
+
+```{r, fig.width=8, fig.height=6}
+tmp= sel_tab_agg[sel_tab_agg$bc=="no BC"]
+tmp[, AT_content := ifelse(at_cnt==5, "AT5", ifelse(at_cnt==4, "AT4", "other"))]
+p = ggplot(tmp, aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") +
+  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank(), text=element_text(size=14), legend.position=c(0.9, 0.85)) +
+  geom_hline(yintercept = 0) + coord_cartesian(ylim=c(-.4, 0.5), xlim=c(-20,nrow(tmp)+10)) + 
+  fill_manual + theme(plot.title = element_text(size=14)) + theme(plot.subtitle = element_text(size=12)) +
+  labs(x="Pentanucleotide sequences", y="Mean Log2 Ratio",  title="Log2Ratio for each pattern (patterns similar to BC  and including 0 in CI removed)", subtitle = "Error bars are 95%CI of the mean") 
+
+print(p)
+
+```
+
+```{r}
+pdf("../../Results/2_DSB-sequence-specificity/PN_MutvsNT_all_bars.pdf", width=8, height = 6)
+print(p)
+dev.off()
+
+```
+
+
+### Top 50 patterns
+
+```{r, fig.width=8, fig.height=8}
+tmp= sel_tab_agg[sel_tab_agg$bc=="no BC"  ] # & sel_tab_agg$Mean-sel_tab_agg$CI > 0
+tmp[, AT_content := ifelse(at_cnt==5, "AT5", ifelse(at_cnt==4, "AT4", "other"))]
+
+p = ggplot(tmp[1:50], aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") + theme_classic() + #geom_point(alpha=0.52, size=2) +
+  geom_errorbar(width=.1, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.6) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size=9), text=element_text(size=16), legend.position=c(0.92, 0.85)) +
+  fill_manual + coord_cartesian(ylim=c(-.5, 1)) + theme(plot.title = element_text(size=14)) + theme(plot.subtitle = element_text(size=12)) + labs(x="Top 50 pentanucleotide sequences", y="Mean Log2 Ratio", title="Log2Ratio for top50 patterns (patterns similar to BC and including 0 in CI removed)", subtitle = "Error bars are 95%CI of the mean") 
+
+print(p)
+
+```
+
+```{r}
+pdf("/data_genome2/projects/MB222-GuideSeq/GitHub_2020/Results/2_DSB-sequence-specificity/PN_MutvsNT_top50_bars.pdf", width=8, height = 8)
+print(p)
+dev.off()
+```
+
+
+# Software versions
+
+```{r}
+sessionInfo()
+```
+

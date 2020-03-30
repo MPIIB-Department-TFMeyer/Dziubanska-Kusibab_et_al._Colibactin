@@ -1,0 +1,178 @@
+---
+title: "Distance of selected HN to translationally stable nucleosomes"
+author: "Hilmar Berger"
+output: 
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE, warning=FALSE}
+rm(list=ls())
+library(data.table)
+library(GenomicRanges)
+library(GenomicFeatures)
+
+library(Biostrings)
+
+library(BSgenome.Hsapiens.UCSC.hg19)
+
+library(directlabels)
+library(reshape2)
+library(ggplot2)
+library(pheatmap)
+```
+
+# Overview 
+
+We want to understand the genomic distribution of enriched HN patterns. We use all unique (including reverse complements) with 6 A/T and a few additional motifs.
+
+# Analysis
+```{r}
+all_W6_pattern = data.frame(pattern = as.character(mkAllStrings(c("A","T"), 6)), stringsAsFactors = F)
+all_W6_pattern$a_cnt = unlist(Map(function(x) sum(alphabetFrequency(DNAString(x))[c("A")]), all_W6_pattern$pattern))
+all_W6_pattern$revcomp = as.character(reverseComplement(DNAStringSet(all_W6_pattern$pattern)))
+all_W6_pattern = all_W6_pattern[order(all_W6_pattern$a_cnt, decreasing = T),]
+all_W6_pattern$index = 1:nrow(all_W6_pattern)
+all_W6_pattern$rc_index = match(all_W6_pattern$pattern, all_W6_pattern$revcomp)
+all_W6_pattern_norevcomp = subset(all_W6_pattern, rc_index >= index)
+```
+
+```{r}
+pattern_dict = DNAStringSet(c(all_W6_pattern_norevcomp$pattern, "GTTTAA","CTTTTC","GGTTTT","CGCGCG", "ACTGAT", "AGGTGA"))
+
+pattern_pos = vmatchPDict(pattern_dict, Hsapiens)
+```
+
+We use the following pentanucleotide (HN) pattern: `r as.character(pattern_dict)`.
+
+```{r}
+# from SomaticSignatures Package
+ncbi <- function (x) 
+{
+    suppressMessages(seqlevelsStyle(x) <- "NCBI")
+    genome(x) = NA
+    return(x)
+}
+```
+
+Positions of translationally stable nucleosomes were retrieved from the companion website of Gaffney et al. (doi:10.1371/journal.pgen.1003036) and translated from hg18 to hg19 positions by liftOver. 
+
+```{r}
+# SOURCE: http://eqtl.uchicago.edu/nucleosomes/positioning_scores/peaks.min_peak_score_0.6.thresh_0.5.txt.gz
+# This was originally in hg18 coordinates. Liftover to hg19 was performed in seperate script using liftOver
+# resulting in 1037801 midpoint positions
+stable_nucleosomes = fread("../../Data/External/Nucleosomes/peaks.min_peak_score_0.6.thresh_0.5_midpoints_hg19.txt", sep="\t", header=F)
+# positions are 0-based, BED-style in input file. Range is +/-200 bp
+stable_nucleosome_ranges = with(stable_nucleosomes, GRanges(V1, IRanges(V2-199, V3+200)))
+
+```
+
+
+We define regions of +/- 200 bp around estimated dyad midpoints and for each HN site determine the nearest midpoint if falling with that 400bp range. 
+
+```{r}
+# We do not assume that the region has a direction (i.e. stranded-ness)
+# We assume that the point of reference in target regions is the center of the provided regions
+compute_distances <- function(query_region, target_regions) {
+
+  pp = target_regions
+  pp$region_center = end(pp)-(end(pp)-start(pp)+1)/2
+
+  ovlp = findOverlaps(query_region, pp)
+  
+  qH = queryHits(ovlp)
+  
+  selected_target_regions = pp[subjectHits(ovlp)]
+  selected_query_pos = query_region[qH]
+  
+  #bp_dist=ifelse(strand(selected_target_regions)=="+", 1, -1) * (selected_target_regions$region_center - start(selected_query_pos))
+  bp_dist = selected_target_regions$region_center - start(selected_query_pos)
+  
+  min_bp_dist_per_query = tapply(abs(bp_dist), qH, min)
+  
+  result = data.frame(query_index = qH, distance = bp_dist, subject_index= subjectHits(ovlp), stringsAsFactors = F)
+  result$min_bp_dist = min_bp_dist_per_query[as.character(qH)]
+  result = subset(result, min_bp_dist == abs(distance))
+  return(result)
+}
+
+```
+
+For each HN we determine the distribution of HN sites in the +/- 200bp range around midpoints as counts, running median of counts (k=11) or running median of counts divided by the total number of unique genome wide sites for the corresponding HN. 
+
+```{r}
+all_bp_distances = list()
+bp_regions_all = list()
+
+
+for (n in 1:length(pattern_dict)) {
+  p = as.character(pattern_dict[n])
+  
+  tmp_regions = pattern_pos[pattern_pos$index==n]
+# 
+#   high_cov_sites = findOverlaps(tmp_regions, HighCov_site_ranges_5pct, maxgap=500)
+#   tmp_regions = tmp_regions[-queryHits(high_cov_sites)]
+
+  rr = compute_distances(tmp_regions, stable_nucleosome_ranges)
+  
+  tmp_regions$nucleosome = FALSE
+  tmp_regions$nucleosome[rr$query_index] = T
+  
+  bp_regions_all[[p]] = tmp_regions
+  
+  tmp2 = hist(rr$distance, plot=F, breaks=400)
+  
+  rmed = runmed(tmp2$counts, 11)
+  all_bp_distances[[p]] = data.frame(dist = tmp2$mids, count = tmp2$counts, runmed=rmed, runmed_normalized = rmed/length(tmp_regions))
+  
+}
+
+```
+
+## Distance of breakpoints to nucleosome dyad midpoints within a window of +/- 200 bases
+Running median normalized by HN totals
+
+```{r, fig.width=8, fig.height=8}
+tmp = do.call(rbind, all_bp_distances)
+tmp$HN = unlist(sapply(strsplit(rownames(tmp), "\\."), `[`,1))
+tmp$sel = ifelse(tmp$HN %in% c("AAATTT","AAAATT","AATATT"), T, F)
+
+tmp = subset(tmp, HN %in% all_W6_pattern_norevcomp$pattern)
+tmp = as.data.table(tmp)
+tmp[, size:=ifelse(sel, 1.5, 1)]
+tmp[, total:= sum(count), by="HN"]
+tmp[, runmed_norm:=runmed/total]
+
+tmp_avg = tmp[!tmp$sel & !tmp$HN %in% c("AAAAAA","ATATAT","TATATA"), .(mean_runmed_norm=mean(runmed_norm), sd=sd(runmed_norm), n=.N), by="dist"]
+tmp_avg[, CI:=1.96 * sd]
+
+tmp_sel = tmp[tmp$sel | tmp$HN %in% c("AAAAAA","ATATAT","TATATA")]
+tmp_sel[, linetype:=ifelse(sel, "AAWWTT", "Outliers") ]
+
+
+p = ggplot(tmp_avg) + geom_errorbar(aes(x=dist, ymin=mean_runmed_norm-CI, ymax=mean_runmed_norm+CI), col="azure3") + geom_line(data=tmp_sel, aes(x=dist, y=runmed_norm,color=HN, linetype=linetype), size=1) + geom_vline(xintercept = c(-73, +73), linetype=2) + xlab("Distance to nucleosome dyad center") + ylab("Running median of counts normalized by totals") + theme_classic()
+print(p)
+
+
+```
+
+```{r}
+pdf("../../Results/2_DSB-sequence-specificity/Distribution_around_nucleosome_center.pdf", width=8, height = 8)
+print(p)
+dev.off()
+```
+
+
+# Software versions
+```{r}
+sessionInfo()
+```
+

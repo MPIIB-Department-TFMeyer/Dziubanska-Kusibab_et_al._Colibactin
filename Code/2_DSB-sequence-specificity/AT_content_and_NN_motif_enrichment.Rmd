@@ -68,7 +68,7 @@ sel_tab_agg[, Nt:=factor(Nt, levels=Nt)]
 
 
 ```{r, fig.width=6, fig.height=5}
-pdf("../../Results/2_DSB-sequence-specificity/AT_content_and_NN_motif_enrichment_WTvsMut_scaled_Log2ratio.pdf", width=6, height = 5)
+
 
 aa = sel_tab_agg[sel_tab_agg$bc=="no BC"]
 aa[, lower_bound:=Mean-CI]
@@ -77,9 +77,14 @@ aa[, contains_HN_motif:=ifelse(grepl("AAAATT|AATTTT|AAATTT|AATATT", Nt, perl=T),
 
 p_hn = ggplot(aa, aes(x=factor(at_cnt), fill=contains_HN_motif, y=Mean)) + geom_boxplot() + geom_hline(yintercept=0, col="red") + xlab("A/T count per nonamer") + ylab("Scaled Log2 Ratio") + theme(text=element_text(size=14)) + labs(fill="Motif content")
 print(p_hn)
+```
 
+```{r}
+pdf("../../Results/2_DSB-sequence-specificity/AT_content_and_NN_motif_enrichment_WTvsMut_scaled_Log2ratio.pdf", width=6, height = 5)
+print(p_hn)
 dev.off()
 ```
+
 
 # Software versions
 ```{r}

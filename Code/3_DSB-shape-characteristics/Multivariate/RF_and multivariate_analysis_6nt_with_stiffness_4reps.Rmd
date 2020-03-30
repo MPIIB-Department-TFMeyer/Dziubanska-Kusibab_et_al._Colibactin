@@ -1,0 +1,103 @@
+---
+title: "DNA Shape of central 6nt - Multivariate analysis (including stiffness data)"
+author: "Hilmar Berger"
+output:
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE}
+rm(list=ls())
+library(randomForest)
+library(ggplot2)
+library(Biostrings)
+library(data.table)
+library(robust)
+library(robustbase)
+library(pheatmap)
+library(readxl)
+```
+
+# Overview
+
+I here use data on enrichment of 10-nucleotides around predicted double strand break sites in pks+ E.coli (WT vs. mutant) in Caco2 cell as determined by BLISS from 4 replicates.
+
+The R package DNAShapeR (Chiu TS et al., Bioinformatics 2015; https://doi.org/10.1093/bioinformatics/btv735) was used to predict the parameters for minor groove width, roll, propeller twist, helical twist and electrostatic potential for all possible 9nt sequences. Note that this will not yield values for the outermost positions, so the values of the central **5** nucleotides are used here.
+
+All data was prepared by Paulina Dziubanska-Kusibab. 
+
+I here try to predict the pentanucleotide enrichment in WT vs. mutant E.Ccoli infection from predicted DNA shape and EP parameters using different methods.
+
+```{r}
+load("../../../Data/Shape_correlations/ShapePrediction/10nt_shape_parameters_aggregated_one_table.Rdata")
+
+load("../../../Data/Shape_correlations/ShapePrediction/Hexanucleotide_Shape_and_Enrichment.Rdata")
+
+lr_shape[, cl:=Mean-CI]
+lr_shape[, cu:=Mean+CI]
+
+
+d_param_full_6nt = merge(lr_shape, all_shape_tables_dt, by="Nt")
+
+```
+
+
+# PCA
+
+We first would like to see if enriched 9-nucleotides (9N) are in any way special with regard to DNA shape parameters of their central pentanucleotides (PN) compared to all others. The top enriched 9N (lower CI of log2 ratio>1.5) are marked in red, highly enriched (lower CI of log2ratio > 1) in orange and the remainder in grey.
+
+All parameters are used without averaging over positions and are scaled and centered to N(0,1).
+
+```{r, fig.width=8, fig.height=8}
+all_dna_param_cols = colnames(d_param_full_6nt)[31:108]
+sel_cols = all_dna_param_cols[grepl("MGW|ProT|HelT|EP|Roll", all_dna_param_cols)]
+inp = as.matrix(d_param_full_6nt[, sel_cols, with=F])
+inp = inp[order(-d_param_full_6nt$cl),]
+rownames(inp) = d_param_full_6nt$Nt
+
+col = ifelse(d_param_full_6nt$cl>0.8, "red", ifelse(d_param_full_6nt$cl>0.5, "orange", rgb(0.7, 0.7, 0.7, 0.2) ))
+col = col[order(-d_param_full_6nt$cl)]
+
+pca = prcomp(inp, scale. = T)
+imp = summary(pca)$importance
+
+plot(pca$x[,1], pca$x[,2], type="p", xlab=paste("1st PC (",round(imp[2,1],2)*100 ,"% var explained)",sep="" ), ylab=paste("2nd PC (",round(imp[2,2],2)*100 ,"% var explained)",sep="" ), main="PCA on normalized expression data", pch = 20, col = col)
+# cp = palette(rainbow(8))
+#text(pca$x[,1],pca$x[,2],labels=ed[colnames(normalized$E),]$ShortName, col=cp[as.numeric(as.factor(ed[colnames(normalized$E),]$Tissue.Status))])
+
+plot(pca$x[,1], pca$x[,3], type="p", xlab=paste("1st PC (",round(imp[2,1],2)*100 ,"% var explained)",sep="" ), ylab=paste("3rd PC (",round(imp[2,3],2)*100 ,"% var explained)",sep="" ), main="PCA on normalized expression data", pch = 20, col = col)
+
+plot(pca$x[,2], pca$x[,3], type="p", xlab=paste("2nd PC (",round(imp[2,2],2)*100 ,"% var explained)",sep="" ), ylab=paste("3rd PC (",round(imp[2,3],2)*100 ,"% var explained)",sep="" ), main="PCA on normalized expression data", pch = 20, col = col)
+
+save(pca, d_param_full_6nt, file="../../../Data/Shape_correlations/Multivariate/6nt_data_with_stiffness_and_PCA.Rdata")
+```
+
+It is obvious from the plots above that the top enriched are already quite extreme in the 1st PC of the space defined by 4096 6nt sequences and 13 DNA shape parameters.
+
+Variable loadings:
+
+```{r}
+pca$rotation[, 1:3]
+```
+
+```{r, fig.width=14}
+barplot(pca$rotation[, 1], las=2)
+```
+
+
+Note that the 1st component is driven by EP, ProT, MGW and stiffness. However, not all positions seem to equally important - central positions have a stronger impact than the more distal ones.
+
+# Software versions
+
+```{r}
+sessionInfo()
+```
+

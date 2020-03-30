@@ -1,0 +1,298 @@
+---
+title: "DREME positional analysis - Etoposide control"
+author: "Hilmar Berger"
+output: 
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE}
+rm(list=ls())
+library(Biostrings)
+library(GenomicRanges)
+library(ggplot2)
+library(data.table)
+library(BSgenome.Hsapiens.UCSC.hg19)
+#library(seqLogo)
+library(ggseqlogo)
+library(gridExtra)
+```
+
+# Overview
+
+We want to analyse the positional distribution of motif associated pattern identified in the DSB +/-10nt windows by DREME around the actual DSB site in order to distinguis those centered at the break site from those which are just distributed somewhere else or uniformly in the window.
+
+```{r}
+bed_folder = "../../../../Data/DSB_positions_processed/"
+
+dreme_result_folder = "../../../../Data/DREME/Etoposide/"
+
+dreme_libs = c("BB191","BB76","BB78","BB82")
+```
+
+We will analyse motifs from etoposide treated vs. untreated controls in Caco2 cells from libraries `r paste(dreme_libs, collapse=", ")` from folder `r dreme_result_folder` .
+
+## Motifs
+
+We import all motifs from the DREME run for each replicate and extract PWM motifs. Matching oligonucleotide pattern of corresponding length are then extracte for each PWM motif. 
+
+```{r}
+source("./pwm_motifs.R")
+```
+
+```{r, fig.height=6, fig.width=14}
+
+all_motif_lengths = list()
+all_totals = list()
+all_seqlogos = list()
+
+for (s in names(all_pwm)) {
+  
+  for (mn in names(all_pwm[[s]])) {
+    motif_id = paste0(s, "_", mn)
+    pwm_mat_rel = all_pwm[[s]][[mn]][["rel"]]
+    pwm_mat_abs = all_pwm[[s]][[mn]][["count"]]
+    total_frags = sum(pwm_mat_abs[,1])
+    #pwm = makePWM(mat_rel)
+    all_seqlogos[[motif_id]] = ggseqlogo(pwm_mat_rel, method = 'bits') + ggtitle(paste0(motif_id, " (n=",total_frags,")") )
+    all_motif_lengths[[motif_id]] = ncol(pwm_mat_abs)
+    all_totals[[motif_id]] = total_frags
+  }
+  #p = marrangeGrob(all_seqlogos, nrow=2, ncol=5)
+  #print(p)
+}
+```
+
+## Breakpoint input files
+
+```{r}
+all_samples = dreme_libs
+
+dsb_bed_files = list()
+for (s in all_samples) {
+  bed_files = list.files(path = bed_folder, pattern=paste0(s,"_.*Caco2.*ETO.*.bed" ))
+  dsb_bed_files[[s]] = bed_files
+}
+```
+
+
+DSB coordinates were derived from the following files in folder `r bed_folder`:
+
+```{r}
+unlist(dsb_bed_files)
+```
+
+
+# Analysis
+
+DSB break points are defined as lying between two consecutive nucleotides on the plus strand. Each break point was derived either from reads on the plus or minus strand, containing the a single motif either in forward or reverse complement direction. 
+
+Patterns are oligonucleotide sequences matching DREME motifs which are defined in a 5'->3' direction on a single strand. While for each pattern there is a reverse complemtent sequence on the opposite strand, we do not consider those reverse complement sequences in our analysis. 
+
+Pattern matches which fall within the DSB +/- 10 bp ranges are identified. Note that this puts limits at which positions motifs can start within the window. 
+
+Relative positions of patterns compared to the break point are defined by the distance to the most 5' position of the pattern as reference (i.e. start or end of motif depending on pattern matching + or - strand, respectively).  
+As a result, motifs on either reference genome strand that have the 5' end of the motif exactly right of the DSB would have a position of +0.5. 
+
+Finally, each combination of pattern and break point is classified as **F**orward or **R**everse if pattern matching strand and DSB read strand are identical or opposite, respectively. 
+
+
+
+
+We show four figures:  
+  - Sequence logo of the PWM motif
+  - Absolute counts of pattern start positions within the window for forward and reverse matching DSB sites
+  - Absolute coverage of pattern within the window
+  - Relative coverage of pattern within the window. Black broken line shows theoretical coverage for uniform distribution of a motif with the same length. 
+
+```{r}
+compute_distances <- function(dsb_context_ranges, pwm) {
+  vv = Views(BSgenome.Hsapiens.UCSC.hg19, dsb_context_ranges)
+  
+  all_combinations = mkAllStrings(c("A","C","G","T"), ncol(pwm))
+  tmp = unlist(Map(function(x) countPWM(pwm, x, min.score = "99%"), all_combinations))
+  sel_pattern = all_combinations[tmp==1]
+
+  all_mappings = list()
+  
+  for (sp in sel_pattern) {
+    pp = vmatchPattern(DNAString(sp), Hsapiens)
+  
+    oo = findOverlaps(pp, dsb_context_ranges, type="within")
+    
+    rr = pp[queryHits(oo)]
+    sel_subjects = dsb_context_ranges[subjectHits(oo)]
+    rr$dsb_start = start(sel_subjects)+(width(sel_subjects)/2-1)
+    rr$dsb_end =  end(sel_subjects)-(width(sel_subjects)/2-1)
+    rr$read_direction = sel_subjects$direction
+    rr$break_pos = (rr$dsb_start+rr$dsb_end)/2
+    rr$dist = ifelse(strand(rr)=="+", start(rr)-rr$break_pos, -(end(rr)-rr$break_pos))
+    
+    rr_dt = data.table(strand=as.character(strand(rr)), dist_to_dsb=rr$dist, read_direction=rr$read_direction, pattern=sp)
+    all_mappings[[sp]] = rr_dt
+  }
+  
+  rr_all = do.call(rbind, all_mappings)
+  return(rr_all)
+}
+```
+
+
+```{r}
+coverage_matrix <- function(input_tab) {
+  
+  pattern_len = ncol(pwm)
+  
+  m = dcast.data.table(input_tab,  strand + read_direction + pattern ~ dist_to_dsb, value.var="count")
+
+  start_col = 4
+  m1 = as.matrix(m[,start_col:ncol(m)])
+  m1[is.na(m1)] <- 0
+  
+  m2 = matrix(rep(0L, nrow(m1)*(ncol(m1)+pattern_len-1)), nrow(m1),ncol(m1)+pattern_len-1)
+  for (i in 1:(ncol(m1))) {
+    re = min(i+(pattern_len-1),ncol(m2)) # last col index
+    cn = re-i+1 # number of columns
+    v = (m1[,i])
+    ma = matrix(rep(v, times=cn),nrow=length(v), ncol=cn)
+    m2[, i:re] = m2[, i:re] + ma
+  }
+  colnames(m2) = seq(-9.5, 9.5, 1)
+  m_new = cbind(as.data.frame(m[,1:start_col]), m2)
+  
+  rr_agg_new = as.data.table(reshape::melt(m_new, verbose=F))
+  rr_agg_new$variable = as.numeric(as.character(rr_agg_new$variable))
+  rr_agg_new[, direction_final:=ifelse(read_direction=="+",ifelse(strand=="+", "F","R"), ifelse(strand=="-","F","R"))]  
+  return(rr_agg_new)
+}
+```
+
+
+```{r}
+rerun_analysis = T
+
+if (rerun_analysis) {
+  all_result_tabs = list()
+  all_coverage_mat = list()
+  for (sa in all_samples) {
+    bed_file = dsb_bed_files[[sa]]
+    
+    ff = file.path(bed_folder, bed_file)
+    tmp = fread(ff, sep="\t", header=F)
+    tmp_ranges = with(tmp, GRanges(V1, IRanges(V2+1-9,V3+9), direction=V6) )
+    suppressMessages(seqlevelsStyle(tmp_ranges) <- "UCSC")
+    
+    all_motifs = names(all_pwm[[sa]])
+    for( mn in all_motifs) {
+      motif_id = paste0(sa, "_", mn)
+      cat(paste("Analyzing", motif_id, "\n"))
+      pwm = all_pwm[[sa]][[mn]][["pwm"]]
+      rr_all = compute_distances(tmp_ranges, pwm)
+      rr_all$dreme_motif_id = motif_id
+      all_result_tabs[[motif_id]] = rr_all
+  
+      rr_agg = rr_all[, .(count=.N), by=c("dist_to_dsb", "strand","read_direction", "pattern")]
+      rr_agg[, direction_final:=ifelse(read_direction=="+",ifelse(strand=="+", "F","R"), ifelse(strand=="-","F","R"))]
+  
+      print("Patterns included in motif")
+      print(unique(sort(rr_agg$pattern)))
+              
+      cov_tab = coverage_matrix(rr_agg)
+      all_coverage_mat[[motif_id]] = cov_tab
+    }
+  }
+  save(all_coverage_mat, all_result_tabs, file=file.path(dreme_result_folder,"DREME_position_results.Rdata"))
+} else {
+  load(file.path(dreme_result_folder, "DREME_position_results.Rdata"))
+}
+
+```
+
+```{r}
+# todo: compute expected coverage distribution given length of motif and number of observed fragments
+coverage_matrix_random <- function(pattern_len, total_count) {
+  
+  dist_to_dsb = seq(-9.5, 9.5)
+  strands = c("+","-")
+  read_direction = c("+","-")
+  dd = expand.grid(dist_to_dsb, strands, read_direction, stringsAsFactors = F)
+  colnames(dd) = c("dist_to_dsb","strand", "read_direction")
+  dd$count = ifelse(dd$dist_to_dsb>(10-(pattern_len-1)), 0, round(total_count/(20-(pattern_len-1))))
+  dd$pattern = "random"
+  m = dcast.data.table(as.data.table(dd),  strand + read_direction + pattern ~ dist_to_dsb, value.var="count")
+
+  start_col = 4
+  m1 = as.matrix(m[,start_col:ncol(m)])
+  m1[is.na(m1)] <- 0
+  
+  m2 = matrix(rep(0L, nrow(m1)*(ncol(m1))), nrow(m1),ncol(m1))
+  for (i in 1:(ncol(m1))) {
+    re = min(i+(pattern_len-1),ncol(m2)) # last col index
+    cn = re-i+1 # number of columns
+    v = (m1[,i])
+    ma = matrix(rep(v, times=cn),nrow=length(v), ncol=cn)
+    m2[, i:re] = m2[, i:re] + ma
+  }
+  colnames(m2) = seq(-9.5, 9.5, 1)
+  m_new = cbind(as.data.frame(m[,1:start_col]), m2)
+  
+  rr_agg_new = as.data.table(reshape::melt(m_new, verbose=F))
+  rr_agg_new$variable = as.numeric(as.character(rr_agg_new$variable))
+  rr_agg_new[, direction_final:=ifelse(read_direction=="+",ifelse(strand=="+", "F","R"), ifelse(strand=="-","F","R"))]  
+  return(rr_agg_new)
+}
+
+
+```
+
+
+
+
+```{r, message=FALSE, fig.width=16, fig.height=10}
+for (motif_id in names(all_coverage_mat)) {
+      rr_all = all_result_tabs[[motif_id]]
+      rr_agg = rr_all[, .(count=.N), by=c("dist_to_dsb", "strand","read_direction", "pattern")]
+      rr_agg[, direction_final:=ifelse(read_direction=="+",ifelse(strand=="+", "F","R"), ifelse(strand=="-","F","R"))]
+  
+      cov_tab = all_coverage_mat[[motif_id]]
+      random_tab = coverage_matrix_random(all_motif_lengths[[motif_id]], all_totals[[motif_id]])
+      #cov_tab = rbind(cov_tab, random_tab)
+      cov_tab_agg = cov_tab[, .(count = sum(value)), by=c("pattern","direction_final", "variable")]
+      cov_tab_agg[, total:=sum(count),by=c("pattern","direction_final")]
+      cov_tab_agg[, rel_cov:=count/total]
+      cov_tab_agg[, sd:=sqrt((rel_cov*(1-rel_cov)/total))]
+      cov_tab_agg[, ymin:=rel_cov-1.96*sd]
+      cov_tab_agg[, ymax:=rel_cov+1.96*sd]
+      
+      random_tab_agg = random_tab[, .(count = sum(value)), by=c("pattern","direction_final", "variable")]
+      random_tab_agg[, total:=sum(count),by=c("pattern","direction_final")]
+      random_tab_agg[, rel_cov:=count/total]
+
+      p0 = all_seqlogos[[motif_id]]
+      p1 = ggplot(rr_agg, aes(x=dist_to_dsb, y=count)) + geom_bar(stat="identity") + facet_grid(pattern ~ direction_final) + geom_vline(xintercept = 0, col="red") + theme(strip.text.x = element_text(size = 24))
+
+      p2 = ggplot(cov_tab_agg, aes(x=variable, y=count, col=pattern)) + geom_line() + facet_grid(. ~ direction_final) + geom_vline(xintercept = 0, col="red") + theme(strip.text = element_text(size = 24)) + geom_vline(xintercept = 0, col="red") + coord_cartesian(xlim=c(-10,10)) + ggtitle( motif_id ) + xlab("Distance to DSB site") + ylab("Count of fragments covering position")
+      
+      p3 = ggplot(cov_tab_agg, aes(x=variable, y=rel_cov)) +  geom_line(aes(col=pattern)) +
+        geom_ribbon(aes(x=variable, ymin=ymin, ymax=ymax,fill=pattern), alpha=0.2 ) + 
+        geom_line(data=random_tab_agg, col="black",linetype = 2)  + 
+        facet_grid(. ~ direction_final) + 
+        geom_vline(xintercept = 0, col="red") + 
+        theme(strip.text = element_text(size = 24)) + 
+        geom_vline(xintercept = 0, col="red") + 
+        coord_cartesian(xlim=c(-10,10)) + 
+        ggtitle( motif_id ) + xlab("Distance to DSB site") + ylab("Proportion of fragments covering position") 
+      
+    p = marrangeGrob(list(p0, p1,p2,p3), nrow=2, ncol=2, layout_matrix = matrix(c(1,2,2,2,3,3,4,4), ncol=2, nrow=4))
+    print(p)
+}
+```
+

@@ -1,0 +1,187 @@
+---
+title: 'Sequence and shape correlation: 4 replicates'
+author: "Paulina Dziubanska-Kusibab"
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+output:
+  html_document:
+    code_folding: show
+    number_sections: yes
+    toc: yes
+    toc_depth: 3
+    toc_float: no
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+pdf_document:
+  fig_caption: yes
+---
+
+```{r, message=FALSE, warning=FALSE}
+rm(list=ls())
+library(ggplot2)
+library(readxl)
+library(reshape2)
+library(DNAshapeR)
+library(data.table)
+library(dplyr)
+library(seqRFLP)
+library(Biostrings)
+```
+
+# Introduction
+Here we would like to correlate identified sequence enrichments in DSBs flanking regions of colibactin-induced breaks (+/7nt) with DNA shape parameters.  
+Normalized logRatios for hexanucleotides of 4 replicates and information whether hexanucleotide is associated with barcode or not, are being imported.  
+  
+Please note that for this enrichment analysis, presence of the motif within extracted sequence was counted in **yes:no** system - even if the hexanucleotide was present more than once it was only counted once.  
+   
+For MGW, EP and ProT - central two values are averaged and used for the correlation **xxV3V4xx**  
+
+For Roll, HelT and Stiffness - central three values are averaged and used **xV2V3V4x**  
+
+Values of Stiffness for tetranucleotides were provided by Federica Barristini (IRB Barcelona). Next for each hexanucleotide three tetranucleotides were assigned and values for them were averaged or maximal/minimal value was taken (it is stated in the text).
+
+```{r}
+load("../../Data/Shape_correlations/ShapePrediction/Hexanucleotide_Shape_and_Enrichment.Rdata")
+```
+
+```{r}
+library(ggthemes)
+```
+
+## Correlations for hexanucleotides (avg.DNAShape.value) not associated with barcode sequences
+```{r}
+lr_shape_noBC <- lr_shape[lr_shape$bc=="no BC"]
+lr_shape_noBC[, label:=ifelse(Nt %in% c("AAAATT","AAATTT","AATATT"), as.character(Nt), "")]
+lr_shape_noBC[, class:=ifelse(Nt %in% c("AAAATT","AAATTT","AATATT"), "AAWWTT", "other")]
+```
+
+```{r, fig.width=6, fig.height=4}
+x_var = "MGW.avgV3V4"
+x_var_label = "MGW [Angstrom]"
+x_var_name = unlist(sapply(strsplit(x_var, "\\."), `[`,1))
+p = ggplot(lr_shape_noBC, aes_string(x=x_var, y="Mean", group="Nt")) +
+  geom_point(alpha=0.52, aes(col=class)) +
+  geom_errorbar(width=.1, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.1) + 
+  labs(x=x_var_label, y="Scaled Log2(ratio)") + theme_few()+ theme(axis.text = element_text(size=12), legend.position="none") + 
+  geom_text(aes(label=label), nudge_x=0.3, nudge_y=0.05) + 
+  scale_color_manual(values = c("AAWWTT"="red","other"="black")) 
+
+print(p + labs(title=paste0("Log2Ratio by averaged ",x_var_name ), subtitle = "Error bars are 95% CI") )
+
+```
+
+```{r, message=FALSE}
+pdf(file=paste0("../../Results/3_DSB-shape-characteristics/Log2Ratio_vs_Mean_",x_var_name,"_HN_no_BC.pdf"), width = 6, height = 4)
+print(p)
+dev.off()
+```
+
+```{r, fig.width=6, fig.height=4}
+x_var = "EP.avgV3V4"
+x_var_label = "EP [kT/e]"
+x_var_name = unlist(sapply(strsplit(x_var, "\\."), `[`,1))
+p = ggplot(lr_shape_noBC, aes_string(x=x_var, y="Mean", group="Nt")) +
+  geom_point(alpha=0.52, aes(col=class)) +
+  geom_errorbar(width=.1, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.1) + 
+  labs(x=x_var_label, y="Scaled Log2(ratio)") + theme_few()+ theme(axis.text = element_text(size=12), legend.position="none") + 
+  geom_text(aes(label=label), nudge_x=0.8, nudge_y=0.05) + 
+  scale_color_manual(values = c("AAWWTT"="red","other"="black")) 
+
+print(p + labs(title=paste0("Log2Ratio by averaged ",x_var_name ), subtitle = "Error bars are 95% CI") )
+
+```
+
+```{r, message=FALSE}
+pdf(file=paste0("../../Results/3_DSB-shape-characteristics/Log2Ratio_vs_Mean_",x_var_name,"_HN_no_BC.pdf"), width = 6, height = 4)
+print(p)
+dev.off()
+```
+
+```{r, fig.width=6, fig.height=4}
+x_var = "ProT.avgV3V4"
+x_var_label = "ProT [degree]"
+x_var_name = unlist(sapply(strsplit(x_var, "\\."), `[`,1))
+p = ggplot(lr_shape_noBC, aes_string(x=x_var, y="Mean", group="Nt")) +
+  geom_point(alpha=0.52, aes(col=class)) +
+  geom_errorbar(width=.1, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.1) + 
+  labs(x=x_var_label, y="Scaled Log2(ratio)") + theme_few()+ theme(axis.text = element_text(size=12), legend.position="none") + 
+  geom_text(aes(label=label), nudge_x=1.5, nudge_y=0.05) + 
+  scale_color_manual(values = c("AAWWTT"="red","other"="black")) 
+
+print(p + labs(title=paste0("Log2Ratio by averaged ",x_var_name ), subtitle = "Error bars are 95% CI") )
+
+```
+
+```{r, message=FALSE}
+pdf(file=paste0("../../Results/3_DSB-shape-characteristics/Log2Ratio_vs_Mean_",x_var_name,"_HN_no_BC.pdf"), width = 6, height = 4)
+print(p)
+dev.off()
+```
+
+```{r, fig.width=6, fig.height=4}
+x_var = "HelT.avgV2V3V4"
+x_var_label = "HelT [degree]"
+x_var_name = unlist(sapply(strsplit(x_var, "\\."), `[`,1))
+p = ggplot(lr_shape_noBC, aes_string(x=x_var, y="Mean", group="Nt")) +
+  geom_point(alpha=0.52, aes(col=class)) +
+  geom_errorbar(width=.1, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.1) + 
+  labs(x=x_var_label, y="Scaled Log2(ratio)") + theme_few()+ theme(axis.text = element_text(size=12), legend.position="none") + 
+  geom_text(aes(label=label), nudge_x=0.5, nudge_y=0.05) + 
+  scale_color_manual(values = c("AAWWTT"="red","other"="black")) 
+
+print(p + labs(title=paste0("Log2Ratio by averaged ",x_var_name ), subtitle = "Error bars are 95% CI") )
+
+```
+
+```{r, message=FALSE}
+pdf(file=paste0("../../Results/3_DSB-shape-characteristics/Log2Ratio_vs_Mean_",x_var_name,"_HN_no_BC.pdf"), width = 6, height = 4)
+print(p)
+dev.off()
+```
+
+```{r, fig.width=6, fig.height=4}
+x_var = "Roll.avgV2V3V4"
+x_var_label = "Roll [degree]"
+x_var_name = unlist(sapply(strsplit(x_var, "\\."), `[`,1))
+p = ggplot(lr_shape_noBC, aes_string(x=x_var, y="Mean", group="Nt")) +
+  geom_point(alpha=0.52, aes(col=class)) +
+  geom_errorbar(width=.1, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.1) + 
+  labs(x=x_var_label, y="Scaled Log2(ratio)") + theme_few()+ theme(axis.text = element_text(size=12), legend.position="none") + 
+  geom_text(aes(label=label), nudge_x=0.9, nudge_y=0.05) + 
+  scale_color_manual(values = c("AAWWTT"="red","other"="black")) 
+
+print(p + labs(title=paste0("Log2Ratio by averaged ",x_var_name ), subtitle = "Error bars are 95% CI") )
+
+```
+
+```{r, message=FALSE}
+pdf(file=paste0("../../Results/3_DSB-shape-characteristics/Log2Ratio_vs_Mean_",x_var_name,"_HN_no_BC.pdf"), width = 6, height = 4)
+print(p)
+dev.off()
+```
+
+```{r, fig.width=6, fig.height=4}
+x_var = "Stiffness.avgV2V3V4"
+x_var_label = "Stiffness [N/m]"
+x_var_name = unlist(sapply(strsplit(x_var, "\\."), `[`,1))
+p = ggplot(lr_shape_noBC, aes_string(x=x_var, y="Mean", group="Nt")) +
+  geom_point(alpha=0.52, aes(col=class)) +
+  geom_errorbar(width=.00025, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.1) + 
+  labs(x=x_var_label, y="Scaled Log2(ratio)") + theme_few()+ theme(axis.text = element_text(size=12), legend.position="none") + 
+  geom_text(aes(label=label), nudge_x=0.0012, nudge_y=0.05) + 
+  scale_color_manual(values = c("AAWWTT"="red","other"="black")) 
+
+print(p + labs(title=paste0("Log2Ratio by averaged ",x_var_name ), subtitle = "Error bars are 95% CI") )
+
+```
+
+```{r, message=FALSE}
+pdf(file=paste0("../../Results/3_DSB-shape-characteristics/Log2Ratio_vs_Mean_",x_var_name,"_HN_no_BC.pdf"), width = 6, height = 4)
+print(p)
+dev.off()
+```
+
+# Software versions
+```{r}
+sessionInfo()
+```

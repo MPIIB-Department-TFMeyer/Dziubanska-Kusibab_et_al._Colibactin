@@ -1,0 +1,80 @@
+---
+title: "Nucleotide enrichment in windows DSB+/-7nt  - hexanucleotide patterns"
+author: "Hilmar Berger"
+output: 
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE}
+rm(list=ls())
+library(Biostrings)
+# library(GenomicRanges)
+library(ggplot2)
+library(data.table)
+#library(BSgenome.Hsapiens.UCSC.hg19)
+#library(gridExtra)
+```
+
+# Overview
+
+Nucleotide enrichment data for all replicates and conditions E.coli WT infection, E.coli mutant infection and controls are imported. We compute the scaled log2 ratio of enrichment in target vs. control as the log2 ratio divided by the maximum log2 ratio. 
+
+Since we noticed that many of the top ranking hits are similar to barcodes used in BLISS for those samples we mark nucleotide patterns which match known barcode patterns in forward or reverse complement direction with at most one mismatch as Barcode associated. Those patterns will be excluded before determining the maxium log2 ratio for each sample. Barcode association will be used in a library specific way i.e., only barcodes used for generation of this library are used for identification of matching patterns).
+
+
+
+```{r}
+pattern_length=6
+input_folder = "../../Data/Sequence_enrichment/Hexanucleotides"
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+source("../2_DSB-sequence-specificity/read_tables_and_barcodes.R")
+
+bc_info = get_barcode_matches(pattern_length, "../../Data/Barcodes_all.txt")
+
+all_nuc_enrichment_tabs = read_enrichment_tables(input_folder, bc_info)
+```
+
+```{r}
+all_nuc_enrichment_tabs_agg = all_nuc_enrichment_tabs[, .(Mean=mean(logRatio, na.rm=T), SD=sd(logRatio, na.rm=T), rep_cnt=sum(!is.na(logRatio)), bc=ifelse(any(barcode_match_library!="no BC"),"BC f/r", "no BC"), SEM_err_prop= sqrt(sum(sd_log2ratio**2)/sum(!is.na(logRatio))) ), by=c("Nt","condition", "at_cnt")]
+all_nuc_enrichment_tabs_agg[, SEM:=pmax(SEM_err_prop, SD/sqrt(rep_cnt), na.rm=T ) ]
+all_nuc_enrichment_tabs_agg[, CI:=SEM * qt(0.975, rep_cnt)]
+setorder(all_nuc_enrichment_tabs_agg, condition, -Mean)
+```
+
+```{r}
+all_nuc_enrichment_tabs_agg_scaled = all_nuc_enrichment_tabs[, .(Mean=mean(logRatio_scaled, na.rm=T), SD=sd(logRatio_scaled, na.rm=T), rep_cnt=sum(!is.na(logRatio_scaled)), bc=ifelse(any(barcode_match_library!="no BC"),"BC f/r", "no BC"), SEM_err_prop= sqrt(sum(sd_log2ratio_scaled**2)/sum(!is.na(logRatio_scaled))) ), by=c("Nt","condition", "at_cnt")]
+all_nuc_enrichment_tabs_agg_scaled[, SEM:=pmax(SEM_err_prop, SD/sqrt(rep_cnt), na.rm=T ) ]
+all_nuc_enrichment_tabs_agg_scaled[, CI:=SEM * qt(0.975, rep_cnt)]
+setorder(all_nuc_enrichment_tabs_agg_scaled, condition, -Mean)
+```
+
+
+## Wt vs Mutant
+
+```{r}
+sel_tab = as.data.table(subset(all_nuc_enrichment_tabs, condition == "WTvsMut"))
+
+sel_tab[, mean_scaled_logratio:=mean(logRatio_scaled), by="Nt"]
+
+sel_tab_agg = subset(all_nuc_enrichment_tabs_agg_scaled, condition == "WTvsMut")
+
+setorder(sel_tab_agg, -Mean)
+sel_tab_agg[, Nt:=factor(Nt, levels=Nt)]
+
+```
+
+```{r}
+save(sel_tab_agg, file="../../Data/Sequence_enrichment/Hexanucleotides/Scaled_logRatio_HN_4rep_cnt_once.RData")
+```

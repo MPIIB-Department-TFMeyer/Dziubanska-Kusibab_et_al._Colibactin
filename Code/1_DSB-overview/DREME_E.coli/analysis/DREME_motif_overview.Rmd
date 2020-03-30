@@ -1,0 +1,111 @@
+---
+title: "DREME positional analysis"
+author: "Hilmar Berger"
+output: 
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE}
+rm(list=ls())
+library(Biostrings)
+library(GenomicRanges)
+library(ggplot2)
+library(data.table)
+library(BSgenome.Hsapiens.UCSC.hg19)
+#library(seqLogo)
+library(ggseqlogo)
+library(gridExtra)
+library(grid)
+```
+
+# Overview
+
+We want to analyse the positional distribution of motif associated pattern identified in the DSB +/-10nt windows by DREME around the actual DSB site in order to distinguis those centered at the break site from those which are just distributed somewhere else or uniformly in the window.
+
+```{r}
+bed_folder = "../../../../Data/DSB_positions_processed/"
+
+dreme_result_folder = "../../../../Data/DREME/E.coli/"
+dreme_libs = c("BB192","BB77","BB79","BB83")
+```
+
+We will analyse motifs from WT vs. Mutant infection in Caco2 cells from libraries `r paste(dreme_libs, collapse=", ")` from folder `r dreme_result_folder` .
+
+## Motifs
+
+We import all motifs from the DREME run for each replicate and extract PWM motifs. Matching oligonucleotide pattern of corresponding length are then extracte for each PWM motif. 
+
+```{r}
+source("./pwm_motifs.R")
+```
+
+```{r, fig.height=6, fig.width=14}
+
+all_motif_lengths = list()
+all_totals = list()
+all_seqlogos = list()
+
+for (s in names(all_pwm)) {
+  all_seqlogos[[s]] = list()
+  for (mn in names(all_pwm[[s]])) {
+    motif_id = paste0(s, "_", mn)
+    pwm_mat_rel = all_pwm[[s]][[mn]][["rel"]]
+    pwm_mat_abs = all_pwm[[s]][[mn]][["count"]]
+    total_frags = sum(pwm_mat_abs[,1])
+    #pwm = makePWM(mat_rel)
+    E = all_pwm[[s]][[mn]][["parameters"]]["E"]
+    all_seqlogos[[s]][[mn]] = ggseqlogo(pwm_mat_rel, method = 'bits') + ggtitle(paste0(motif_id, " (n=",total_frags,", E=",E,")") ) + theme(plot.title=element_text(size=10))
+    #all_motif_lengths[[motif_id]] = ncol(pwm_mat_abs)
+    #all_totals[[motif_id]] = total_frags
+  }
+  #p = marrangeGrob(all_seqlogos, nrow=2, ncol=5)
+  #print(p)
+}
+```
+
+
+```{r, message=FALSE, fig.width=10, fig.height=14}
+empty = ggplot() + theme_void()
+all_grobs = list()
+for (s in names(all_seqlogos)) {
+    tmp = all_seqlogos[[s]]
+    if(length(tmp)<10) {for(i in 1:(10-length(tmp))) tmp[[paste0(s,"_t",i)]] = empty }
+    all_grobs = append(all_grobs, tmp )
+}
+p = marrangeGrob(all_grobs, nrow=10, ncol=4, top="" )  # layout_matrix = matrix(c(1,2,2,2,3,3,4,4), ncol=2, nrow=4)
+print(p)  
+```
+
+<!-- ```{r} -->
+<!-- pdf(file="DREME_all_motifs.pdf", width = 11, height = 14) -->
+<!-- print(p) -->
+<!-- dev.off() -->
+<!-- ``` -->
+
+```{r, message=FALSE, fig.width=10, fig.height=4}
+empty = ggplot() + theme_void()
+all_grobs = list()
+for (s in names(all_seqlogos)) {
+    tmp = all_seqlogos[[s]][1:3]
+    if(length(tmp)<3) {for(i in 1:(10-length(tmp))) tmp[[paste0(s,"_t",i)]] = empty }
+    all_grobs = append(all_grobs, tmp )
+}
+p = marrangeGrob(all_grobs, nrow=3, ncol=4, top="" )  # layout_matrix = matrix(c(1,2,2,2,3,3,4,4), ncol=2, nrow=4)
+print(p)  
+```
+
+```{r}
+pdf(file="../../../../Results/1_DSB-overview/DREME_all_motifs_pks+_vs_pks-_E.coli_top3.pdf", width = 11, height = 4)
+print(p)
+dev.off()
+```
+

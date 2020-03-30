@@ -1,0 +1,158 @@
+---
+title: 'Sequence and shape correlation: 4 replicates'
+author: "Paulina Dziubanska-Kusibab"
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+output:
+  html_document:
+    code_folding: show
+    number_sections: yes
+    toc: yes
+    toc_depth: 3
+    toc_float: no
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+pdf_document:
+  fig_caption: yes
+---
+
+```{r, message=FALSE, warning=FALSE}
+rm(list=ls())
+library(ggplot2)
+library(readxl)
+library(reshape2)
+library(DNAshapeR)
+library(data.table)
+library(dplyr)
+library(seqRFLP)
+library(Biostrings)
+```
+
+# Introduction
+Here we would like to correlate identified sequence enrichments in DSBs flanking regions of colibactin-induced breaks (+/7nt) with DNA shape parameters.  
+Normalized logRatios for hexanucleotides of 4 replicates and information whether hexanucleotide is associated with barcode or not, are being imported.  
+  
+Please note that for this enrichment analysis, presence of the motif within extracted sequence was counted in **yes:no** system - even if the hexanucleotide was present more than once it was only counted once.  
+   
+For MGW, EP and ProT - central two values are averaged and used for the correlation **xxV3V4xx**  
+
+For Roll, HelT and Stiffness - central three values are averaged and used **xV2V3V4x**  
+
+Values of Stiffness for tetranucleotides were provided by Federica Barristini (IRB Barcelona). Next for each hexanucleotide three tetranucleotides were assigned and values for them were averaged or maximal/minimal value was taken (it is stated in the text).
+
+```{r}
+# Read table with scaled enrichments
+load("../../Data/Sequence_enrichment/Hexanucleotides/Scaled_logRatio_HN_4rep_cnt_once.RData")
+
+lr <- sel_tab_agg
+```
+
+# Analysis
+```{r}
+# Create all possible hexanucleotides
+six_motif <- expand.grid(rep(list(c('A', 'G', 'T', 'C')), 6))
+six_motif <- do.call(paste0, six_motif)
+six_motif <- data.frame(six_motif)
+six_motif.df <- six_motif
+
+six_motif$name <- six_motif$six_motif
+six_motif$name <- sub("^", ">Seq_", six_motif$name)
+
+six_motif <- six_motif[,c(2, 1)]
+
+FASTA_file = "../../Data/Shape_correlations/ShapePrediction/six_motif.fasta"
+
+six_motif <- dataframe2fas(six_motif, file=FASTA_file)
+
+# Predict DNA Shape for five-nucleotide-motifs from fasta
+six_motif_pred <- file.path(FASTA_file)
+pred_six_motif <- getShape(six_motif_pred)
+names(pred_six_motif) <- c("MGW", "Roll", "ProT", "HelT", "EP")
+motif <- lapply(pred_six_motif, function(x) cbind(x, six_motif.df))
+```
+
+
+```{r}
+# Averege values of DNA shape parameters within one hexanucleotide
+lr_shape <- lr
+
+###################### 2 values per hexanucleotide ######################
+
+aa <- motif[[1]] %>% dplyr::select (7, 3:4)
+aa$MGW.avgV3V4 = (aa$`3`+aa$`4`)/2
+aa$MGW.max = do.call(pmax, aa[2:3])
+aa$MGW.min = do.call(pmin, aa[2:3])
+aa <- aa %>% dplyr::select (1, 4:6)
+lr_shape = merge(lr_shape, aa, by.x="Nt", by.y="six_motif", all.x=T, sort=F)
+
+
+aa <- motif[[3]] %>% dplyr::select (7, 3:4)
+aa$ProT.avgV3V4 = (aa$`3`+aa$`4`)/2
+aa$ProT.max = do.call(pmax, aa[2:3])
+aa$ProT.min = do.call(pmin, aa[2:3])
+aa <- aa %>% dplyr::select (1, 4:6)
+lr_shape = merge(lr_shape, aa, by.x="Nt", by.y="six_motif", all.x=T, sort=F)
+
+
+aa <- motif[[5]] %>% dplyr::select (7, 3:4)
+aa$EP.avgV3V4 = (aa$`3`+aa$`4`)/2
+aa$EP.max = do.call(pmax, aa[2:3])
+aa$EP.min = do.call(pmin, aa[2:3])
+aa <- aa %>% dplyr::select (1, 4:6)
+lr_shape = merge(lr_shape, aa, by.x="Nt", by.y="six_motif", all.x=T, sort=F)
+
+###################### 3 values per hexanucleotide ######################
+
+aa <- motif[[2]] %>% dplyr::select (6, 2:4)
+aa$HelT.avgV2V3V4 = (aa$`2`+aa$`3`+aa$`4`)/3
+aa$HelT.max = do.call(pmax, aa[2:4])
+aa$HelT.min = do.call(pmin, aa[2:4])
+aa <- aa %>% dplyr::select (1, 5:7)
+lr_shape = merge(lr_shape, aa, by.x="Nt", by.y="six_motif", all.x=T, sort=F)
+
+aa <- motif[[4]] %>% dplyr::select (6, 2:4)
+aa$Roll.avgV2V3V4 = (aa$`2`+aa$`3`+aa$`4`)/3
+aa$Roll.max = do.call(pmax, aa[2:4])
+aa$Roll.min = do.call(pmin, aa[2:4])
+aa <- aa %>% dplyr::select (1, 5:7)
+lr_shape = merge(lr_shape, aa, by.x="Nt", by.y="six_motif", all.x=T, sort=F)
+```
+
+
+```{r}
+# transform tetranucleotide stiffness to fit into pentanculeotides and calculate averaged value
+stiffness_4nt = read.table("../../Data/Shape_correlations/ShapePrediction/stiffness_data_4nt_Federica.txt", sep=" ", header=T, stringsAsFactors = F)
+rownames(stiffness_4nt) = stiffness_4nt$TN
+stiffness <- stiffness_4nt %>% dplyr::select (1, 2)
+
+HN <- six_motif.df
+HN$tetra1 <-substring(HN$six_motif,1,4) 
+HN$tetra2 <-substring(HN$six_motif,2,5)
+HN$tetra3 <-substring(HN$six_motif,3,6) 
+
+HN <- merge(HN,stiffness,by.x="tetra1", by.y="TN", all.x=TRUE)
+colnames(HN)[colnames(HN) == 'stiffness'] <- 'tetra1_stiffness'
+HN <- merge(HN,stiffness,by.x="tetra2", by.y="TN", all.x=TRUE)
+colnames(HN)[colnames(HN) == 'stiffness'] <- 'tetra2_stiffness'
+HN <- merge(HN,stiffness,by.x="tetra3", by.y="TN", all.x=TRUE)
+colnames(HN)[colnames(HN) == 'stiffness'] <- 'tetra3_stiffness'
+
+HN$Stiffness.avgV2V3V4 = (HN$tetra1_stiffness+HN$tetra2_stiffness+HN$tetra3_stiffness)/3
+```
+
+```{r}
+HN$Stiffness.max = do.call(pmax, HN[5:7])
+HN$Stiffness.min = do.call(pmin, HN[5:7])
+HN <- HN %>% dplyr::select (4, 8:10)
+lr_shape = merge(lr_shape, HN, by.x="Nt", by.y="six_motif", all.x=T, sort=F)
+```
+
+```{r}
+save(lr_shape, file="../../Data/Shape_correlations/ShapePrediction/Hexanucleotide_Shape_and_Enrichment.Rdata")
+```
+
+
+# Software versions
+```{r}
+sessionInfo()
+```

@@ -1,0 +1,7 @@
+PCAWG_sigProfiler_SBS_signatures_in_samples.csv: syn11738669 ( https://dcc.icgc.org/api/v1/download?fn=/PCAWG/mutational_signatures/Signatures_in_Samples/SP_Signatures_in_Samples/PCAWG_sigProfiler_SBS_signatures_in_samples.csv )
+
+WGS_PCAWG.1536.csv: extracted from syn11726620 ( https://dcc.icgc.org/api/v1/download?fn=/PCAWG/mutational_signatures/Input_Data_PCAWG7_23K_Spectra_DB/Mutation_Catalogs_--_Spectra_of_Individual_Tumours/WGS_PCAWG_2018_02_09.zip )
+WGS_PCAWG.96.csv: extracted from syn11726620
+
+POLE_D_variants_ICGC.txt : Exonic variants POLE and POLD1 were extracted from the combined data in release 26 of ICGC (https://dcc.icgc.org/releases/release_26)
+ICGC_DCC_release26_projects_donors_samples_specimen.Rdata : Combined donor/sample/specimen tables from all subprojects of r26 of ICGC

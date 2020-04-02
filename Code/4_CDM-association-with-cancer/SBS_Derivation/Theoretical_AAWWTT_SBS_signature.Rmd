@@ -1,0 +1,119 @@
+---
+title: "Theoretical SBS signature"
+author: "Hilmar Berger"
+date: "3/19/2020"
+output: html_document
+---
+
+```{r}
+rm(list=ls())
+library(ggplot2)
+library(ggthemes)
+library(pheatmap)
+source("../shared_scripts/trinuc_signaturesl.R")
+```
+
+# Overview
+
+We here use a theoretically derived SBS trinucleotide change signature based on trinucleotide frequencies in the colibactin associated AAWWTT motif combined with assumptions on a uniform distribution of T>[C/G/A] nucleotides. 
+
+A further extension is the inclusion of hotspots at positions 2/5 of the motif and a preference for A:T>G:C mutations at those positions. 
+
+# CAM6 SBS signature with uniform distribution
+
+```{r}
+
+e_uniform = expected_mut_CAM[, c("tc","nc","CAM6")]
+colnames(e_uniform) = c("tc","nc","weight")
+e_uniform$signature = "Theoretical AAWWTT signature (uniform distribution)"
+
+sbsa = data.frame(tc=rownames(lee_six_mat_new_sigs), nc=substr(rownames(lee_six_mat_new_sigs), 3,5), weight= lee_six_mat_new_sigs[, "N2"], signature="SBSA")
+
+e_uniform_and_n2 = rbind(e_uniform, sbsa)
+e_uniform_and_n2$tc = factor(e_uniform_and_n2$tc, levels=trinuc_changes_ordered$tc)
+e_uniform_and_n2$signature = factor(e_uniform_and_n2$signature, levels=c("Theoretical AAWWTT signature (uniform distribution)","SBSA"))
+```
+
+```{r, fig.width=10, fig.height=4}
+p = ggplot(e_uniform_and_n2, aes(x=tc, y=weight, fill=nc)) + geom_bar(stat="identity") + facet_wrap(~signature, ncol=1) + theme_few() + theme(text=element_text(size=20), axis.text.x=element_text(angle=90, hjust = 0, size=5)) + labs(x="", fill="Nucleotide\nchange", y = "Proportion") 
+print(p)
+```
+
+```{r}
+pdf("../../../Results/4_CDM-association-with-cancer/Theoretical_AAWWTT_SBS_signature.pdf", width = 10, height = 4)
+print(p)
+dev.off()
+```
+
+```{r}
+cosine_func <- function(x,y) x %*% y / sqrt(x%*%x * y%*%y)
+cc1 = apply(alexandrov_and_lee_six_sigs,1, cosine_func, expected_mut_CAM$CAM6)
+cc1_res = as.data.frame(cc1)
+cc1_res$signature=rownames(cc1_res)
+colnames(cc1_res) = c("Cosine correlation")
+head(cc1_res[order(-cc1_res$`Cosine correlation`),,drop=F],20)
+```
+
+```{r, fig.height=6}
+tmp = cbind(cc1,cc1)
+tmp = tmp[order(-tmp[, 1]),]
+pheatmap(tmp[1:10,], cluster_rows = F, cluster_cols=F, cellwidth = 40, cellheight = 40, gaps_col = 1, fontsize_row = 20, fontsize = 14, show_colnames = F)
+```
+
+
+```{r, fig.width=6, fig.height=6}
+dev.off()
+cairo_pdf(file="../../../Results/4_CDM-association-with-cancer/Correlation_CAM6_SBSA_heatmap.pdf", width=6, height = 6)
+pheatmap(tmp[1:10,], cluster_rows = F, cluster_cols=F, cellwidth = 40, cellheight = 40, gaps_col = 1, fontsize_row = 20, fontsize = 14, show_colnames = F)
+dev.off()
+```
+
+# CAM6 with positional bias towards positions 2 and 5
+
+
+```{r}
+
+e_uniform = expected_mut_CAM[, c("tc","nc","CAM6_hotspot")]
+colnames(e_uniform) = c("tc","nc","weight")
+e_uniform$signature = "Theoretical AAWWTT signature (uniform distribution with hotspot)"
+
+sbsa = data.frame(tc=rownames(lee_six_mat_new_sigs), nc=substr(rownames(lee_six_mat_new_sigs), 3,5), weight= lee_six_mat_new_sigs[, "N2"], signature="SBSA")
+
+e_uniform_and_n2 = rbind(e_uniform, sbsa)
+e_uniform_and_n2$tc = factor(e_uniform_and_n2$tc, levels=trinuc_changes_ordered$tc)
+e_uniform_and_n2$signature = factor(e_uniform_and_n2$signature, levels=c("Theoretical AAWWTT signature (uniform distribution with hotspot)","SBSA"))
+```
+
+```{r, fig.width=10, fig.height=4}
+p = ggplot(e_uniform_and_n2, aes(x=tc, y=weight, fill=nc)) + geom_bar(stat="identity") + facet_wrap(~signature, ncol=1) + theme_few() + theme(text=element_text(size=20), axis.text.x=element_text(angle=90, hjust = 0, size=5)) + labs(x="", fill="Nucleotide\nchange", y = "Proportion") 
+print(p)
+```
+
+<!-- ```{r} -->
+<!-- pdf("Theoretical_AAWWTT_SBS_signature_hotspots.pdf", width = 10, height = 4) -->
+<!-- print(p) -->
+<!-- dev.off() -->
+<!-- ``` -->
+
+```{r}
+cosine_func <- function(x,y) x %*% y / sqrt(x%*%x * y%*%y)
+cc1 = apply(alexandrov_and_lee_six_sigs,1, cosine_func, expected_mut_CAM$CAM6_hotspot)
+cc1_res = as.data.frame(cc1)
+cc1_res$signature=rownames(cc1_res)
+colnames(cc1_res) = c("Cosine correlation")
+head(cc1_res[order(-cc1_res$`Cosine correlation`),,drop=F],20)
+```
+
+```{r, fig.height=6}
+tmp = cbind(cc1,cc1)
+tmp = tmp[order(-tmp[, 1]),]
+pheatmap(tmp[1:10,], cluster_rows = F, cluster_cols=F, cellwidth = 40, cellheight = 40, gaps_col = 1, fontsize_row = 20, fontsize = 14, show_colnames = F)
+```
+
+
+<!-- ```{r} -->
+<!-- pdf(file="Correlation_CAM6_hotspot_2.5_heatmap.pdf", width=6, height = 6) -->
+<!-- pheatmap(tmp[1:10,], cluster_rows = F, cluster_cols=F, cellwidth = 40, cellheight = 40, gaps_col = 1, fontsize_row = 20, fontsize = 14, show_colnames = F) -->
+<!-- pheatmap(tmp[1:10,], cluster_rows = F, cluster_cols=F, cellwidth = 40, cellheight = 40, gaps_col = 1, fontsize_row = 20, fontsize = 14, show_colnames = F) -->
+<!-- dev.off() -->
+<!-- ``` -->

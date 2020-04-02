@@ -1,0 +1,111 @@
+---
+title: "Finnish CRC WGS cohort - final tables and correlations"
+author: "Hilmar Berger"
+date: "1/29/2020"
+output: html_document
+---
+
+```{r, message=FALSE}
+rm(list=ls())
+library(data.table)
+library(ggplot2)
+library(ggthemes)
+```
+
+```{r}
+clin = fread("../../../Data/WGS_cohort/patient_overview/clinical_data_MSS_cases_n184.txt", sep="\t")
+```
+
+```{r}
+seq_overview = fread("../../../Data/WGS_cohort/Mutation_counts_at_motifs/Sample_sequencing_overview.txt")
+
+rownames(seq_overview) = make.names(seq_overview$'#Sample')
+```
+
+```{r}
+seq_and_clin_overview = merge(seq_overview, clin, by.x="clin_id", by.y="sample_name", all.x=TRUE, sort=F)
+```
+
+```{r}
+pn_enrichment_results_snv = fread("../../../Data/WGS_cohort/Per_sample_results_PN_SNV_enrichment.txt")
+hn_enrichment_results_snv = fread("../../../Data/WGS_cohort/Per_sample_results_HN_SNV_enrichment.txt")
+
+sel_cols_snv_HN = c('total_pattern_sites_AAAATT','total_pattern_sites_AAATTT','pattern_bp_AAAATT','pattern_bp_AAATTT','mutation_hit_AAAATT','mutation_hit_AAATTT','hit_per_bp_in_pattern_AAAATT','hit_per_bp_in_pattern_AAATTT','log2ratio_adjusted_AAAATT','log2ratio_adjusted_AAATTT','p_at6','padj_at6','mean_log2r_colibactin_HN','total_mut_count_colibactin_HN','total_mut_proportion_colibactin_HN','sample_name_full')
+
+sel_cols_snv_PN = c('mutation_hit_AAAAT','mutation_hit_AAATT','hit_per_bp_in_pattern_AAAAT','hit_per_bp_in_pattern_AAATT','log2ratio_adjusted_AAAAT','log2ratio_adjusted_AAATT','p_at5','padj_at5','mean_log2r_colibactin_PN','total_mut_count_colibactin_PN','total_mut_proportion_colibactin_PN','sample_name_full')
+
+
+hn_enrichment = hn_enrichment_results_snv[, sel_cols_snv_HN, with=F]
+names_to_be_changed = !grepl("_HN$|sample_name_full",colnames(hn_enrichment), perl=T)
+colnames(hn_enrichment)[names_to_be_changed] = paste0(colnames(hn_enrichment)[names_to_be_changed], "_HN")
+
+
+pn_enrichment = pn_enrichment_results_snv[, sel_cols_snv_PN, with=F]
+names_to_be_changed = !grepl("_PN$|sample_name_full",colnames(pn_enrichment), perl=T)
+colnames(pn_enrichment)[names_to_be_changed] = paste0(colnames(pn_enrichment)[names_to_be_changed], "_PN")
+
+seq_clin_enrichment = merge(seq_and_clin_overview, hn_enrichment, by.x="#Sample", by.y="sample_name_full", all.x=TRUE, sort=F)
+seq_clin_enrichment = merge(seq_clin_enrichment, pn_enrichment, by.x="#Sample", by.y="sample_name_full", all.x=TRUE, sort=F)
+
+colnames(seq_clin_enrichment) = gsub("#Sample", "SampleID", colnames(seq_clin_enrichment))
+```
+
+
+```{r}
+load("../../../Data/WGS_cohort/SBS_Trinucleotide_signature_contributions/Signature_weights_WGS_cohort_Alexandrov2018_and_LeeSix.Rdata")
+
+seq_clin_enrichment[, SBSA:=signature_weight_mat[SampleID, "N2"]]
+seq_clin_enrichment[, SBS1:=signature_weight_mat[SampleID, "SBS1"]]
+seq_clin_enrichment[, SBS28:=signature_weight_mat[SampleID, "SBS28"]]
+seq_clin_enrichment[, SBS28:=signature_weight_mat[SampleID, "SBS41"]]
+```
+
+```{r}
+fwrite(seq_clin_enrichment, file="../../../Data/WGS_cohort/patient_overview/Combined_table_WGS_CRC.txt", sep="\t")
+```
+
+# Colibactin motif mutation rate and tumor location
+
+```{r, fig.height=6}
+dd = subset(seq_clin_enrichment, group=="other" & !is.na(detailed_location_I))
+dd[, detailed_location_I:= factor(detailed_location_I, levels=c("caecum and appendix","ascending colon","transverse colon","descending colon","sigmoid colon","rectum" ))]
+
+kruskal.test(dd$cb_mut_proportion ~ dd$detailed_location_I)
+```
+
+```{r}
+p=ggplot(dd, aes(y=cb_mut_proportion, x=detailed_location_I) )  + geom_boxplot() + geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 0.002) + ylab("Proportion of mutations in colibactin associated motifs") + theme_few() + xlab("")
+print(p)
+
+pdf(file="../../../Results/4_CDM-association-with-cancer/Mutated_Clb_motif_proportion_by_location.pdf", height =6, width=8)
+print(p)
+dev.off()
+```
+
+# SBSA contribution and CDM mutation rate
+
+
+```{r}
+p = ggplot(dd, aes(x=total_mut_proportion_colibactin_PN, y=SBSA) ) + geom_point() + theme_few() + xlab("Proportion of mutations in colibactin associated PN") + ylab("Estimated contribution of SBSA signature\nto total mutation load")
+print(p)
+
+with(dd, cor.test(x=total_mut_proportion_colibactin_PN, y=SBSA, method="spearman"))
+
+pdf(file="../../../Results/4_CDM-association-with-cancer/Proportion_of_mutations_at_Clb_PN_vs_SBSA_contribution.pdf", height = 6, width = 8)
+print(p)
+dev.off()
+```
+
+# Overview stats
+
+Median number of mutations at PN motifs: `r median(dd$total_mut_count_colibactin_PN)`  
+Range of mutations at PN motifs: `r range(dd$total_mut_count_colibactin_PN)`  
+Median proportion of mutations at PN motifs: `r median(dd$total_mut_proportion_colibactin_PN)`  
+Range of proportion of mutations at PN motifs: `r range(dd$total_mut_proportion_colibactin_PN)`  
+
+# Software versions
+
+```{r}
+sessionInfo()
+```
+

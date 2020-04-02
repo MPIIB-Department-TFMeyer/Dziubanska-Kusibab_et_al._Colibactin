@@ -1,0 +1,136 @@
+---
+title: "Positional distribution of break ends in AsiSI motifs"
+author: "Hilmar Berger"
+output: 
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE, warning=FALSE}
+rm(list=ls())
+library(data.table)
+library(GenomicRanges)
+library(GenomicFeatures)
+
+library(Biostrings)
+
+library(BSgenome.Hsapiens.UCSC.hg19)
+
+library(directlabels)
+library(reshape2)
+library(ggplot2)
+library(ggpubr)
+library(ggthemes)
+library(pheatmap)
+```
+
+```{r}
+source("../compute_distance_to_motif_center.R")
+```
+
+
+# Overview 
+
+We want to check the positional distribution of BLISS break ends from uninduced and induced conditions of AsiSI restriction enzyme at the known AsiSI pattern (GCGATCGC). 
+
+```{r}
+pattern_dict = DNAStringSet(c("GCGATCGC"))
+
+pattern_pos = vmatchPDict(pattern_dict, Hsapiens)
+pattern_pos$pattern = as.character(pattern_dict)[as.integer(pattern_pos$index)]
+
+palindromic = (pattern_dict==reverseComplement(pattern_dict))
+pattern_pos$palindromic = palindromic[as.integer(pattern_pos$index)]
+
+standard_chroms = standardChromosomes(pattern_pos)
+pattern_pos = keepSeqlevels(pattern_pos, standard_chroms, pruning.mode = "coarse")
+
+```
+
+We use the following hexanucleotide (HN) pattern: `r as.character(pattern_dict)` and determine their positions genomewide in hg19 (GRCh37).
+
+
+```{r}
+load("../../../Data/BLISS_AsiSI/Filtered_break_end_sites.Rdata")
+suppressMessages(seqlevelsStyle(break_ranges_excluded_difficult_regions) <- "UCSC")
+```
+
+We define regions of motif sites as the motif itself +/- 2 bp around motif boundaries. For each motif site we define the start of the motif as the 5' end of the motif. Distances are computed accordingly if the motif was mapped to the minus strand. For non-palindromic motifs we select only one of the original and reverse complement sequences and map to both plus and minus strand. for palindromic sequences we only map against the plus strand. 
+
+For each breakpoint end we determine the nearest start of the selected motif sites if falling with that motif +/- 2bp range. 
+
+
+```{r, warning=FALSE}
+all_bp_distances = list()
+bp_regions_all = list()
+
+
+for (n in 1:length(pattern_dict)) {
+  p = as.character(pattern_dict[n])
+  
+  tmp_regions = pattern_pos[pattern_pos$index==n]
+
+  rr = compute_distances(break_ranges_excluded_difficult_regions, tmp_regions, break_between_nucleotides = T, palindrome_ref_strand = "+")
+  
+  tmp_dsb_ends = break_ranges_excluded_difficult_regions
+  tmp_dsb_ends$min_bp_dist = NA_real_
+  tmp_dsb_ends[rr$query_index]$min_bp_dist = rr$distance
+  tmp_dsb_ends$motif_strand = NA_character_
+  tmp_dsb_ends[rr$query_index]$motif_strand = strand(tmp_regions[rr$subject_index])
+  tmp_dsb_ends = tmp_dsb_ends[!is.na(tmp_dsb_ends$min_bp_dist)]
+
+  tmp_dsb_ends$final_strand = ifelse(tmp_dsb_ends$motif_strand=="+", ifelse(strand(tmp_dsb_ends)=="+","f","r"), ifelse(strand(tmp_dsb_ends)=="+","r","f"))
+  
+  bp_regions_all[[p]] = tmp_dsb_ends
+  
+  tmp2 = data.table(sampleID=tmp_dsb_ends$sampleID, strand=as.character(tmp_dsb_ends$final_strand), dist = tmp_dsb_ends$min_bp_dist)
+  tmp3 = tmp2[, .(count=.N), by=c("sampleID","strand","dist")]
+  
+  all_bp_distances[[p]] = tmp3
+  
+}
+
+```
+
+
+```{r, fig.height=6, fig.width=12}
+for (mm in names(all_bp_distances)) {
+  zz = all_bp_distances[[mm]]
+  zz$count_dir = ifelse(zz$strand=="f", zz$count, -zz$count)
+  zz[, total:=sum(count), by=c("sampleID","strand")]
+  zz[, prop_dir:=count_dir / total]
+  zz_anno = merge(zz, ed, by="sampleID", all.x=T)
+  
+  sel_motifs=c(mm)
+  text_labels = data.frame(t = unlist(strsplit(sel_motifs, "")), x=0:7, y=rep(0,8))
+  text_labels$pattern = rep(sel_motifs, each=8)
+
+  text_lines = data.frame(t = rep("|",9*length(sel_motifs)), x=seq(-0.5, 7.5,1), y=rep(0,9*length(sel_motifs)))
+  text_lines$pattern = rep(sel_motifs, each=9)
+
+  text_all = rbind(text_labels, text_lines)
+
+  p = ggplot(zz_anno, aes(x=dist, y=count_dir, fill=strand)) + geom_bar(stat = "identity") + facet_wrap(. ~ condition) + ggtitle("AsiSI induced breaks") + geom_hline(yintercept = 0, col="red") + ylab("Absolute counts") +
+  geom_text(data=text_labels, aes(x=x, y=y, label=t), inherit.aes = F, size=8, col="blue1") +
+  geom_text(data=text_lines, aes(x=x, y=y, label=t), inherit.aes = F, size=9, col="black") +
+  theme_few() + 
+  theme(text = element_text(size=16), strip.text.x = element_text(size = 20), strip.text.y = element_text(size = 20), legend.position="none") + xlab("")
+  
+  print(p)
+}
+```
+
+```{r}
+pdf(file="../../../Results/5_Break-ends-analysis/AsiSI_induced_breaks.pdf", height = 6, width = 12)
+print(p)
+dev.off()
+```
+

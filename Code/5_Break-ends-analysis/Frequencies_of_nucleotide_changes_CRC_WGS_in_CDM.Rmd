@@ -52,7 +52,7 @@ all_tables = as.data.table(do.call(rbind, all_tabs))
 all_tables$mut_type = ifelse(all_tables$nuc_change %in% c("INS","DEL"), "Indel","SNV")
 all_tables[, analysis_set:=ifelse(group %in% c("bottom20","top20"), "top_bottom", ifelse(group %in% c("distal","proximal"),"prox_dist", "location"))]
 
-load("../../Data/Pattern_frequencies/oligo_freqs_genomic_hg19_HN.Rdata")
+load("../../Data/Pattern_frequencies_and_positions/oligo_freqs_genomic_hg19_HN.Rdata")
 all_tables[, pattern_freq_genomic:=oligofreqs_genomic[pattern]]
 all_tables[, prop_genomic:=count/pattern_freq_genomic]
 ```

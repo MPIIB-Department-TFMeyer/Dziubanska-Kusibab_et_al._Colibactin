@@ -1,0 +1,5 @@
+COSMICv3 signatures were downloaded from the supplementary material to Alexandrov et al. from Synapse on 2018-03-28
+
+Signatures on normal colonic mucosa was extracted from supplementary data of Lee-Six et al. using accompanying scripts from https://github.com/HLee-Six/colon_microbiopsies
+
+Signatures extracted by this procedure are named N1...Nn. SBSA was identified by manual comparison with the SBS signature in the publication (https://doi.org/10.1038/s41586-019-1672-7)

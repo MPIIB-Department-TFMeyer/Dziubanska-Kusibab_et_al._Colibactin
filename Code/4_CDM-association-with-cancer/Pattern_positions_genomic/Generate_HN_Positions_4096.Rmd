@@ -1,0 +1,111 @@
+---
+title: "Genomic positions of hexanucleotide patterns"
+author: "Hilmar Berger"
+output:
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE}
+rm(list=ls())
+library(Biostrings)
+library(GenomicFeatures)
+library(ggplot2)
+library(knitr)
+library(data.table)
+
+library(BSgenome.Hsapiens.UCSC.hg19)
+
+library(BiocParallel)
+bpp = MulticoreParam(workers = 6)
+
+```
+
+# Overview 
+
+We want to analyze possible enrichment of mutations at individual hexanuclear patterns in colorectal cancers. Since for many of those data sets only WXS data is available, we focus on regions defined by Gencode v28 on hg19 as exonic (+/- 50bp flanks) in the basic annotation set. We identify all hexanucleotide positions in those regions. 
+
+```{r}
+# we here use gencode v28 as a substitute for the exome seq target dile from TCGA which is not easily 
+# available. This is probably larger than the the original targets by a factor of up to 2. 
+# In addition we add 50bp flanks at both sides of exons
+gencode28 = loadDb("../../../Data/External/Gencode/GENCODEv28lift37_basic_hg19_TxDB.db")
+
+ee = exons(gencode28)
+sc = standardChromosomes(ee)
+sc = sc[sc!="MT"]
+ee = keepSeqlevels(ee, sc, pruning.mode = "coarse")
+
+exon_ranges = reduce(c(ee, flank(ee, 50), flank(ee, 50, start = F)), ignore.strand=TRUE)
+```
+
+```{r}
+# count global pentanucleotide freqs
+ee = exon_ranges
+suppressMessages(seqlevelsStyle(ee) <- "UCSC")
+zz = getSeq(Hsapiens, ee)
+
+of = oligonucleotideFrequency(zz, 6)
+oligofreqs_exonic = apply(of, 2, sum)
+rm(zz)
+rm(of)
+```
+
+```{r}
+set.seed(12345)
+patterns = mkAllStrings(c("A","C","G","T"), 6)
+p_slice = cut(1:length(patterns), breaks = seq(1,length(patterns)+99, by=100), right = F)
+
+p_split = split(patterns, p_slice) 
+
+pos_fun <- function(pp) {
+  pattern_pos = vmatchPDict(DNAStringSet(pp), Hsapiens)
+
+  suppressMessages(seqlevelsStyle(pattern_pos) <- "NCBI")
+
+  sc = standardChromosomes(pattern_pos)
+  sc = sc[sc!="MT"]
+  tmp = keepSeqlevels(pattern_pos, sc, pruning.mode = "coarse")
+
+  oo = findOverlaps(tmp, exon_ranges, ignore.strand=T)
+  pattern_pos_exonic_only = tmp[unique(queryHits(oo))]
+  pattern_pos_exonic_only$pattern = factor(pp[as.integer(pattern_pos_exonic_only$index)])
+  return(pattern_pos_exonic_only)
+}
+
+pp_pos = bplapply(p_split, pos_fun, BPPARAM = bpp)
+names(pp_pos) <- NULL
+pattern_pos_exonic_only = do.call(c, pp_pos)
+
+pp_pi = unique(data.frame(index=as.integer(pattern_pos_exonic_only$index), pattern = as.character(pattern_pos_exonic_only$pattern)))
+
+pp_pi$index_new = 1:nrow(pp_pi)
+rownames(pp_pi) = pp_pi$pattern
+ 
+pattern_pos_exonic_only$index_old = pattern_pos_exonic_only$index
+pattern_pos_exonic_only$index = pp_pi[pattern_pos_exonic_only$pattern, "index_new"]
+
+pattern_dict = DNAStringSet(pp_pi[order(pp_pi$index_new),"pattern"])
+```
+
+```{r}
+ttt = split(pattern_pos_exonic_only, pattern_pos_exonic_only$pattern)
+ttt2 = reduce(ttt, ignore.strand=T)
+
+pattern_bp_covered = unlist(lapply(ttt2, function(x) sum(width(x))))
+```
+
+
+```{r}
+curr_date = Sys.time()
+save(pattern_pos_exonic_only, pattern_dict, exon_ranges, oligofreqs_exonic, pattern_bp_covered, curr_date, file="../../../Data/Pattern_frequencies_and_positions/HN_pos_in_exonic_regions_50bp_flank_n4096.Rdata")
+```
+

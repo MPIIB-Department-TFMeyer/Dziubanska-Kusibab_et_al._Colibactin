@@ -1,0 +1,116 @@
+---
+title: "Finnish WGS cohort - HN enrichment"
+author: "Hilmar Berger"
+date: "10/21/2019"
+output: html_document
+---
+
+```{r, message=FALSE}
+rm(list=ls())
+library(GenomicRanges)
+library(data.table)
+library(reshape2)
+library(pheatmap)
+library(Biostrings)
+```
+
+```{r}
+data = read.table("../../../Data/WGS_cohort/Mutation_counts_at_motifs/HN_WWWWWW_mut_counts_CRC_WGS_n200.txt", sep="\t", header=T, comment.char = "")
+
+ed = read.table("../../../Data/WGS_cohort/Mutation_counts_at_motifs/Sample_sequencing_overview.txt", sep="\t", header=T, comment.char = "", stringsAsFactors = F)
+tt = regmatches(ed$X.Sample, regexpr("(.+)_T_", ed$X.Sample))
+ed$ID = make.names(substr(tt, 1, nchar(tt)-3))
+rownames(ed) = make.names(ed$X.Sample)
+
+tt2 = sapply(strsplit(ed$X.Sample,"-"), `[`,1 )
+ed$group = ifelse(tt2 %in% c("POLE","MSI"), tt2, "other" )
+
+colnames(data)[2:ncol(data)] = ed[colnames(data)[2:ncol(data)], "ID"]
+```
+
+```{r}
+all_W6_pattern = data.frame(pattern = as.character(mkAllStrings(c("A","T"), 6)), stringsAsFactors = F)
+all_W6_pattern$a_cnt = unlist(Map(function(x) sum(alphabetFrequency(DNAString(x))[c("A")]), all_W6_pattern$pattern))
+all_W6_pattern$revcomp = as.character(reverseComplement(DNAStringSet(all_W6_pattern$pattern)))
+all_W6_pattern = all_W6_pattern[order(all_W6_pattern$a_cnt, decreasing = T),]
+all_W6_pattern$index = 1:nrow(all_W6_pattern)
+all_W6_pattern$rc_index = match(all_W6_pattern$pattern, all_W6_pattern$revcomp)
+all_W6_pattern_norevcomp = subset(all_W6_pattern, rc_index >= index)
+```
+
+
+```{r}
+load("../../../Data/Pattern_frequencies_and_positions/HN_pos_genomic_n100_and_AT6_hg38.Rdata")
+total_target_size = sum(as.numeric(width(all_standard_chrome_ranges)))
+```
+
+# Overview WWWWWW mutation frequencies
+
+```{r, fig.height=10, fig.width=16}
+tmp = data[data$X.motif %in% all_W6_pattern_norevcomp$pattern,]
+mm = as.matrix(tmp[, 2:ncol(tmp)])
+rownames(mm) = tmp$X.motif
+col_anno = ed[, "group", drop=F]
+rownames(col_anno) = ed$ID
+row_anno = all_W6_pattern_norevcomp[, "a_cnt",drop=F]
+rownames(row_anno)   = all_W6_pattern_norevcomp$pattern
+#png(file="WWWWWW_motif_freq_HM.png", width=1800, height=900)
+pheatmap(mm, scale="column", annotation_col = col_anno, show_colnames = F, fontsize_row = 10, main = "WWWWWW counts, scaled per sample", annotation_row = row_anno)
+#dev.off()
+```
+
+```{r, fig.width=10, fig.height=6}
+boxplot(log10(t(mm)+1), las=2)
+```
+
+
+```{r}
+# mutation hits is number of unique mutation sites overlapped by a given pattern
+ed2 = ed
+rownames(ed2) = ed$ID
+d = as.data.table(melt(data, id.vars = "X.motif"))
+colnames(d) = c("pattern","entity","mutation_hit")
+d$pattern = as.character(d$pattern)
+d$entity = as.character(d$entity)
+
+# total count of pattern sites in target regions
+d$total_pattern_sites = oligofreqs_genomic[d$pattern]
+# total bases covered by given pattern in target regions
+d$pattern_bp = pattern_bp_covered[d$pattern]
+# Proportion of total pattern sites overlapping a mutation
+d$hit_prop = d$mutation_hit / d$total_pattern_sites
+d$total_mutation_counts = ed2[as.character(d$entity),"SNVs"]
+d$sample_counts = 1
+# Number of mutations not overlapping a given pattern. Those necessarily overlap all other patterns.
+d$mutation_no_hit = d$total_mutation_counts-d$mutation_hit
+# total bases not covered by given pattern as remainder from exonic ranges minus pattern covered sequence
+d$non_pattern_bp = total_target_size-d$pattern_bp
+# Proportions of bp covered by pattern or not affected by mutations. 
+# Note that this assumes each mutation covers a single bp - this could be improved if necessary
+d$hit_per_bp_in_pattern = d$mutation_hit/d$pattern_bp
+d$hit_per_bp_in_non_pattern = d$mutation_no_hit/d$non_pattern_bp
+# ratio of proportions wiith vs. without pattern
+d$ratio_pattern_vs_rest = d$hit_per_bp_in_pattern/d$hit_per_bp_in_non_pattern
+
+combined_tab = d[order(-d$ratio_pattern_vs_rest),]
+```
+
+# Mutation frequencies per bp in genome
+
+```{r, fig.height=8,fig.width=16 }
+tmp = dcast(combined_tab, pattern ~ entity, value.var="hit_per_bp_in_pattern")
+tmp2 = as.matrix(tmp[, 2:ncol(tmp)])
+rownames(tmp2) = tmp$pattern
+col_anno = ed[, "group", drop=F]
+rownames(col_anno) = ed$ID
+#png(file="WWWWWW_motif_freq_HM.png", width=1800, height=900)
+pheatmap(tmp2, scale="column", annotation_col = col_anno, show_colnames = F, fontsize_row = 10, main = "WWWWWW motif mutation rates (mutations/bp covered), scaled per sample")
+```
+
+
+```{r}
+analysis_name = "Finnish_COREAD_WGS_cohort"
+ofile = file.path("../../../Data/WGS_cohort/",paste0("6nucleotide_Results_", analysis_name ,"_all_mutations.Rdata"))
+save(combined_tab, all_W6_pattern_norevcomp, file=ofile)
+```
+

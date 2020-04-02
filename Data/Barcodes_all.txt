@@ -1,0 +1,17 @@
+NGS_library	Sample_name	Barcode_sequence	Organism	Sample_Barcode_nr
+BB76	Caco2_Ctrl_1A	CATCAATC	Homo sapiens	5
+BB76	Caco2_ETO_1B	GTCGTATC	Homo sapiens	6
+BB77	Caco2_EcoliWT_1C	ACGACATC	Homo sapiens	7
+BB77	Caco2_EcoliMut_1D	TGATGATC	Homo sapiens	8
+BB78	Caco2_Ctrl_2A	CATCAATC	Homo sapiens	5
+BB78	Caco2_ETO_2B	GTCGTATC	Homo sapiens	6
+BB79	Caco2_EcoliWT_2C	ACGACATC	Homo sapiens	7
+BB79	Caco2_EcoliMut_2D	TGATGATC	Homo sapiens	8
+BB82	Caco2_Ctrl_3A	CATCAATC	Homo sapiens	5
+BB82	Caco2_ETO_3B	GTCGTATC	Homo sapiens	6
+BB83	Caco2_EcoliWT_3C	ACGACATC	Homo sapiens	7
+BB83	Caco2_EcoliMut_3D	TGATGATC	Homo sapiens	8
+BB191	Caco2_Ctrl_4A	GCTTGGAG	Homo sapiens	9
+BB191	Caco2_ETO_4B	CTAACGAG	Homo sapiens	10
+BB192	Caco2_EcoliMut_4C	AGCCATCA	Homo sapiens	11
+BB192	Caco2_EcoliWT_4D	GCTTGTCA	Homo sapiens	12

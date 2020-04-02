@@ -1,0 +1,1293 @@
+Sample barcode	Cancer type	Reason removed
+TCGA-BG-A0LX-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AA-3837-01A-01W-0900-09	COAD	mutation call filter
+TCGA-BH-A1EN-01A-11D-A17G-09	BRCA	mutation call filter
+TCGA-06-1805-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AP-A0LI-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AY-4071-01A-01W-1073-09	COAD	mutation call filter
+TCGA-12-0828-01A-01W-0424-08	GBM	mutation call filter
+TCGA-A8-A094-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A8-A082-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A2-A0CM-01A-31W-A050-09	BRCA	mutation call filter
+TCGA-AG-3898-01A-01W-1073-09	READ	mutation call filter
+TCGA-14-1455-01A-01W-0643-08	GBM	mutation call filter
+TCGA-BH-A0B9-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-A8-A08L-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A5-A0GE-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AR-A0TY-01A-12W-A12T-09	BRCA	mutation call filter
+TCGA-DU-6397-02A-12D-A36O-08	LGG	mutation call filter
+TCGA-BG-A0M0-01A-11W-A10C-09	UCEC	mutation call filter
+TCGA-17-Z045-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A5-A0G3-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AA-3867-01A-01W-0995-10	COAD	mutation call filter
+TCGA-BH-A0HO-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3672-01A-01W-0900-09	COAD	mutation call filter
+TCGA-BH-A0BR-01A-21W-A12T-09	BRCA	mutation call filter
+TCGA-AA-3532-01A-01D-1953-10	COAD	mutation call filter
+TCGA-NH-A8F7-06A-31D-A40P-10	COAD	mutation call filter
+TCGA-A8-A09K-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-BH-A0E6-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3818-01A-01W-0900-09	COAD	mutation call filter
+TCGA-61-1722-01A-01D-1556-09	OV	mutation call filter
+TCGA-A8-A079-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-AA-3866-01A-01W-0995-10	COAD	mutation call filter
+TCGA-BG-A0M9-01A-21W-A10C-09	UCEC	mutation call filter
+TCGA-06-0152-02A-01D-2280-08	GBM	mutation call filter
+TCGA-B5-A0K2-01A-12W-A10C-09	UCEC	mutation call filter
+TCGA-A1-A0SQ-01A-21D-A142-09	BRCA	mutation call filter
+TCGA-AA-3842-01A-01W-0995-10	COAD	mutation call filter
+TCGA-BK-A0C9-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-AA-3949-01A-01W-0995-10	COAD	mutation call filter
+TCGA-A2-A0EQ-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-DU-6407-02B-11D-A36O-08	LGG	mutation call filter
+TCGA-AA-3666-01A-02W-0900-09	COAD	mutation call filter
+TCGA-ER-A2NF-06A-11D-A19A-08	SKCM	mutation call filter
+TCGA-AG-A02N-01A-11W-A096-10	READ	mutation call filter
+TCGA-A2-A0D4-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A5-A0GI-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-BG-A0M7-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AG-3598-01A-01D-1989-10	READ	mutation call filter
+TCGA-AA-3833-01A-01W-0900-09	COAD	mutation call filter
+TCGA-06-0210-02A-01D-2280-08	GBM	mutation call filter
+TCGA-AA-3558-01A-01D-1953-10	COAD	mutation call filter
+TCGA-AN-A0AM-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-V1-A9O5-06A-11D-A41K-08	PRAD	mutation call filter
+TCGA-16-0849-01A-01W-0424-08	GBM	mutation call filter
+TCGA-B6-A0I9-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-E9-A1NI-01A-11W-A16H-09	BRCA	mutation call filter
+TCGA-B5-A0K0-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AN-A0G0-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-A8-A09A-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-B6-A1KF-01A-11D-A13L-09	BRCA	mutation call filter
+TCGA-BH-A0B1-01A-12W-A071-09	BRCA	mutation call filter
+TCGA-AG-3894-01A-01W-1073-09	READ	mutation call filter
+TCGA-06-0125-02A-11D-2280-08	GBM	mutation call filter
+TCGA-A8-A09Q-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-17-Z049-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-14-1396-01A-01W-0611-08	GBM	mutation call filter
+TCGA-17-Z056-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-BH-A0GZ-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-AA-A004-01A-01W-A00E-09	COAD	mutation call filter
+TCGA-A5-A0GP-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-A2-A0T2-01A-11W-A097-09	BRCA	mutation call filter
+TCGA-BK-A139-02A-11D-A27P-09	UCEC	mutation call filter
+TCGA-AG-3906-01A-01W-1073-09	READ	mutation call filter
+TCGA-AO-A0J8-01A-21D-A045-09	BRCA	mutation call filter
+TCGA-12-0826-01A-01W-0424-08	GBM	mutation call filter
+TCGA-A8-A07G-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-UC-A7PG-06A-11D-A42O-09	CESC	mutation call filter
+TCGA-AX-A063-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-17-Z007-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-D1-A1NW-01A-11D-A14K-09	UCEC	mutation call filter
+TCGA-AG-3580-01A-01D-1989-10	READ	mutation call filter
+TCGA-AN-A04C-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-AG-3883-01A-02W-0899-10	READ	mutation call filter
+TCGA-AA-3977-01A-01W-0995-10	COAD	mutation call filter
+TCGA-A2-A0EO-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-12-1089-01A-01W-0611-08	GBM	mutation call filter
+TCGA-A6-3808-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AY-4070-01A-01W-1073-09	COAD	mutation call filter
+TCGA-AG-A026-01A-32W-A096-10	READ	mutation call filter
+TCGA-A2-A0EY-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-A8-A08O-01A-21W-A071-09	BRCA	mutation call filter
+TCGA-UF-A71A-06A-11D-A391-08	HNSC	mutation call filter
+TCGA-12-1599-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AA-A017-01A-01W-A00E-09	COAD	mutation call filter
+TCGA-A8-A07Z-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-K1-A3PN-02A-11D-A228-09	SARC	mutation call filter
+TCGA-AP-A053-01A-21W-A027-09	UCEC	mutation call filter
+TCGA-A2-A0SV-01A-11D-A099-09	BRCA	mutation call filter
+TCGA-50-5066-02A-11D-2107-08	LUAD	mutation call filter
+TCGA-AG-3581-01A-01D-1989-10	READ	mutation call filter
+TCGA-B6-A0I8-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-19-1385-01A-02W-0643-08	GBM	mutation call filter
+TCGA-AX-A06J-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-17-Z033-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AG-3726-01A-02W-0899-10	READ	mutation call filter
+TCGA-AA-A024-01A-02W-A00E-09	COAD	mutation call filter
+TCGA-A5-A0GM-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AO-A0J3-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AP-A0LH-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AG-4001-01A-02W-1073-09	READ	mutation call filter
+TCGA-A8-A06T-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A8-A09I-01A-22W-A050-09	BRCA	mutation call filter
+TCGA-A2-A04T-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-A8-A06N-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-12-3644-01A-01W-0922-08	GBM	mutation call filter
+TCGA-BH-A0HQ-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3854-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AN-A0FJ-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-G4-6317-02A-11D-2067-10	COAD	mutation call filter
+TCGA-B6-A0IA-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-A8-A0A7-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-19-1387-01A-01W-0643-08	GBM	mutation call filter
+TCGA-2G-AAFG-05A-11D-A42Y-10	TGCT	mutation call filter
+TCGA-17-Z031-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AA-A02R-01A-01W-A00E-09	COAD	mutation call filter
+TCGA-B6-A0IE-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AX-A06B-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-A8-A0A2-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AN-A0FL-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-A5-A0G9-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AA-3950-01A-02W-0995-10	COAD	mutation call filter
+TCGA-AP-A051-01A-21W-A027-09	UCEC	mutation call filter
+TCGA-HM-A6W2-06A-22D-A33O-09	CESC	mutation call filter
+TCGA-AX-A1CR-01A-12D-A135-09	UCEC	mutation call filter
+TCGA-BG-A0MI-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AA-3664-01A-01W-0900-09	COAD	mutation call filter
+TCGA-28-1755-01A-01W-0643-08	GBM	mutation call filter
+TCGA-BH-A0E7-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-DU-7304-02A-12D-A36O-08	LGG	mutation call filter
+TCGA-CM-6162-01A-11D-1650-10	COAD	mutation call filter
+TCGA-AN-A0FF-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-A8-A07J-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-14-0736-02A-01D-2280-08	GBM	mutation call filter
+TCGA-19-1389-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AA-3680-01A-01W-0900-09	COAD	mutation call filter
+TCGA-06-0190-02A-01D-2280-08	GBM	mutation call filter
+TCGA-A8-A096-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AG-A00C-01A-01W-A00K-09	READ	mutation call filter
+TCGA-06-2566-01A-01W-0837-08	GBM	mutation call filter
+TCGA-A8-A08X-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-AX-A05Z-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-A8-A09G-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-AO-A03R-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-AX-A05U-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-AP-A05P-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AA-3955-01A-02W-0995-10	COAD	mutation call filter
+TCGA-AA-3852-01A-01W-0900-09	COAD	mutation call filter
+TCGA-EM-A2P1-06A-11D-A202-08	THCA	mutation call filter
+TCGA-17-Z001-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A8-A07F-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-A02O-01A-21W-A096-10	COAD	mutation call filter
+TCGA-B6-A0IJ-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-EW-A1OY-01A-11D-A142-09	BRCA	mutation call filter
+TCGA-AP-A054-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AO-A0JC-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-AP-A05N-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-12-0656-01A-03W-0348-08	GBM	mutation call filter
+TCGA-19-1386-01A-01W-0643-08	GBM	mutation call filter
+TCGA-21-1075-01A-01W-0782-08	LUSC	mutation call filter
+TCGA-E2-A15E-06A-11D-A12B-09	BRCA	mutation call filter
+TCGA-AG-A008-01A-01W-A00K-09	READ	mutation call filter
+TCGA-BH-A0H6-01A-21W-A071-09	BRCA	mutation call filter
+TCGA-VT-A80J-02A-11D-A417-09	SARC	mutation call filter
+TCGA-17-Z030-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-60-2706-01A-01W-0877-08	LUSC	mutation call filter
+TCGA-A2-A0CU-01A-12W-A050-09	BRCA	mutation call filter
+TCGA-AN-A03X-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-AG-A015-01A-01W-A00K-09	READ	mutation call filter
+TCGA-TQ-A8XE-02A-11D-A36O-08	LGG	mutation call filter
+TCGA-AA-3864-01A-01D-1981-10	COAD	mutation call filter
+TCGA-AA-3975-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AG-A01Y-01A-41W-A096-10	READ	mutation call filter
+TCGA-A8-A08F-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-V5-A7RC-06A-11D-A403-09	ESCA	mutation call filter
+TCGA-17-Z032-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-21-1080-01A-01W-0782-08	LUSC	mutation call filter
+TCGA-14-1821-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AN-A0AS-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-06-1087-01A-02W-0611-08	GBM	mutation call filter
+TCGA-B5-A0K4-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AO-A0J2-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-A5-A0GH-01A-21W-A062-09	UCEC	mutation call filter
+TCGA-17-Z020-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AA-3973-01A-01W-0995-10	COAD	mutation call filter
+TCGA-A5-A0GV-01A-31W-A062-09	UCEC	mutation call filter
+TCGA-A8-A06Y-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-AC-A6IX-06A-11D-A32I-09	BRCA	mutation call filter
+TCGA-A2-A0D1-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AO-A0JF-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-14-1795-01A-01W-0643-08	GBM	mutation call filter
+TCGA-BG-A0M4-01A-11W-A10C-09	UCEC	mutation call filter
+TCGA-17-Z051-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-EM-A3FQ-06A-11D-A21A-08	THCA	mutation call filter
+TCGA-A5-A0GW-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-J8-A4HW-06A-11D-A257-08	THCA	mutation call filter
+TCGA-21-1079-01A-01W-0782-08	LUSC	mutation call filter
+TCGA-17-Z041-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AA-3875-01A-01W-0900-09	COAD	mutation call filter
+TCGA-A8-A081-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-12-0775-01A-01W-0348-08	GBM	mutation call filter
+TCGA-A8-A07L-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AN-A0FT-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AO-A0J9-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-2G-AAGY-05A-11D-A42Y-10	TGCT	mutation call filter
+TCGA-AG-4015-01A-01W-1073-09	READ	mutation call filter
+TCGA-AN-A0FS-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-19-4065-02A-11D-2280-08	GBM	mutation call filter
+TCGA-AN-A0FY-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-A8-A0A4-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A2-A04V-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-AG-A01L-01A-01W-A00K-09	READ	mutation call filter
+TCGA-A5-A0GN-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-A2-A0ER-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-FG-5965-02B-11D-A29Q-08	LGG	mutation call filter
+TCGA-17-Z000-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AN-A0AL-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-3815-01A-01W-0995-10	COAD	mutation call filter
+TCGA-2G-AAHP-05A-11D-A42Y-10	TGCT	mutation call filter
+TCGA-AN-A04A-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-12-0778-01A-01W-0348-08	GBM	mutation call filter
+TCGA-A8-A08T-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-17-Z055-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-AA-3956-01A-02W-0995-10	COAD	mutation call filter
+TCGA-BH-A0EE-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3971-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AA-A01Z-01A-11W-A096-10	COAD	mutation call filter
+TCGA-AA-3986-01A-02W-0995-10	COAD	mutation call filter
+TCGA-BH-A0HW-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-12-3651-01A-01W-0922-08	GBM	mutation call filter
+TCGA-AA-3814-01A-01W-0900-09	COAD	mutation call filter
+TCGA-A6-3807-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AF-2689-01A-01D-1989-10	READ	mutation call filter
+TCGA-ER-A19T-06A-11D-A19A-08	SKCM	mutation call filter
+TCGA-AA-A02H-01A-01W-A00E-09	COAD	mutation call filter
+TCGA-AA-3514-01A-02D-1953-10	COAD	mutation call filter
+TCGA-AA-3544-01A-01D-1953-10	COAD	mutation call filter
+TCGA-AP-A052-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-B6-A1KC-01B-11D-A159-09	BRCA	mutation call filter
+TCGA-AA-3812-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AA-A01S-01A-21W-A096-10	COAD	mutation call filter
+TCGA-AA-3994-01A-01W-1073-09	COAD	mutation call filter
+TCGA-AF-3913-01A-02W-1073-09	READ	mutation call filter
+TCGA-AN-A0FX-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3844-01A-01W-0995-10	COAD	mutation call filter
+TCGA-17-Z028-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-17-Z010-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A8-A08P-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-B5-A0JZ-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AN-A0AR-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-19-1786-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AG-A023-01A-01W-A00E-09	READ	mutation call filter
+TCGA-KU-A6H7-06A-21D-A31L-08	HNSC	mutation call filter
+TCGA-A2-A0SW-01A-11D-A099-09	BRCA	mutation call filter
+TCGA-LK-A4O4-01A-11D-A34C-32	MESO	mutation call filter
+TCGA-BH-A0HL-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-A8-A09W-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-06-1802-01A-01W-0643-08	GBM	mutation call filter
+TCGA-J8-A3O2-06A-11D-A23M-08	THCA	mutation call filter
+TCGA-28-1757-01A-02W-0643-08	GBM	mutation call filter
+TCGA-17-Z062-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-AA-3688-01A-01W-0900-09	COAD	mutation call filter
+TCGA-12-0819-01A-01W-0424-08	GBM	mutation call filter
+TCGA-A8-A07W-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-17-Z017-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A2-A04X-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-14-0812-01B-01W-0643-08	GBM	mutation call filter
+TCGA-AO-A0J5-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3681-01A-01W-0900-09	COAD	mutation call filter
+TCGA-A8-A09N-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A8-A086-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-19-0957-01C-01W-0643-08	GBM	mutation call filter
+TCGA-A8-A0A1-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-14-0865-01B-01W-0643-08	GBM	mutation call filter
+TCGA-A5-A0GJ-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AG-A011-01A-01W-A00K-09	READ	mutation call filter
+TCGA-A2-A0ET-01A-31D-A045-09	BRCA	mutation call filter
+TCGA-AA-3811-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AG-A02X-01A-01W-A00E-09	READ	mutation call filter
+TCGA-AG-3574-01A-01D-1989-10	READ	mutation call filter
+TCGA-AA-3521-01A-01D-1953-10	COAD	mutation call filter
+TCGA-14-1453-01A-01W-0611-08	GBM	mutation call filter
+TCGA-B6-A0IQ-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-D8-A1JA-01A-11D-A13L-09	BRCA	mutation call filter
+TCGA-AP-A056-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-A8-A090-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-E2-A15A-06A-11D-A12B-09	BRCA	mutation call filter
+TCGA-AX-A05T-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-AP-A0LG-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-A2-A0CP-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3520-01A-01D-1953-10	COAD	mutation call filter
+TCGA-15-1446-01A-01W-0611-08	GBM	mutation call filter
+TCGA-A2-A0CZ-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-DU-5870-02A-12D-A36O-08	LGG	mutation call filter
+TCGA-EW-A1J2-01A-21D-A13L-09	BRCA	mutation call filter
+TCGA-A8-A06Q-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-13-0888-01A-01W-0420-08	OV	mutation call filter
+TCGA-AA-3862-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AG-3909-01A-01W-1073-09	READ	mutation call filter
+TCGA-AA-3846-01A-01W-0995-10	COAD	mutation call filter
+TCGA-DD-AACA-02B-11D-A40R-10	LIHC	mutation call filter
+TCGA-A2-A04P-01A-31D-A128-09	BRCA	mutation call filter
+TCGA-AA-3848-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AN-A0FV-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AG-3892-01A-01W-1073-09	READ	mutation call filter
+TCGA-AA-3845-01A-01W-0995-10	COAD	mutation call filter
+TCGA-A2-A0CT-01A-31W-A071-09	BRCA	mutation call filter
+TCGA-BH-A0E2-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-17-Z023-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AA-3667-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AG-3584-01A-01D-1989-10	READ	mutation call filter
+TCGA-AO-A0J7-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-17-Z044-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-SR-A6MX-05A-11D-A35I-08	PCPG	mutation call filter
+TCGA-BG-A0LW-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-EM-A3SU-06A-11D-A22Z-08	THCA	mutation call filter
+TCGA-AA-3858-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AO-A03P-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-28-1746-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AN-A0FW-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AG-A01W-01A-21W-A096-10	READ	mutation call filter
+TCGA-A8-A09E-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AN-A0AT-01A-11D-A045-09	BRCA	mutation call filter
+TCGA-A8-A093-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-3679-01A-02W-0900-09	COAD	mutation call filter
+TCGA-AG-A014-01A-02W-A00K-09	READ	mutation call filter
+TCGA-AO-A0JM-01A-21W-A071-09	BRCA	mutation call filter
+TCGA-AA-3685-01A-02W-0900-09	COAD	mutation call filter
+TCGA-CS-6669-01A-11D-1893-08	LGG	mutation call filter
+TCGA-17-Z059-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-AA-3693-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AG-3901-01A-01W-1073-09	READ	mutation call filter
+TCGA-DV-A4W0-05A-11D-A25V-10	KIRC	mutation call filter
+TCGA-12-0657-01A-01W-0348-08	GBM	mutation call filter
+TCGA-B5-A0K7-01A-11W-A10C-09	UCEC	mutation call filter
+TCGA-AP-A0LO-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AA-3531-01A-01D-1953-10	COAD	mutation call filter
+TCGA-12-3646-01A-01W-0922-08	GBM	mutation call filter
+TCGA-B6-A0RG-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-A7-A0CG-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-A01V-01A-23W-A096-10	COAD	mutation call filter
+TCGA-06-1801-01A-02W-0643-08	GBM	mutation call filter
+TCGA-06-0211-02A-02D-2280-08	GBM	mutation call filter
+TCGA-AG-3902-01A-01W-1073-09	READ	mutation call filter
+TCGA-AG-3605-01A-01D-1989-10	READ	mutation call filter
+TCGA-12-0818-01A-01W-0424-08	GBM	mutation call filter
+TCGA-12-1598-01A-01W-0643-08	GBM	mutation call filter
+TCGA-A7-A0CJ-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-BH-A1FE-06A-11D-A20S-09	BRCA	mutation call filter
+TCGA-AF-2691-01A-01D-1989-10	READ	mutation call filter
+TCGA-A2-A0CQ-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-17-Z053-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-AO-A0JE-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-AF-3400-01A-01D-1989-10	READ	mutation call filter
+TCGA-AP-A05A-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-06-1084-01A-01W-0611-08	GBM	mutation call filter
+TCGA-XK-AAJU-01A-11D-A41K-08	PRAD	mutation call filter
+TCGA-AA-3850-01A-01W-0995-10	COAD	mutation call filter
+TCGA-BH-A0B5-01A-11D-A12Q-09	BRCA	mutation call filter
+TCGA-J8-A3YH-06A-11D-A23M-08	THCA	mutation call filter
+TCGA-12-0773-01A-01W-0348-08	GBM	mutation call filter
+TCGA-B6-A0IK-01A-12W-A071-09	BRCA	mutation call filter
+TCGA-AG-A036-01A-12W-A096-10	READ	mutation call filter
+TCGA-AA-3529-01A-02D-1953-10	COAD	mutation call filter
+TCGA-64-1677-01A-01W-0928-08	LUAD	mutation call filter
+TCGA-14-1451-01A-01W-0611-08	GBM	mutation call filter
+TCGA-AA-A02F-01A-01W-A00E-09	COAD	mutation call filter
+TCGA-AA-3696-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AA-3517-01A-01D-1953-10	COAD	mutation call filter
+TCGA-AA-3538-01A-01D-1953-10	COAD	mutation call filter
+TCGA-AG-3882-01A-01W-0899-10	READ	mutation call filter
+TCGA-AG-3885-01A-01W-0899-10	READ	mutation call filter
+TCGA-A8-A08R-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-BH-A0HX-01A-21W-A071-09	BRCA	mutation call filter
+TCGA-B6-A0IN-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3534-01A-01D-1953-10	COAD	mutation call filter
+TCGA-AG-A020-01A-21W-A096-10	READ	mutation call filter
+TCGA-12-1600-01A-01W-0643-08	GBM	mutation call filter
+TCGA-17-Z004-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-HZ-A9TJ-06A-11D-A40W-08	PAAD	mutation call filter
+TCGA-A8-A07I-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-DH-A669-02A-11D-A31L-08	LGG	mutation call filter
+TCGA-AN-A0FD-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3980-01A-02W-0995-10	COAD	mutation call filter
+TCGA-17-Z058-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-A8-A08J-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-B6-A0RI-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-14-1458-01A-01W-0643-08	GBM	mutation call filter
+TCGA-19-2621-01B-01W-0922-08	GBM	mutation call filter
+TCGA-TQ-A7RV-02A-11D-A36O-08	LGG	mutation call filter
+TCGA-AP-A0LD-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-28-1752-01A-01W-0643-08	GBM	mutation call filter
+TCGA-50-5946-02A-11D-2107-08	LUAD	mutation call filter
+TCGA-A8-A06R-01A-11D-A015-09	BRCA	mutation call filter
+TCGA-AG-A016-01A-01W-A00K-09	READ	mutation call filter
+TCGA-12-1088-01A-01W-0611-08	GBM	mutation call filter
+TCGA-17-Z015-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AA-3831-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AO-A0J4-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-17-Z052-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-A8-A076-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-17-Z019-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-X7-A8M7-01A-11D-A423-09	THYM	mutation call filter
+TCGA-AA-A00Z-01A-01D-A17O-10	COAD	mutation call filter
+TCGA-BH-A0GY-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-ZS-A9CF-02A-11D-A382-10	LIHC	mutation call filter
+TCGA-17-Z057-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-DU-5872-02A-21D-A36O-08	LGG	mutation call filter
+TCGA-BG-A0MS-01A-11D-A10B-09	UCEC	mutation call filter
+TCGA-BH-A0HF-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-AA-3530-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AX-A064-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-AG-3602-01A-02D-1989-10	READ	mutation call filter
+TCGA-B6-A1KI-01A-11D-A14K-09	BRCA	mutation call filter
+TCGA-12-0691-01A-01W-0348-08	GBM	mutation call filter
+TCGA-SR-A6MX-06A-11D-A35I-08	PCPG	mutation call filter
+TCGA-17-Z054-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-AG-3890-01A-01W-1073-09	READ	mutation call filter
+TCGA-AN-A049-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-BH-A1FD-01A-11W-A14Q-09	BRCA	mutation call filter
+TCGA-14-1034-02B-01D-2280-08	GBM	mutation call filter
+TCGA-AO-A0JI-01A-21W-A100-09	BRCA	mutation call filter
+TCGA-AG-A032-01A-01W-A00E-09	READ	mutation call filter
+TCGA-AX-A060-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-12-0827-01A-01W-0424-08	GBM	mutation call filter
+TCGA-B6-A0RS-01A-11D-A099-09	BRCA	mutation call filter
+TCGA-E2-A1LS-01A-12D-A159-09	BRCA	mutation call filter
+TCGA-AX-A0IW-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AA-3524-01A-02D-1953-10	COAD	mutation call filter
+TCGA-A8-A09C-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-3968-01A-01W-0995-10	COAD	mutation call filter
+TCGA-B6-A0IP-01A-11D-A045-09	BRCA	mutation call filter
+TCGA-AA-3548-01A-01D-1953-10	COAD	mutation call filter
+TCGA-AA-3673-01A-01W-0900-09	COAD	mutation call filter
+TCGA-BH-A0EB-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-P7-A5NY-05A-11D-A35D-08	PCPG	mutation call filter
+TCGA-17-Z003-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A8-A07B-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-3519-01A-02D-1953-10	COAD	mutation call filter
+TCGA-A8-A09R-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AN-A041-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3989-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AO-A0J6-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-A8-A097-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-E2-A15K-06A-11D-A12Q-09	BRCA	mutation call filter
+TCGA-A2-A0D2-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-D8-A1XJ-01A-11D-A14K-09	BRCA	mutation call filter
+TCGA-AA-3982-01A-02W-0995-10	COAD	mutation call filter
+TCGA-AA-3861-01A-01W-0995-10	COAD	mutation call filter
+TCGA-B5-A0K3-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-A8-A09Z-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-BG-A0M2-01A-11D-A10O-09	UCEC	mutation call filter
+TCGA-A5-A0G5-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-28-1760-01A-01W-0643-08	GBM	mutation call filter
+TCGA-02-2466-01A-01W-0837-08	GBM	mutation call filter
+TCGA-AN-A0FK-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3695-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AG-A01N-01A-01W-A00E-09	READ	mutation call filter
+TCGA-B6-A0IO-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-12-1092-01B-01W-0611-08	GBM	mutation call filter
+TCGA-06-0221-02A-11D-2280-08	GBM	mutation call filter
+TCGA-14-1037-01A-01W-0643-08	GBM	mutation call filter
+TCGA-A8-A08S-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-A5-A0GB-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-A8-A08Z-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-BH-A0HY-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-B5-A0JR-01A-13W-A062-09	UCEC	mutation call filter
+TCGA-AG-3887-01A-01W-1073-09	READ	mutation call filter
+TCGA-17-Z048-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AX-A05S-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-17-Z016-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-B6-A0I5-01A-11W-A100-09	BRCA	mutation call filter
+TCGA-AA-3692-01A-01W-0900-09	COAD	mutation call filter
+TCGA-A8-A095-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-28-1751-01A-02W-0643-08	GBM	mutation call filter
+TCGA-AG-3583-01A-01D-1989-10	READ	mutation call filter
+TCGA-A8-A06Z-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-3841-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AX-A05Y-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-G5-6572-02A-12D-1826-10	READ	mutation call filter
+TCGA-17-Z014-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A8-A08G-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A8-A0A9-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-3979-01A-01W-0995-10	COAD	mutation call filter
+TCGA-A8-A06P-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A8-A092-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-3675-01A-02W-0900-09	COAD	mutation call filter
+TCGA-AA-A01X-01A-21W-A096-10	COAD	mutation call filter
+TCGA-AA-3966-01A-01W-1073-09	COAD	mutation call filter
+TCGA-28-1749-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AP-A0L8-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AO-A0JB-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-AP-A0LJ-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-06-0171-02A-11D-2280-08	GBM	mutation call filter
+TCGA-BG-A0MC-01A-21W-A062-09	UCEC	mutation call filter
+TCGA-AA-3549-01A-02D-1953-10	COAD	mutation call filter
+TCGA-AA-3851-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AG-4008-01A-01W-1073-09	READ	mutation call filter
+TCGA-17-Z026-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A8-A0AB-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AF-3914-01A-01W-1073-09	READ	mutation call filter
+TCGA-B6-A0IM-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-17-Z027-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A2-A0CX-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-AX-A06F-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-A8-A084-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-A2-A0EU-01A-22W-A071-09	BRCA	mutation call filter
+TCGA-BH-A0H0-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-FG-5963-02A-12D-A29Q-08	LGG	mutation call filter
+TCGA-A8-A0A6-01A-12W-A071-09	BRCA	mutation call filter
+TCGA-A8-A09T-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-17-Z061-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-AG-3878-01A-02W-0899-10	READ	mutation call filter
+TCGA-17-Z021-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AN-A046-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-06-1800-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AN-A0FN-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AO-A03L-01A-41W-A071-09	BRCA	mutation call filter
+TCGA-BH-A0DS-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-BG-A0VT-01A-11D-A10M-09	UCEC	mutation call filter
+TCGA-AG-A002-01A-01W-A00K-09	READ	mutation call filter
+TCGA-17-Z050-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-17-Z060-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-HC-7079-01A-11D-1961-08	PRAD	mutation call filter
+TCGA-67-3772-01A-01W-0928-08	LUAD	mutation call filter
+TCGA-A8-A06O-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A2-A0D0-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A2-A04Y-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-AP-A0LV-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-A6-2678-01A-01D-1953-10	COAD	mutation call filter
+TCGA-AP-A05D-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-17-Z025-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AP-A0LN-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-TM-A7CF-02A-11D-A32B-08	LGG	mutation call filter
+TCGA-AP-A05J-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-B6-A0IC-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AG-A01J-01A-01W-A00E-09	READ	mutation call filter
+TCGA-AA-A02K-01A-21W-A096-10	COAD	mutation call filter
+TCGA-32-1976-01A-01W-0837-08	GBM	mutation call filter
+TCGA-AO-A0JA-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-AN-A0AK-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-12-1093-01A-01W-0611-08	GBM	mutation call filter
+TCGA-DU-6404-02B-11D-A36O-08	LGG	mutation call filter
+TCGA-AO-A03O-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AG-3727-01A-01W-0899-10	READ	mutation call filter
+TCGA-AG-4009-01A-01W-1073-09	READ	mutation call filter
+TCGA-A8-A09V-01A-11D-A045-09	BRCA	mutation call filter
+TCGA-28-2506-01A-02W-0837-08	GBM	mutation call filter
+TCGA-SI-A71O-06A-11D-A387-09	SARC	mutation call filter
+TCGA-A8-A08H-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-A8-A07O-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-B6-A0IG-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-B6-A0I2-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-14-0867-01A-01W-0424-08	GBM	mutation call filter
+TCGA-17-Z002-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-B5-A0K6-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-19-1388-01A-01W-0643-08	GBM	mutation call filter
+TCGA-FG-A4MT-02A-11D-A29Q-08	LGG	mutation call filter
+TCGA-BG-A0MO-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-A8-A0AD-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-AA-A01I-01A-02W-A00E-09	COAD	mutation call filter
+TCGA-A8-A06X-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-E9-A1NC-01A-12W-A16L-09	BRCA	mutation call filter
+TCGA-DE-A4MD-06A-11D-A257-08	THCA	mutation call filter
+TCGA-14-1794-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AA-A02W-01A-01W-A00E-09	COAD	mutation call filter
+TCGA-14-1827-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AF-2692-01A-01D-1989-10	READ	mutation call filter
+TCGA-12-0707-01A-01W-0348-08	GBM	mutation call filter
+TCGA-A5-A0GA-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AG-3891-01A-01W-1073-09	READ	mutation call filter
+TCGA-AP-A05H-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-14-0866-01B-01W-0643-08	GBM	mutation call filter
+TCGA-D8-A1X8-01A-11D-A14K-09	BRCA	mutation call filter
+TCGA-AA-3821-01A-01W-0995-10	COAD	mutation call filter
+TCGA-B6-A0IB-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AO-A0JJ-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-2G-AAKO-05A-11D-A42Y-10	TGCT	mutation call filter
+TCGA-2G-AAKG-05A-11D-A42Y-10	TGCT	mutation call filter
+TCGA-BH-A0AW-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-28-1745-01B-01W-0643-08	GBM	mutation call filter
+TCGA-17-Z011-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A8-A07C-01A-11D-A045-09	BRCA	mutation call filter
+TCGA-B6-A0RE-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-AA-3860-01A-02W-0900-09	COAD	mutation call filter
+TCGA-AA-3856-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AA-A03J-01A-21W-A096-10	COAD	mutation call filter
+TCGA-A8-A07P-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-12-0829-01A-01W-0424-08	GBM	mutation call filter
+TCGA-AO-A1KS-01A-11D-A13L-09	BRCA	mutation call filter
+TCGA-A8-A08B-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-BH-A0HB-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-12-0670-01B-01W-0424-08	GBM	mutation call filter
+TCGA-RW-A686-06A-11D-A35D-08	PCPG	mutation call filter
+TCGA-AP-A0L9-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-E9-A1ND-01A-11D-A142-09	BRCA	mutation call filter
+TCGA-A5-A0GU-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AA-3976-01A-01W-0995-10	COAD	mutation call filter
+TCGA-A8-A07E-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-A02Y-01A-43W-A096-10	COAD	mutation call filter
+TCGA-19-1791-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AN-A0AJ-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-A01T-01A-21W-A096-10	COAD	mutation call filter
+TCGA-A8-A08I-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AN-A0FZ-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-3967-01A-01W-1073-09	COAD	mutation call filter
+TCGA-AO-A0JD-01A-11W-A071-09	BRCA	mutation call filter
+TCGA-A5-A0GX-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AG-3575-01A-01D-1989-10	READ	mutation call filter
+TCGA-A5-A0G2-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-AA-3684-01A-02W-0900-09	COAD	mutation call filter
+TCGA-BS-A0UM-01A-11W-A10C-09	UCEC	mutation call filter
+TCGA-AA-3715-01A-01W-0900-09	COAD	mutation call filter
+TCGA-TQ-A7RK-02A-11D-A36O-08	LGG	mutation call filter
+TCGA-19-1789-01A-01W-0643-08	GBM	mutation call filter
+TCGA-A2-A04Q-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-AA-3527-01A-01D-1953-10	COAD	mutation call filter
+TCGA-12-0662-01A-01W-0348-08	GBM	mutation call filter
+TCGA-AA-3855-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AO-A03T-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-17-Z047-01A-01W-0747-08	LUAD	mutation call filter
+TCGA-QR-A6GZ-05A-11D-A35D-08	PCPG	mutation call filter
+TCGA-19-1788-01A-01W-0643-08	GBM	mutation call filter
+TCGA-17-Z009-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-17-Z018-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A8-A08A-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A8-A09X-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-17-Z022-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AA-A01C-01A-01W-A00E-09	COAD	mutation call filter
+TCGA-B5-A0JV-01A-11D-A10B-09	UCEC	mutation call filter
+TCGA-A7-A0CD-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AQ-A04J-01A-02W-A050-09	BRCA	mutation call filter
+TCGA-AG-3896-01A-01W-1073-09	READ	mutation call filter
+TCGA-AO-A1KP-01A-11D-A13L-09	BRCA	mutation call filter
+TCGA-AA-3561-01A-01D-1953-10	COAD	mutation call filter
+TCGA-17-Z013-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A8-A083-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-AA-3526-01A-02D-1953-10	COAD	mutation call filter
+TCGA-A8-A099-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-A8-A09D-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-3952-01A-01W-0995-10	COAD	mutation call filter
+TCGA-AX-A05W-01A-21W-A027-09	UCEC	mutation call filter
+TCGA-66-2768-01A-01W-0877-08	LUSC	mutation call filter
+TCGA-A8-A085-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AG-3599-01A-02D-1989-10	READ	mutation call filter
+TCGA-EM-A2CS-06A-11D-A19J-08	THCA	mutation call filter
+TCGA-A8-A07U-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-16-1460-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AN-A04D-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-BG-A0M3-01A-11W-A10C-09	UCEC	mutation call filter
+TCGA-17-Z036-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AN-A03Y-01A-21W-A019-09	BRCA	mutation call filter
+TCGA-A2-A0EX-01A-21W-A050-09	BRCA	mutation call filter
+TCGA-12-3648-01A-01W-0922-08	GBM	mutation call filter
+TCGA-BH-A18V-06A-11D-A20S-09	BRCA	mutation call filter
+TCGA-BH-A0HU-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-28-1750-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AA-A02E-01A-01W-A00E-09	COAD	mutation call filter
+TCGA-AG-3893-01A-01W-1073-09	READ	mutation call filter
+TCGA-AG-A00Y-01A-02W-A00K-09	READ	mutation call filter
+TCGA-AP-A0LT-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-16-0850-01A-01W-0424-08	GBM	mutation call filter
+TCGA-14-3477-01A-01W-0922-08	GBM	mutation call filter
+TCGA-12-0820-01A-01W-0424-08	GBM	mutation call filter
+TCGA-BH-A0BD-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-17-Z037-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A2-A1G4-01A-11D-A13L-09	BRCA	mutation call filter
+TCGA-12-0822-01A-01W-0424-08	GBM	mutation call filter
+TCGA-BH-A0B4-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-17-Z042-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-A6-2683-01A-01D-1953-10	COAD	mutation call filter
+TCGA-B5-A0K1-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-A8-A09M-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-17-Z005-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-BG-A0MT-01A-11D-A10B-09	UCEC	mutation call filter
+TCGA-26-1799-01A-02W-0643-08	GBM	mutation call filter
+TCGA-A2-A0EV-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AA-A03F-01A-11W-A096-10	COAD	mutation call filter
+TCGA-12-1602-01A-01W-0643-08	GBM	mutation call filter
+TCGA-AA-3678-01A-01W-0900-09	COAD	mutation call filter
+TCGA-A3-3331-01A-01W-0886-08	KIRC	mutation call filter
+TCGA-BG-A0M6-01A-31D-A10B-09	UCEC	mutation call filter
+TCGA-AA-3877-01A-01W-0995-10	COAD	mutation call filter
+TCGA-17-Z043-01A-01W-0746-08	LUAD	mutation call filter
+TCGA-AX-A0J1-01A-11W-A062-09	UCEC	mutation call filter
+TCGA-A2-A0EM-01A-11W-A050-09	BRCA	mutation call filter
+TCGA-AX-A062-01A-11W-A027-09	UCEC	mutation call filter
+TCGA-A8-A06U-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-2G-AAGI-05A-11D-A42Y-10	TGCT	mutation call filter
+TCGA-UZ-A9PS-05A-11D-A42J-10	KIRP	mutation call filter
+TCGA-AG-3594-01A-02D-1989-10	READ	mutation call filter
+TCGA-A8-A091-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AA-3819-01A-01W-0900-09	COAD	mutation call filter
+TCGA-AA-3560-01A-01D-1953-10	COAD	mutation call filter
+TCGA-A8-A09B-01A-11W-A019-09	BRCA	mutation call filter
+TCGA-AG-3881-01A-01W-0899-10	READ	mutation call filter
+TCGA-86-8358-01A-11D-2323-08	LUAD	hypermutated sample
+TCGA-EE-A3AG-06A-31D-A196-08	SKCM	hypermutated sample
+TCGA-F7-A624-01A-22D-A30E-08	HNSC	hypermutated sample
+TCGA-BR-8589-01A-11D-2394-08	STAD	hypermutated sample
+TCGA-CM-4743-01A-01D-1719-10	COAD	hypermutated sample
+TCGA-B5-A0JY-01A-11D-A10B-09	UCEC	hypermutated sample
+TCGA-90-A4ED-01A-31D-A257-08	LUSC	hypermutated sample
+TCGA-D8-A1J8-01A-11D-A13L-09	BRCA	hypermutated sample
+TCGA-5L-AAT1-01A-12D-A41F-09	BRCA	hypermutated sample
+TCGA-55-8089-01A-11D-2238-08	LUAD	hypermutated sample
+TCGA-DK-A3WW-01A-22D-A23M-08	BLCA	hypermutated sample
+TCGA-98-8021-01A-11D-2244-08	LUSC	hypermutated sample
+TCGA-78-8662-01A-11D-2393-08	LUAD	hypermutated sample
+TCGA-AC-A23H-01A-11D-A159-09	BRCA	hypermutated sample
+TCGA-EO-A3AV-01A-12D-A19Y-09	UCEC	hypermutated sample
+TCGA-BR-8081-01A-11D-2340-08	STAD	hypermutated sample
+TCGA-EI-6507-01A-11D-1733-10	READ	hypermutated sample
+TCGA-BR-8361-01A-11D-2340-08	STAD	hypermutated sample
+TCGA-BR-4257-01A-01D-1126-08	STAD	hypermutated sample
+TCGA-BR-8382-01A-11D-2394-08	STAD	hypermutated sample
+TCGA-D5-6927-01A-21D-1924-10	COAD	hypermutated sample
+TCGA-94-8490-01A-11D-2323-08	LUSC	hypermutated sample
+TCGA-AD-6895-01A-11D-1924-10	COAD	hypermutated sample
+TCGA-5M-AAT6-01A-11D-A40P-10	COAD	hypermutated sample
+TCGA-OR-A5KB-01A-11D-A30A-10	ACC	hypermutated sample
+TCGA-BR-4184-01A-01D-1126-08	STAD	hypermutated sample
+TCGA-D9-A6EC-06A-11D-A30X-08	SKCM	hypermutated sample
+TCGA-D3-A8GI-06A-11D-A372-08	SKCM	hypermutated sample
+TCGA-HU-A4GQ-01A-11D-A25D-08	STAD	hypermutated sample
+TCGA-G4-6309-01A-21D-1835-10	COAD	hypermutated sample
+TCGA-KN-8428-01A-11D-2310-10	KICH	hypermutated sample
+TCGA-BH-A18G-01A-11D-A12B-09	BRCA	hypermutated sample
+TCGA-BS-A0UV-01A-11D-A10B-09	UCEC	hypermutated sample
+TCGA-IB-7651-01A-11D-2154-08	PAAD	hypermutated sample
+TCGA-BR-8680-01A-11D-2394-08	STAD	hypermutated sample
+TCGA-AP-A1DV-01A-21D-A135-09	UCEC	hypermutated sample
+TCGA-L5-A4OI-01A-11D-A27G-09	ESCA	hypermutated sample
+TCGA-BR-8363-01A-11D-2340-08	STAD	hypermutated sample
+TCGA-G4-6304-01A-11D-1924-10	COAD	hypermutated sample
+TCGA-60-2698-01A-01D-1522-08	LUSC	hypermutated sample
+TCGA-AA-3984-01A-02D-1981-10	COAD	hypermutated sample
+TCGA-A5-A1OF-01A-11D-A14G-09	UCEC	hypermutated sample
+TCGA-VQ-A8PP-01A-21D-A410-08	STAD	hypermutated sample
+TCGA-FD-A6TC-01A-21D-A339-08	BLCA	hypermutated sample
+TCGA-EA-A3HU-01A-11D-A20U-09	CESC	hypermutated sample
+TCGA-EE-A29D-06A-11D-A197-08	SKCM	hypermutated sample
+TCGA-KQ-A41R-01A-21D-A34U-08	BLCA	hypermutated sample
+TCGA-62-A46O-01A-11D-A24D-08	LUAD	hypermutated sample
+TCGA-FP-A4BE-01A-12D-A24D-08	STAD	hypermutated sample
+TCGA-A5-A0G1-01A-11D-A122-09	UCEC	hypermutated sample
+TCGA-A6-6780-01A-11D-A270-10	COAD	hypermutated sample
+TCGA-FW-A3R5-06A-11D-A23B-08	SKCM	hypermutated sample
+TCGA-CD-A4MG-01A-11D-A25D-08	STAD	hypermutated sample
+TCGA-A6-3809-01A-01D-A270-10	COAD	hypermutated sample
+TCGA-AA-A022-01A-21D-A17O-10	COAD	hypermutated sample
+TCGA-05-4410-01A-21D-1855-08	LUAD	hypermutated sample
+TCGA-HF-A5NB-01A-11D-A31L-08	STAD	hypermutated sample
+TCGA-3N-A9WC-06A-11D-A38G-08	SKCM	hypermutated sample
+TCGA-MN-A4N4-01A-12D-A24P-08	LUAD	hypermutated sample
+TCGA-EO-A22R-01A-11D-A18P-09	UCEC	hypermutated sample
+TCGA-D7-A6EY-01A-21D-A31L-08	STAD	hypermutated sample
+TCGA-D3-A8GL-06A-11D-A372-08	SKCM	hypermutated sample
+TCGA-DI-A1BU-01A-11D-A135-09	UCEC	hypermutated sample
+TCGA-AD-A5EJ-01A-11D-A28G-10	COAD	hypermutated sample
+TCGA-55-A490-01A-11D-A24D-08	LUAD	hypermutated sample
+TCGA-IR-A3LK-01A-12D-A20U-09	CESC	hypermutated sample
+TCGA-DK-A3X1-01A-12D-A22Z-08	BLCA	hypermutated sample
+TCGA-CG-5728-01A-11D-1600-08	STAD	hypermutated sample
+TCGA-86-6851-01A-11D-1945-08	LUAD	hypermutated sample
+TCGA-A6-6781-01A-22D-A270-10	COAD	hypermutated sample
+TCGA-AU-6004-01A-11D-1719-10	COAD	hypermutated sample
+TCGA-33-4566-01A-01D-1441-08	LUSC	hypermutated sample
+TCGA-AJ-A3EL-01A-11D-A20S-09	UCEC	hypermutated sample
+TCGA-F1-6177-01A-11D-1800-08	STAD	hypermutated sample
+TCGA-N7-A4Y0-01A-12D-A28R-08	UCS	hypermutated sample
+TCGA-ZF-A9RC-01A-11D-A38G-08	BLCA	hypermutated sample
+TCGA-ZB-A966-01A-11D-A428-09	THYM	hypermutated sample
+TCGA-QQ-A8VF-01A-11D-A37C-09	SARC	hypermutated sample
+TCGA-BK-A6W3-01A-12D-A34Q-09	UCEC	hypermutated sample
+TCGA-L9-A7SV-01A-11D-A397-08	LUAD	hypermutated sample
+TCGA-55-8507-01A-11D-2393-08	LUAD	hypermutated sample
+TCGA-EE-A29M-06A-11D-A196-08	SKCM	hypermutated sample
+TCGA-AA-A010-01A-01D-A17O-10	COAD	hypermutated sample
+TCGA-L5-A43J-01A-12D-A247-09	ESCA	hypermutated sample
+TCGA-AO-A128-01A-11D-A10M-09	BRCA	hypermutated sample
+TCGA-32-2616-01A-01D-1495-08	GBM	hypermutated sample
+TCGA-HU-A4GU-01A-11D-A25D-08	STAD	hypermutated sample
+TCGA-55-8506-01A-11D-2393-08	LUAD	hypermutated sample
+TCGA-D6-6516-01A-11D-1870-08	HNSC	hypermutated sample
+TCGA-46-3769-01A-01D-0983-08	LUSC	hypermutated sample
+TCGA-BR-7851-01A-11D-2201-08	STAD	hypermutated sample
+TCGA-AA-A01P-01A-21D-A17O-10	COAD	hypermutated sample
+TCGA-DU-6392-01A-11D-1705-08	LGG	hypermutated sample
+TCGA-EE-A2M5-06A-12D-A197-08	SKCM	hypermutated sample
+TCGA-KK-A59V-01A-11D-A29Q-08	PRAD	hypermutated sample
+TCGA-EA-A410-01A-11D-A243-09	CESC	hypermutated sample
+TCGA-CM-5861-01A-01D-1650-10	COAD	hypermutated sample
+TCGA-MV-A51V-01A-11D-A26M-08	BLCA	hypermutated sample
+TCGA-AZ-6598-01A-11D-1771-10	COAD	hypermutated sample
+TCGA-VQ-A91K-01A-11D-A410-08	STAD	hypermutated sample
+TCGA-AD-5900-01A-11D-1650-10	COAD	hypermutated sample
+TCGA-AA-A00N-01A-02D-A17O-10	COAD	hypermutated sample
+TCGA-EE-A181-06A-11D-A196-08	SKCM	hypermutated sample
+TCGA-CM-6674-01A-11D-1835-10	COAD	hypermutated sample
+TCGA-D8-A27G-01A-11D-A16D-09	BRCA	hypermutated sample
+TCGA-AM-5821-01A-01D-1650-10	COAD	hypermutated sample
+TCGA-A6-5661-01A-01D-1650-10	COAD	hypermutated sample
+TCGA-64-5781-01A-01D-1625-08	LUAD	hypermutated sample
+TCGA-HJ-7597-01A-21D-2201-08	STAD	hypermutated sample
+TCGA-BR-4292-01A-01D-1126-08	STAD	hypermutated sample
+TCGA-CG-5733-01A-11D-1600-08	STAD	hypermutated sample
+TCGA-A6-5665-01A-01D-1650-10	COAD	hypermutated sample
+TCGA-44-7670-01A-11D-2063-08	LUAD	hypermutated sample
+TCGA-95-7567-01A-11D-2063-08	LUAD	hypermutated sample
+TCGA-DK-A6B6-01A-11D-A30E-08	BLCA	hypermutated sample
+TCGA-BR-6566-01A-11D-1800-08	STAD	hypermutated sample
+TCGA-AA-3492-01A-01D-1408-10	COAD	hypermutated sample
+TCGA-AD-6964-01A-11D-1924-10	COAD	hypermutated sample
+TCGA-EI-6917-01A-11D-1924-10	READ	hypermutated sample
+TCGA-B5-A3FA-01A-11D-A19Y-09	UCEC	hypermutated sample
+TCGA-UY-A78K-01A-11D-A339-08	BLCA	hypermutated sample
+TCGA-BR-8487-01A-11D-2394-08	STAD	hypermutated sample
+TCGA-BR-7707-01A-11D-2053-08	STAD	hypermutated sample
+TCGA-EW-A2FV-01A-11D-A17D-09	BRCA	hypermutated sample
+TCGA-EE-A29E-06A-11D-A197-08	SKCM	hypermutated sample
+TCGA-G4-6302-01A-11D-1719-10	COAD	hypermutated sample
+TCGA-CK-6746-01A-11D-1835-10	COAD	hypermutated sample
+TCGA-86-8073-01A-11D-2238-08	LUAD	hypermutated sample
+TCGA-AP-A1DK-01A-11D-A135-09	UCEC	hypermutated sample
+TCGA-CG-4442-01A-01D-1158-08	STAD	hypermutated sample
+TCGA-FR-A7U9-06A-11D-A34U-08	SKCM	hypermutated sample
+TCGA-ER-A193-06A-12D-A197-08	SKCM	hypermutated sample
+TCGA-49-AARE-01A-11D-A410-08	LUAD	hypermutated sample
+TCGA-W3-AA1V-06B-11D-A401-08	SKCM	hypermutated sample
+TCGA-EY-A1G8-01A-11D-A13L-09	UCEC	hypermutated sample
+TCGA-BR-4361-01A-01D-1158-08	STAD	hypermutated sample
+TCGA-AD-6889-01A-11D-1924-10	COAD	hypermutated sample
+TCGA-DM-A1HB-01A-21D-A183-10	COAD	hypermutated sample
+TCGA-BH-A0B6-01A-11D-A19Y-09	BRCA	hypermutated sample
+TCGA-EE-A2MD-06A-11D-A197-08	SKCM	hypermutated sample
+TCGA-W3-AA1R-06A-11D-A397-08	SKCM	hypermutated sample
+TCGA-EE-A2GI-06A-11D-A196-08	SKCM	hypermutated sample
+TCGA-FI-A2F4-01A-11D-A17D-09	UCEC	hypermutated sample
+TCGA-F5-6814-01A-31D-1924-10	READ	hypermutated sample
+TCGA-SY-A9G5-01A-11D-A38G-08	BLCA	hypermutated sample
+TCGA-B5-A3FC-01A-11D-A228-09	UCEC	hypermutated sample
+TCGA-EY-A215-01A-11D-A14K-09	UCEC	hypermutated sample
+TCGA-PK-A5HB-01A-11D-A29I-10	ACC	hypermutated sample
+TCGA-EE-A3JD-06A-11D-A20D-08	SKCM	hypermutated sample
+TCGA-CK-5916-01A-11D-1650-10	COAD	hypermutated sample
+TCGA-37-3792-01A-01D-0983-08	LUSC	hypermutated sample
+TCGA-AX-A2HC-01A-11D-A17D-09	UCEC	hypermutated sample
+TCGA-A5-A2K5-01A-11D-A17W-09	UCEC	hypermutated sample
+TCGA-AJ-A3BH-01A-11D-A19Y-09	UCEC	hypermutated sample
+TCGA-D7-A4YV-01A-11D-A25D-08	STAD	hypermutated sample
+TCGA-43-2581-01A-01D-1522-08	LUSC	hypermutated sample
+TCGA-F4-6570-01A-11D-1771-10	COAD	hypermutated sample
+TCGA-B5-A11N-01A-11D-A122-09	UCEC	hypermutated sample
+TCGA-BR-8372-01A-11D-2340-08	STAD	hypermutated sample
+TCGA-CM-4746-01A-01D-1408-10	COAD	hypermutated sample
+TCGA-EE-A2GR-06A-11D-A197-08	SKCM	hypermutated sample
+TCGA-CG-5723-01A-11D-1600-08	STAD	hypermutated sample
+TCGA-A6-6653-01A-11D-1771-10	COAD	hypermutated sample
+TCGA-XF-AAMG-01A-11D-A42E-08	BLCA	hypermutated sample
+TCGA-AX-A2HA-01A-12D-A18P-09	UCEC	hypermutated sample
+TCGA-HU-A4GN-01A-11D-A25D-08	STAD	hypermutated sample
+TCGA-BR-6852-01A-11D-1882-08	STAD	hypermutated sample
+TCGA-CG-4460-01A-01D-1158-08	STAD	hypermutated sample
+TCGA-JX-A3Q0-01A-11D-A21Q-09	CESC	hypermutated sample
+TCGA-CR-7402-01A-11D-2012-08	HNSC	hypermutated sample
+TCGA-IR-A3LA-01A-11D-A22X-09	CESC	hypermutated sample
+TCGA-VQ-A8PO-01A-11D-A410-08	STAD	hypermutated sample
+TCGA-D3-A8GM-06A-11D-A372-08	SKCM	hypermutated sample
+TCGA-Z2-A8RT-06A-11D-A372-08	SKCM	hypermutated sample
+TCGA-FS-A1ZK-06A-11D-A197-08	SKCM	hypermutated sample
+TCGA-AJ-A3EK-01A-11D-A19Y-09	UCEC	hypermutated sample
+TCGA-K4-A54R-01A-11D-A26M-08	BLCA	hypermutated sample
+TCGA-D5-6530-01A-11D-1719-10	COAD	hypermutated sample
+TCGA-BS-A0UF-01A-11D-A10B-09	UCEC	hypermutated sample
+TCGA-HU-A4G9-01A-11D-A24D-08	STAD	hypermutated sample
+TCGA-CD-A4MI-01A-21D-A25D-08	STAD	hypermutated sample
+TCGA-CG-5721-01A-11D-1600-08	STAD	hypermutated sample
+TCGA-EY-A1GI-01A-11D-A13L-09	UCEC	hypermutated sample
+TCGA-EO-A3AY-01A-12D-A19Y-09	UCEC	hypermutated sample
+TCGA-EE-A2GC-06A-11D-A197-08	SKCM	hypermutated sample
+TCGA-EO-A3KX-01A-11D-A228-09	UCEC	hypermutated sample
+TCGA-BR-6452-01A-12D-1800-08	STAD	hypermutated sample
+TCGA-2W-A8YY-01A-11D-A37N-09	CESC	hypermutated sample
+TCGA-19-5956-01A-11D-1696-08	GBM	hypermutated sample
+TCGA-EO-A22U-01A-11D-A17W-09	UCEC	hypermutated sample
+TCGA-YD-A89C-06A-11D-A372-08	SKCM	hypermutated sample
+TCGA-FS-A1ZZ-06A-11D-A197-08	SKCM	hypermutated sample
+TCGA-F1-6874-01A-11D-1882-08	STAD	hypermutated sample
+TCGA-BR-4256-01A-01D-1126-08	STAD	hypermutated sample
+TCGA-VQ-A91D-01A-11D-A410-08	STAD	hypermutated sample
+TCGA-DK-A2I4-01A-11D-A21A-08	BLCA	hypermutated sample
+TCGA-VS-A958-01A-11D-A42O-09	CESC	hypermutated sample
+TCGA-BR-8368-01A-11D-2340-08	STAD	hypermutated sample
+TCGA-GN-A8LK-06A-11D-A372-08	SKCM	hypermutated sample
+TCGA-GF-A6C9-06A-11D-A30X-08	SKCM	hypermutated sample
+TCGA-NH-A5IV-01A-42D-A36X-10	COAD	hypermutated sample
+TCGA-AA-3663-01A-01D-1719-10	COAD	hypermutated sample
+TCGA-EK-A3GK-01A-11D-A20U-09	CESC	hypermutated sample
+TCGA-AB-2828-03B-01W-0728-08	LAML	hypermutated sample
+TCGA-BR-A4QL-01A-31D-A25D-08	STAD	hypermutated sample
+TCGA-EO-A22X-01A-11D-A17W-09	UCEC	hypermutated sample
+TCGA-EE-A2MJ-06A-11D-A197-08	SKCM	hypermutated sample
+TCGA-W5-AA39-01A-11D-A417-09	CHOL	hypermutated sample
+TCGA-DK-A1AC-01A-11D-A13W-08	BLCA	hypermutated sample
+TCGA-BR-8078-01A-11D-2340-08	STAD	hypermutated sample
+TCGA-CG-4305-01A-01D-1158-08	STAD	hypermutated sample
+TCGA-HU-8602-01A-11D-2394-08	STAD	hypermutated sample
+TCGA-D1-A17Q-01A-11D-A12J-09	UCEC	hypermutated sample
+TCGA-D8-A1XK-01A-21D-A14K-09	BRCA	hypermutated sample
+TCGA-D5-6928-01A-11D-1924-10	COAD	hypermutated sample
+TCGA-D5-6930-01A-11D-1924-10	COAD	hypermutated sample
+TCGA-G4-6320-01A-11D-1719-10	COAD	hypermutated sample
+TCGA-CM-6171-01A-11D-1650-10	COAD	hypermutated sample
+TCGA-B5-A11E-01A-11D-A10M-09	UCEC	hypermutated sample
+TCGA-44-2656-01A-41D-A27T-08	LUAD	hypermutated sample
+TCGA-AA-3947-01A-01D-1981-10	COAD	hypermutated sample
+TCGA-AX-A0J0-01A-11D-A117-09	UCEC	hypermutated sample
+TCGA-CV-7568-01A-11D-2229-08	HNSC	hypermutated sample
+TCGA-FI-A2D0-01A-11D-A17D-09	UCEC	hypermutated sample
+TCGA-DK-A6AW-01A-11D-A30E-08	BLCA	hypermutated sample
+TCGA-E6-A1LX-01A-11D-A14G-09	UCEC	hypermutated sample
+TCGA-AZ-4615-01A-01D-1408-10	COAD	hypermutated sample
+TCGA-JW-A5VL-01A-11D-A28B-09	CESC	hypermutated sample
+TCGA-AP-A059-01A-21D-A122-09	UCEC	hypermutated sample
+TCGA-AX-A2HJ-01A-11D-A17D-09	UCEC	hypermutated sample
+TCGA-XK-AAIW-01A-11D-A41K-08	PRAD	hypermutated sample
+TCGA-HU-A4GX-01A-12D-A25D-08	STAD	hypermutated sample
+TCGA-YD-A9TA-06A-11D-A397-08	SKCM	hypermutated sample
+TCGA-AZ-4315-01A-01D-1408-10	COAD	hypermutated sample
+TCGA-BR-8591-01A-11D-2394-08	STAD	hypermutated sample
+TCGA-EA-A3HS-01A-11D-A20U-09	CESC	hypermutated sample
+TCGA-GN-A26C-01A-11D-A19A-08	SKCM	hypermutated sample
+TCGA-YG-AA3N-01A-11D-A38G-08	SKCM	hypermutated sample
+TCGA-BG-A222-01A-11D-A159-09	UCEC	hypermutated sample
+TCGA-E7-A7XN-01A-11D-A34U-08	BLCA	hypermutated sample
+TCGA-67-3771-01A-01D-1040-01	LUAD	hypermutated sample
+TCGA-EE-A2GO-06A-11D-A196-08	SKCM	hypermutated sample
+TCGA-CK-4951-01A-01D-1408-10	COAD	hypermutated sample
+TCGA-D1-A16X-01A-11D-A12J-09	UCEC	hypermutated sample
+TCGA-DX-AB2E-01A-11D-A38Z-09	SARC	hypermutated sample
+TCGA-O2-A52Q-01A-11D-A26M-08	LUSC	hypermutated sample
+TCGA-4R-AA8I-01A-11D-A382-10	LIHC	hypermutated sample
+TCGA-R5-A7ZI-01A-11D-A34U-08	STAD	hypermutated sample
+TCGA-AA-3510-01A-01D-1408-10	COAD	hypermutated sample
+TCGA-G2-A2EO-01A-11D-A17V-08	BLCA	hypermutated sample
+TCGA-60-2714-01A-01D-1522-08	LUSC	hypermutated sample
+TCGA-AP-A1E0-01A-11D-A135-09	UCEC	hypermutated sample
+TCGA-BR-4370-01A-01D-1158-08	STAD	hypermutated sample
+TCGA-E6-A1M0-01A-11D-A142-09	UCEC	hypermutated sample
+TCGA-78-7155-01A-11D-2036-08	LUAD	hypermutated sample
+TCGA-F4-6856-01A-11D-1924-10	COAD	hypermutated sample
+TCGA-FI-A2D5-01A-11D-A17D-09	UCEC	hypermutated sample
+TCGA-AZ-6601-01A-11D-1771-10	COAD	hypermutated sample
+TCGA-YC-A89H-01A-11D-A364-08	BLCA	hypermutated sample
+TCGA-EE-A2MS-06A-11D-A197-08	SKCM	hypermutated sample
+TCGA-UB-A7MB-01A-11D-A33Q-10	LIHC	hypermutated sample
+TCGA-FR-A8YC-06A-11D-A372-08	SKCM	hypermutated sample
+TCGA-73-A9RS-01A-11D-A410-08	LUAD	hypermutated sample
+TCGA-B5-A1MR-01A-31D-A14G-09	UCEC	hypermutated sample
+TCGA-IR-A3LH-01A-21D-A20U-09	CESC	hypermutated sample
+TCGA-EB-A431-01A-11D-A25O-08	SKCM	hypermutated sample
+TCGA-BR-4368-01A-01D-1158-08	STAD	hypermutated sample
+TCGA-D8-A27V-01A-12D-A17D-09	BRCA	hypermutated sample
+TCGA-CN-4723-01A-01D-1434-08	HNSC	hypermutated sample
+TCGA-QG-A5Z2-01A-11D-A28G-10	COAD	hypermutated sample
+TCGA-DA-A95Z-06A-11D-A372-08	SKCM	hypermutated sample
+TCGA-VS-A94Z-01A-11D-A387-09	CESC	hypermutated sample
+TCGA-NJ-A4YQ-01A-11D-A25L-08	LUAD	hypermutated sample
+TCGA-AA-A01R-01A-21D-A17O-10	COAD	hypermutated sample
+TCGA-D1-A103-01A-11D-A10M-09	UCEC	hypermutated sample
+TCGA-G4-6586-01A-11D-1771-10	COAD	hypermutated sample
+TCGA-86-A4JF-01A-11D-A24P-08	LUAD	hypermutated sample
+TCGA-CC-A7IH-01A-11D-A33K-10	LIHC	hypermutated sample
+TCGA-VQ-A8P2-01A-11D-A364-08	STAD	hypermutated sample
+TCGA-DR-A0ZM-01A-12D-A10S-08	CESC	hypermutated sample
+TCGA-EE-A2MR-06A-11D-A196-08	SKCM	hypermutated sample
+TCGA-ND-A4WC-01A-21D-A28R-08	UCS	hypermutated sample
+TCGA-BR-8360-01A-11D-2340-08	STAD	hypermutated sample
+TCGA-BR-4201-01A-01D-1126-08	STAD	hypermutated sample
+TCGA-AX-A2HD-01A-21D-A17D-09	UCEC	hypermutated sample
+TCGA-D5-6540-01A-11D-1719-10	COAD	hypermutated sample
+TCGA-VQ-A8PB-01A-11D-A397-08	STAD	hypermutated sample
+TCGA-AJ-A5DW-01A-11D-A27P-09	UCEC	hypermutated sample
+TCGA-50-5930-01A-11D-1753-08	LUAD	hypermutated sample
+TCGA-13-0889-01A-01W-0420-08	OV	hypermutated sample
+TCGA-CA-6718-01A-11D-1835-10	COAD	hypermutated sample
+TCGA-59-2349-01A-01W-0799-08	OV	hypermutated sample
+TCGA-B5-A1MX-01A-11D-A142-09	UCEC	hypermutated sample
+TCGA-95-7043-01A-11D-1945-08	LUAD	hypermutated sample
+TCGA-GN-A266-06A-11D-A197-08	SKCM	hypermutated sample
+TCGA-DF-A2KU-01A-11D-A17W-09	UCEC	hypermutated sample
+TCGA-AY-6197-01A-11D-1719-10	COAD	hypermutated sample
+TCGA-D8-A1XQ-01A-11D-A14K-09	BRCA	hypermutated sample
+TCGA-AB-2808-03B-01W-0728-08	LAML	hypermutated sample
+TCGA-HU-A4H8-01A-11D-A25D-08	STAD	hypermutated sample
+TCGA-VQ-A924-01A-11D-A410-08	STAD	hypermutated sample
+TCGA-05-4382-01A-01D-1931-08	LUAD	hypermutated sample
+TCGA-37-4130-01A-01D-1352-08	LUSC	hypermutated sample
+TCGA-EB-A41A-01A-11D-A24R-08	SKCM	hypermutated sample
+TCGA-AP-A0LM-01A-11D-A122-09	UCEC	hypermutated sample
+TCGA-AO-A03M-01B-11D-A10M-09	BRCA	hypermutated sample
+TCGA-CA-6717-01A-11D-1835-10	COAD	hypermutated sample
+TCGA-66-2785-01A-01D-1522-08	LUSC	hypermutated sample
+TCGA-WS-AB45-01A-11D-A40P-10	COAD	hypermutated sample
+TCGA-95-7039-01A-11D-1945-08	LUAD	hypermutated sample
+TCGA-EI-6882-01A-11D-1924-10	READ	hypermutated sample
+TCGA-Q1-A73O-01A-11D-A32I-09	CESC	hypermutated sample
+TCGA-EE-A3J5-06A-11D-A20D-08	SKCM	hypermutated sample
+TCGA-63-A5MM-01A-11D-A26M-08	LUSC	hypermutated sample
+TCGA-CD-8536-01A-11D-2340-08	STAD	hypermutated sample
+TCGA-B7-5816-01A-21D-1600-08	STAD	hypermutated sample
+TCGA-L5-A8NM-01A-11D-A37C-09	ESCA	hypermutated sample
+TCGA-AA-3713-01A-21D-1719-10	COAD	hypermutated sample
+TCGA-G4-6588-01A-11D-1771-10	COAD	hypermutated sample
+TCGA-AX-A1CE-01A-11D-A135-09	UCEC	hypermutated sample
+TCGA-QF-A5YS-01A-11D-A31U-09	UCEC	hypermutated sample
+TCGA-55-7907-01A-11D-2167-08	LUAD	hypermutated sample
+TCGA-CK-5913-01A-11D-1650-10	COAD	hypermutated sample
+TCGA-MX-A5UJ-01A-11D-A31L-08	STAD	hypermutated sample
+TCGA-HU-A4G8-01A-11D-A25D-08	STAD	hypermutated sample
+TCGA-CG-4306-01A-01D-1158-08	STAD	hypermutated sample
+TCGA-A6-2686-01A-01D-1408-10	COAD	hypermutated sample
+TCGA-06-5416-01A-01D-1486-08	GBM	hypermutated sample
+TCGA-FR-A726-01A-11D-A32N-08	SKCM	hypermutated sample
+TCGA-HU-A4GT-01A-21D-A25D-08	STAD	hypermutated sample
+TCGA-HU-A4H3-01A-21D-A25D-08	STAD	hypermutated sample
+TCGA-22-5473-01A-01D-1632-08	LUSC	hypermutated sample
+TCGA-EE-A29L-06A-12D-A196-08	SKCM	hypermutated sample
+TCGA-DF-A2KN-01A-11D-A17W-09	UCEC	hypermutated sample
+TCGA-D3-A5GO-06A-12D-A27K-08	SKCM	hypermutated sample
+TCGA-EO-A3B0-01A-12D-A19Y-09	UCEC	hypermutated sample
+TCGA-BR-4362-01A-01D-1158-08	STAD	hypermutated sample
+TCGA-G4-6628-01A-11D-1835-10	COAD	hypermutated sample
+TCGA-18-3409-01A-01D-0983-08	LUSC	hypermutated sample
+TCGA-XF-A9T0-01A-11D-A391-08	BLCA	hypermutated sample
+TCGA-85-A4CL-01A-41D-A26M-08	LUSC	hypermutated sample
+TCGA-EE-A20C-06A-11D-A196-08	SKCM	hypermutated sample
+TCGA-HF-7132-01A-11D-2053-08	STAD	hypermutated sample
+TCGA-CG-5726-01A-11D-1600-08	STAD	hypermutated sample
+TCGA-HE-A5NK-01A-11D-A26P-10	KIRP	pathology review
+TCGA-55-6987-01A-11D-1945-08	LUAD	pathology review
+TCGA-JV-A5VF-01A-11D-A29N-09	SARC	pathology review
+TCGA-L5-A43E-01A-11D-A247-09	ESCA	pathology review
+TCGA-L5-A893-01A-11D-A36J-09	ESCA	pathology review
+TCGA-KR-A7K2-01A-12D-A33Q-10	LIHC	pathology review
+TCGA-HC-8259-01A-11D-2260-08	PRAD	pathology review
+TCGA-86-7955-01A-11D-2184-08	LUAD	pathology review
+TCGA-69-7979-01A-11D-2184-08	LUAD	pathology review
+TCGA-CD-8533-01A-11D-2340-08	STAD	pathology review
+TCGA-91-6848-01A-11D-1945-08	LUAD	pathology review
+TCGA-50-6590-01A-12D-1855-08	LUAD	pathology review
+TCGA-A4-7828-01A-11D-2136-08	KIRP	pathology review
+TCGA-HF-7134-01A-11D-2053-08	STAD	pathology review
+TCGA-X9-A973-01A-11D-A387-09	SARC	pathology review
+TCGA-44-7669-01A-21D-2063-08	LUAD	pathology review
+TCGA-HU-A4HB-01A-12D-A25D-08	STAD	pathology review
+TCGA-44-5644-01A-21D-2036-08	LUAD	pathology review
+TCGA-KK-A8IM-01A-11D-A364-08	PRAD	pathology review
+TCGA-BR-6709-01A-11D-1882-08	STAD	pathology review
+TCGA-DX-A1L2-01A-22D-A24N-09	SARC	pathology review
+TCGA-05-4434-01A-01D-1265-08	LUAD	pathology review
+TCGA-3A-A9IR-01A-11D-A38G-08	PAAD	pathology review
+TCGA-DX-AB30-01A-11D-A38Z-09	SARC	pathology review
+TCGA-78-7146-01A-11D-2036-08	LUAD	pathology review
+TCGA-HE-7130-01A-11D-1961-08	KIRP	pathology review
+TCGA-VQ-A8PZ-01A-11D-A410-08	STAD	pathology review
+TCGA-DD-A3A6-01A-11D-A22F-10	LIHC	pathology review
+TCGA-HC-7819-01A-11D-2114-08	PRAD	pathology review
+TCGA-3B-A9HJ-01A-11D-A387-09	SARC	pathology review
+TCGA-44-2668-01A-01D-A271-08	LUAD	pathology review
+TCGA-QC-A7B5-01A-11D-A33E-09	SARC	pathology review
+TCGA-UE-A6QU-01A-12D-A32I-09	SARC	pathology review
+TCGA-IG-A7DP-01A-31D-A33E-09	ESCA	pathology review
+TCGA-3A-A9IS-01A-21D-A397-08	PAAD	pathology review
+TCGA-64-5815-01A-01D-1625-08	LUAD	pathology review
+TCGA-86-7953-01A-11D-2184-08	LUAD	pathology review
+TCGA-HV-A7OP-01A-11D-A33T-08	PAAD	pathology review
+TCGA-L5-A43M-01A-11D-A247-09	ESCA	pathology review
+TCGA-HC-7745-01A-11D-2114-08	PRAD	pathology review
+TCGA-BR-7704-01A-11D-2053-08	STAD	pathology review
+TCGA-44-3918-01A-01D-A271-08	LUAD	pathology review
+TCGA-55-7570-01A-11D-2036-08	LUAD	pathology review
+TCGA-QQ-A8VG-01A-11D-A37C-09	SARC	pathology review
+TCGA-49-6743-01A-11D-1855-08	LUAD	pathology review
+TCGA-35-4123-01A-01D-1105-08	LUAD	pathology review
+TCGA-G2-A2EL-01A-12D-A18F-08	BLCA	pathology review
+TCGA-EJ-A46B-01A-31D-A257-08	PRAD	pathology review
+TCGA-X6-A8C6-01A-11D-A36J-09	SARC	pathology review
+TCGA-UB-A7MA-01A-11D-A33Q-10	LIHC	pathology review
+TCGA-HU-8244-01A-11D-2340-08	STAD	pathology review
+TCGA-78-7220-01A-11D-2036-08	LUAD	pathology review
+TCGA-55-6968-01A-11D-1945-08	LUAD	pathology review
+TCGA-HZ-7918-01A-11D-2154-08	PAAD	pathology review
+TCGA-HC-7738-01A-11D-2114-08	PRAD	pathology review
+TCGA-35-5375-01A-01D-1625-08	LUAD	pathology review
+TCGA-44-3398-01A-01D-1105-08	LUAD	pathology review
+TCGA-69-7974-01A-11D-2184-08	LUAD	pathology review
+TCGA-VQ-A91E-01A-31D-A410-08	STAD	pathology review
+TCGA-JY-A939-01A-12D-A37C-09	ESCA	pathology review
+TCGA-DX-A6YZ-01A-12D-A351-09	SARC	pathology review
+TCGA-QQ-A5VD-01A-21D-A32I-09	SARC	pathology review
+TCGA-AL-3467-01A-01D-1252-08	KIRP	pathology review
+TCGA-55-6969-01A-11D-1945-08	LUAD	pathology review
+TCGA-69-7973-01A-11D-2184-08	LUAD	pathology review
+TCGA-H8-A6C1-01A-11D-A32N-08	PAAD	pathology review
+TCGA-EJ-A8FP-01A-21D-A364-08	PRAD	pathology review
+TCGA-B3-4104-01A-01D-1458-08	KIRP	pathology review
+TCGA-DX-A6B8-01A-11D-A307-09	SARC	pathology review
+TCGA-DX-AB2J-01A-11D-A387-09	SARC	pathology review
+TCGA-BR-8060-01A-11D-2340-08	STAD	pathology review
+TCGA-38-4625-01A-01D-1553-08	LUAD	pathology review
+TCGA-QC-AA9N-01A-11D-A38Z-09	SARC	pathology review
+TCGA-55-5899-01A-11D-1625-08	LUAD	pathology review
+TCGA-50-6592-01A-11D-1753-08	LUAD	pathology review
+TCGA-05-4427-01A-21D-1855-08	LUAD	pathology review
+TCGA-64-5779-01A-01D-1625-08	LUAD	pathology review
+TCGA-3A-A9IO-01A-11D-A38G-08	PAAD	pathology review
+TCGA-3A-A9IN-01A-11D-A397-08	PAAD	pathology review
+TCGA-FV-A3I0-01A-11D-A22F-10	LIHC	pathology review
+TCGA-3A-A9IJ-01A-11D-A397-08	PAAD	pathology review
+TCGA-86-7954-01A-11D-2184-08	LUAD	pathology review
+TCGA-44-7667-01A-31D-2063-08	LUAD	pathology review
+TCGA-50-6591-01A-11D-1753-08	LUAD	pathology review
+TCGA-JY-A6FA-01A-11D-A33E-09	ESCA	pathology review
+TCGA-F2-7273-01A-11D-2154-08	PAAD	pathology review
+TCGA-55-7994-01A-11D-2184-08	LUAD	pathology review
+TCGA-3X-AAVC-01A-21D-A417-09	CHOL	pathology review
+TCGA-C4-A0EZ-01A-21D-A10S-08	BLCA	pathology review
+TCGA-LI-A67I-01A-31D-A307-09	SARC	pathology review
+TCGA-HZ-7920-01A-11D-2201-08	PAAD	pathology review
+TCGA-R6-A6Y0-01B-11D-A33E-09	ESCA	pathology review
+TCGA-HZ-7924-01A-11D-2154-08	PAAD	pathology review
+TCGA-KK-A8I7-01A-21D-A364-08	PRAD	pathology review
+TCGA-G9-6332-01A-11D-1786-08	PRAD	pathology review
+TCGA-3A-A9IV-01A-11D-A40W-08	PAAD	pathology review
+TCGA-IW-A3M5-01A-22D-A21Q-09	SARC	pathology review
+TCGA-FB-A7DR-01A-21D-A33T-08	PAAD	pathology review
+TCGA-Z4-A9VC-01A-11D-A37C-09	SARC	pathology review
+TCGA-FD-A3N6-01A-11D-A21A-08	BLCA	pathology review
+TCGA-QQ-A5VA-01A-12D-A32I-09	SARC	pathology review
+TCGA-HU-8238-01A-11D-2340-08	STAD	pathology review
+TCGA-44-5643-01A-01D-1625-08	LUAD	pathology review
+TCGA-IB-AAUW-01A-12D-A38G-08	PAAD	pathology review
+TCGA-VQ-A8PY-01A-11D-A410-08	STAD	pathology review
+TCGA-BT-A20V-01A-11D-A14W-08	BLCA	pathology review
+TCGA-86-7701-01A-11D-2167-08	LUAD	pathology review
+TCGA-2H-A9GJ-01A-11D-A37C-09	ESCA	pathology review
+TCGA-38-4630-01A-01D-1265-08	LUAD	pathology review
+TCGA-BT-A2LA-01A-11D-A18F-08	BLCA	pathology review
+TCGA-75-5125-01A-01D-1753-08	LUAD	pathology review
+TCGA-91-6831-01A-11D-1855-08	LUAD	pathology review
+TCGA-BT-A20X-01A-11D-A16O-08	BLCA	pathology review
+TCGA-HU-A4GJ-01A-11D-A25D-08	STAD	pathology review
+TCGA-HZ-8638-01A-11D-2396-08	PAAD	pathology review
+TCGA-3A-A9IL-01A-11D-A38G-08	PAAD	pathology review
+TCGA-50-5066-01A-01D-1625-08	LUAD	pathology review
+TCGA-44-7660-01A-11D-2063-08	LUAD	pathology review
+TCGA-V1-A8MK-01A-11D-A364-08	PRAD	pathology review
+TCGA-35-4122-01A-01D-1105-08	LUAD	pathology review
+TCGA-05-4397-01A-01D-1265-08	LUAD	pathology review
+TCGA-FU-A3HZ-01A-11D-A20U-09	CESC	pathology review
+TCGA-QQ-A8VD-01A-42D-A38Z-09	SARC	pathology review
+TCGA-A4-7287-01A-11D-2136-08	KIRP	pathology review
+TCGA-05-4250-01A-01D-1105-08	LUAD	pathology review
+TCGA-69-7978-01A-11D-2184-08	LUAD	pathology review
+TCGA-80-5611-01A-01D-1625-08	LUAD	pathology review
+TCGA-55-7910-01A-11D-2167-08	LUAD	pathology review
+TCGA-EJ-A8FO-01A-21D-A364-08	PRAD	pathology review
+TCGA-VQ-A8PS-01A-11D-A410-08	STAD	pathology review
+TCGA-44-7661-01A-11D-2063-08	LUAD	pathology review
+TCGA-IS-A3KA-01A-11D-A21Q-09	SARC	pathology review
+TCGA-K1-A6RT-01A-32D-A33E-09	SARC	pathology review
+TCGA-55-7995-01A-11D-2184-08	LUAD	pathology review
+TCGA-HZ-7289-01A-11D-2154-08	PAAD	pathology review
+TCGA-H9-A6BX-01A-31D-A30X-08	PRAD	pathology review
+TCGA-FD-A3B4-01A-12D-A202-08	BLCA	pathology review
+TCGA-2L-AAQM-01A-11D-A397-08	PAAD	pathology review
+TCGA-91-6836-01A-21D-1855-08	LUAD	pathology review
+TCGA-50-6594-01A-11D-1753-08	LUAD	pathology review
+TCGA-J4-A83J-01A-11D-A364-08	PRAD	pathology review
+TCGA-UE-A6QT-01A-12D-A32I-09	SARC	pathology review
+TCGA-MB-A8JL-01A-11D-A36J-09	SARC	pathology review
+TCGA-IS-A3K8-01A-11D-A21Q-09	SARC	pathology review
+TCGA-IB-AAUV-01A-11D-A38G-08	PAAD	pathology review
+TCGA-FB-AAPP-01A-12D-A40W-08	PAAD	pathology review
+TCGA-EJ-A46E-01A-31D-A257-08	PRAD	pathology review
+TCGA-38-4629-01A-02D-1265-08	LUAD	pathology review
+TCGA-DX-AATS-01A-12D-A417-09	SARC	pathology review
+TCGA-44-6778-01A-11D-1855-08	LUAD	pathology review
+TCGA-53-7624-01A-11D-2063-08	LUAD	pathology review
+TCGA-95-7944-01A-11D-2184-08	LUAD	pathology review
+TCGA-2J-AABP-01A-11D-A40W-08	PAAD	pathology review
+TCGA-Z4-A8JB-01A-23D-A37C-09	SARC	pathology review
+TCGA-HC-7817-01B-11D-A29Q-08	PRAD	pathology review
+TCGA-VQ-A8PT-01A-11D-A410-08	STAD	pathology review
+TCGA-RN-AAAQ-01A-21D-A38Z-09	SARC	pathology review
+TCGA-IG-A4QT-01A-21D-A27G-09	ESCA	pathology review
+TCGA-CG-5725-01A-11D-1600-08	STAD	pathology review
+TCGA-GJ-A6C0-01A-12D-A30V-10	LIHC	pathology review
+TCGA-DX-A8BG-01A-12D-A417-09	SARC	pathology review
+TCGA-QQ-A5V2-01A-11D-A32I-09	SARC	pathology review
+TCGA-DX-A8BP-01A-11D-A37C-09	SARC	pathology review
+TCGA-BC-A10Q-01A-11D-A12Z-10	LIHC	pathology review
+TCGA-91-6830-01A-11D-1945-08	LUAD	pathology review
+TCGA-86-7711-01A-11D-2063-08	LUAD	pathology review
+TCGA-EJ-A46H-01A-31D-A26M-08	PRAD	pathology review
+TCGA-G9-6348	PRAD	RNA degradation
+TCGA-G9-6369	PRAD	RNA degradation
+TCGA-HI-7169	PRAD	RNA degradation
+TCGA-G9-6338	PRAD	RNA degradation
+TCGA-G9-6362	PRAD	RNA degradation
+TCGA-G9-6373	PRAD	RNA degradation
+TCGA-G9-6496	PRAD	RNA degradation
+TCGA-EJ-A46F	PRAD	RNA degradation
+TCGA-J9-A52C	PRAD	RNA degradation
+TCGA-J9-A52E	PRAD	RNA degradation
+TCGA-EJ-A65B	PRAD	RNA degradation
+TCGA-EJ-A65M	PRAD	RNA degradation
+TCGA-FC-A66V	PRAD	RNA degradation
+TCGA-G9-6339	PRAD	RNA degradation
+TCGA-G9-6347	PRAD	RNA degradation
+TCGA-G9-6379	PRAD	RNA degradation
+TCGA-G9-6498	PRAD	RNA degradation
+TCGA-HC-A6AL	PRAD	RNA degradation
+TCGA-HC-A6AN	PRAD	RNA degradation
+TCGA-HC-A6AP	PRAD	RNA degradation
+TCGA-HC-A6AS	PRAD	RNA degradation
+TCGA-HC-A6HX	PRAD	RNA degradation
+TCGA-J4-A67M	PRAD	RNA degradation
+TCGA-J4-A67N	PRAD	RNA degradation
+TCGA-J4-A67O	PRAD	RNA degradation
+TCGA-J4-A67Q	PRAD	RNA degradation
+TCGA-J4-A67R	PRAD	RNA degradation
+TCGA-KK-A59V	PRAD	RNA degradation
+TCGA-KK-A6E3	PRAD	RNA degradation
+TCGA-EJ-A65D	PRAD	RNA degradation
+TCGA-FC-A6HD	PRAD	RNA degradation
+TCGA-G9-6354	PRAD	RNA degradation
+TCGA-H9-A6BY	PRAD	RNA degradation
+TCGA-HC-A6AO	PRAD	RNA degradation
+TCGA-HC-A6AQ	PRAD	RNA degradation
+TCGA-HC-A6HY	PRAD	RNA degradation
+TCGA-J4-A67K	PRAD	RNA degradation
+TCGA-J4-A67L	PRAD	RNA degradation
+TCGA-J4-A67S	PRAD	RNA degradation
+TCGA-KK-A6E4	PRAD	RNA degradation
+TCGA-KK-A6E7	PRAD	RNA degradation
+TCGA-KK-A6E8	PRAD	RNA degradation
+TCGA-QU-A6IL	PRAD	RNA degradation
+TCGA-QU-A6IM	PRAD	RNA degradation
+TCGA-QU-A6IN	PRAD	RNA degradation
+TCGA-QU-A6IO	PRAD	RNA degradation
+TCGA-G9-7525	PRAD	RNA degradation
+TCGA-G9-6343	PRAD	RNA degradation
+TCGA-HC-7752	PRAD	RNA degradation
+TCGA-KK-A7AW	PRAD	RNA degradation
+TCGA-EJ-7325	PRAD	RNA degradation
+TCGA-KK-A7AY	PRAD	RNA degradation
+TCGA-KK-A7B0	PRAD	RNA degradation
+TCGA-V1-A9OT	PRAD	RNA degradation
+TCGA-MG-AAMC	PRAD	RNA degradation
+TCGA-M7-A723	PRAD	RNA degradation
+TCGA-EJ-AB20	PRAD	RNA degradation
+TCGA-X4-A8KQ	PRAD	RNA degradation
+TCGA-KK-A7AQ	PRAD	RNA degradation
+TCGA-ZG-A9L9	PRAD	RNA degradation
+TCGA-2A-A8VX	PRAD	RNA degradation
+TCGA-KC-A7F5	PRAD	RNA degradation
+TCGA-XJ-A9DX	PRAD	RNA degradation
+TCGA-M7-A724	PRAD	RNA degradation
+TCGA-KK-A7B2	PRAD	RNA degradation
+TCGA-ZG-A9LB	PRAD	RNA degradation
+TCGA-V1-A8MM	PRAD	RNA degradation
+TCGA-M7-A71Z	PRAD	RNA degradation
+TCGA-XK-AAK1	PRAD	RNA degradation
+TCGA-VN-A88M	PRAD	RNA degradation
+TCGA-KK-A7AZ	PRAD	RNA degradation
+TCGA-ZG-A9LM	PRAD	RNA degradation
+TCGA-XJ-A83F	PRAD	RNA degradation
+TCGA-XJ-A9DQ	PRAD	RNA degradation
+TCGA-ZG-A9LU	PRAD	RNA degradation
+

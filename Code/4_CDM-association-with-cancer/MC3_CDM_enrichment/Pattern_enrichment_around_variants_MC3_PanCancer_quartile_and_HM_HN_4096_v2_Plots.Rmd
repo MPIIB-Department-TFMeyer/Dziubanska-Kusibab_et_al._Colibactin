@@ -1,0 +1,140 @@
+---
+title: "Pattern overlap global - MC3 pan-cancer data, quartile/HM SNV count classes - all cancer entities, all 4096 hexanucleotides - Plots"
+author: "Hilmar Berger"
+output:
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+
+```{r, message=FALSE}
+library(Biostrings)
+library(GenomicRanges)
+library(ggplot2)
+library(knitr)
+library(data.table)
+library(ggthemes)
+rm(list=ls())
+```
+
+```{r}
+analysis_name = "MC3_QuartileHM_PanCancer_4096HN"
+all_data_files = list.files(path="../../../Data/MC3_TCGA_WXS", pattern=paste0("6nucleotide_Results_",analysis_name,".+Rdata"), full.names = T)
+names(all_data_files) = gsub(".Rdata", "", gsub(paste0("6nucleotide_Results_",analysis_name,"_"),"", basename(all_data_files)))
+```
+
+```{r}
+selected_HN = c("AAAATT","AAATTT") # AATTTT is the reverse complement of AAAATT and will therefore always get the exact same hits
+```
+
+
+```{r}
+all_pattern = mkAllStrings(c("A","C","G","T"), 6)
+at_cnt = unlist(Map(function(x) sum(alphabetFrequency(DNAString(x))[c("A","T")]), all_pattern))
+```
+
+
+```{r, warning=FALSE}
+# Note that Fisher's exact test and ChiSquare test assume indepdence of the elements. We consider mutated sites but 
+# actually count the total as the sum of all PN in target regions. PN might be overlapping (therefore
+# not be independent) and mutations (e.g. indels) might be longer than 1. 
+# So the test is only kind of an indication - we should replace it by something more appropriate
+
+# x$mutation_hit, x$mutation_no_hit, x$pattern_bp, x$non_pattern_bp
+fisher.func <- function(x) { m = matrix(c(x[1], x[2], x[3]-x[1], x[4]-x[2]), 2, 2); fisher.test(m)}
+chisq.func <- function(x) { m = matrix(c(x[1], x[2], x[3]-x[1], x[4]-x[2]), 2, 2); chisq.test(m)}
+
+all_result_tabs = list()
+for (n in names(all_data_files)) {
+  load(all_data_files[n])
+  #ft = apply(combined_tab[, c("mutation_hit", "mutation_no_hit", "pattern_bp", "non_pattern_bp")], 1, fisher.func)
+#  ct = apply(combined_tab[, c("mutation_hit", "mutation_no_hit", "pattern_bp", "non_pattern_bp")], 1, chisq.func)
+#  combined_tab$chisq_pval = unlist(sapply(ct, `[`, "p.value"))
+#  combined_tab$chisq_padj = p.adjust(combined_tab$chisq_pval, "BH")
+#  combined_tab$chisq_stat = unlist(sapply(ct, `[`, "statistic"))
+#  combined_tab$rank = unsplit(tapply(combined_tab$chisq_stat ,combined_tab$entity, frankv, order=-1), combined_tab$entity)
+#  combined_tab$rank_pval = combined_tab$rank / 4096
+#  combined_tab$rank_padj = p.adjust(combined_tab$rank_pval, "BH")
+  combined_tab$sel_pn = (combined_tab$pattern %in% selected_HN)
+  combined_tab$at_cnt = at_cnt[combined_tab$pattern]
+  combined_tab$at_rich_non_sel = (!combined_tab$sel_pn & combined_tab$at_cnt == 6)
+  combined_tab$cancer_entity = unlist(sapply(strsplit(combined_tab$entity,"_"), `[`,1))
+  combined_tab$count_class = factor(unlist(sapply(strsplit(combined_tab$entity,"_"), `[`,2)), levels=c("Q1","Q2","Q3","Q4","Outlier","POLEmut"))
+  all_result_tabs[[n]] = combined_tab
+}
+```
+
+```{r}
+mut_sets_ordered = c("A.T_to_X_SNV_mutations")
+```
+
+```{r, fig.width=10, fig.height=12}
+sel_entities = c("COAD","READ","STAD","UCEC","BLCA","CESC","HNSC","LUAD","LUSC", "DLBC","LAML","SARC")
+n = "A.T_to_X_SNV_mutations"
+tmp = subset(as.data.table(all_result_tabs[[n]]), cancer_entity %in% sel_entities)
+  tmp$log2r = log2(tmp$hit_per_bp_in_pattern)
+  tmp$mutation_list = n
+  tmp[, at_rich_non_sel_mean := mean(ifelse(at_rich_non_sel, log2r, NA), na.rm=T), by="entity"]
+  tmp[, sel_mean := mean(ifelse(sel_pn, log2r, NA), na.rm=T), by="entity"]
+  tmp[, sel_vs_atrich := sel_mean - at_rich_non_sel_mean]
+  tmp[, class:= factor(ifelse(at_cnt==6, ifelse(sel_pn,"AAWWTT", "[A/T]6"),"other"), levels=c("AAWWTT","[A/T]6","other"))]
+  tmp[, pn_vs_at6:= log2r - at_rich_non_sel_mean]
+  
+  by_entity_dist = tmp[, .( mean_distance = mean(sel_vs_atrich)), by="entity"]
+  setkey(by_entity_dist, "entity")
+  tmp$dist_sel_vs_atrich = by_entity_dist[as.character(tmp$entity)]$mean_distance
+  tmp$entity = factor(tmp$entity, levels=by_entity_dist[order(-by_entity_dist$mean_distance)]$entity)
+  tmp$cancer_entity = factor(tmp$cancer_entity, levels=sel_entities)
+#  tmp = tmp[order(tmp$entity, tmp$rank)]
+
+  l2r = split(tmp$pn_vs_at6, tmp$entity)
+  cl = split(tmp$class,  tmp$entity)
+  p_at6 = mapply(function(log2r, class) {a = log2r[class=="AAWWTT"]; b = log2r[class=="[A/T]6"]; if(length(a)>0 && length(b)>0) {p=wilcox.test(a,b )$p.value} else {p=NA}; return(p)}, l2r, cl)
+  p_other = mapply(function(log2r, class) {a = log2r[class=="AAWWTT"]; b = log2r[class=="other"]; if(length(a)>0 && length(b)>0) {p=wilcox.test(a,b )$p.value} else {p=NA}; return(p)}, l2r, cl)
+  
+  tmp$p_at6 = p_at6[as.character(tmp$entity)]
+  tmp$p_other = p_other[as.character(tmp$entity)]
+  tmp$padj_at6 = p.adjust(tmp$p_at6, "BH")
+  tmp$padj_other = p.adjust(tmp$p_other, "BH")
+
+ at_rich_non_sel_stats = tmp[tmp$at_rich_non_sel, .(vmean=mean(pn_vs_at6), vsd=sd(pn_vs_at6), n=.N, t97.5=qt(0.975, .N-1), entity = unique(entity)), by=c("cancer_entity", "count_class")]
+ at_rich_non_sel_stats[, ci:=t97.5*(vsd/sqrt(n))]
+ setkey(at_rich_non_sel_stats, "entity")
+
+ max_y = max(c(tmp[tmp$sel_pn]$pn_vs_at6, at_rich_non_sel_stats$vmean+2*at_rich_non_sel_stats$vsd))
+ min_y = min(c(tmp[tmp$sel_pn]$pn_vs_at6, at_rich_non_sel_stats$vmean-2*at_rich_non_sel_stats$vsd))
+ 
+ tmp$sig_label = with(tmp, ifelse(p_at6 < 0.05 & padj_at6 < 0.2, "*", ""))
+ sel_tmp = subset(tmp, sel_pn)
+ sel_tmp[, total_mut:=sum(mutation_hit), by="entity"]
+ sel_tmp[, count_text:=paste0(unique(total_mut)," /\n",unique(total_mutation_counts), "\n[", unique(sample_counts),"]"), by="entity"]
+ 
+ p = ggplot(sel_tmp, aes(y=pn_vs_at6, x=count_class)) + geom_point(aes(col=pattern), size=3) +
+        #geom_errorbar(data=at_rich_non_sel_stats, aes(ymin=vmean-ci, ymax=vmean+ci, x=count_class), inherit.aes = F) + 
+        geom_errorbar(data=at_rich_non_sel_stats, aes(ymin=vmean-2*vsd, ymax=vmean+2*vsd, x=count_class), inherit.aes = F, alpha=.3, size=0.5) + 
+        geom_text(aes(y=max_y*1.72, label=sig_label), size=8, col="red")  +
+        geom_text(aes(y=max_y*1.65, label=count_text), size=3.5, vjust=1)  +
+        facet_wrap(~cancer_entity, ncol=3, nrow=4) + 
+        stat_summary(fun.y=mean, colour="black", shape=3, geom="point", size=3) + 
+        coord_cartesian(ylim=c(min_y*1.0,max_y*1.9)) + 
+        ggtitle("") + xlab("") + ylab("Log2 (mutations/bp for AAWWTT vs. mean of mutations/bp for other WWWWWW") + 
+        geom_hline(yintercept=0) + theme_few() + 
+        theme( text = element_text(size=20), axis.text=element_text(size=20), axis.text.x = element_text(angle = 90, hjust = 1), axis.title.y=element_text(size=16), legend.position ="none",legend.text=element_text(size=20))
+
+  print(p)
+
+```
+
+```{r}
+cairo_pdf(file="../../../Results/4_CDM-association-with-cancer/TCGA_MC3_A.T_to_X_SNV_pancancer_enrichment_cairo_v2_12_entities.pdf", width = 10, height=12)
+print(p)
+dev.off()
+```

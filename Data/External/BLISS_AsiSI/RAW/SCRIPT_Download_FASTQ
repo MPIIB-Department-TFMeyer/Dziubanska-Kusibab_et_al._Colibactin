@@ -1,0 +1,3 @@
+/data_genome1/SharedSoftware/SRAtoolkit/bin/fastq-dump --origfmt -I --gzip --split-3 SRR5441980 # induced, GSM2572682
+/data_genome1/SharedSoftware/SRAtoolkit/bin/fastq-dump --origfmt -I --gzip --split-3 SRR5441981 # uninduced, GSM2572683
+

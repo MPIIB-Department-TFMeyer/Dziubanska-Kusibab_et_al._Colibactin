@@ -1,0 +1,151 @@
+---
+title: "Pattern overlap global - Giannakis COREAD data, quartiles and HM - 4096 hexanucleotide pattern"
+author: "Hilmar Berger"
+output:
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE}
+library(Biostrings)
+library(GenomicRanges)
+library(ggplot2)
+library(knitr)
+library(data.table)
+
+rm(list=ls())
+```
+
+```{r}
+source("../shared_scripts/pattern_enrichment_around_mutations.R")
+```
+
+
+# Overview 
+
+We want to analyze possible enrichment of mutations at individual hexanuclear patterns in colorectal cancers. We use mutation data of all COREAD carcinoma from the Giannakis et al. (10.1016/j.celrep.2016.03.075). Since for those samples only WXS data is available, we focus on regions defined by Gencode v28 on hg19 as exonic (+/- 50bp flanks) in the basic annotation set. We include only mutations falling in those regions. We identify hexanucleotide positions in those regions and determine those sites overlapping mutations. 
+
+```{r}
+analysis_name = "Giannakis_QuartileHM_COREAD_4096HN"
+```
+
+```{r}
+load("../../../Data/Pattern_frequencies_and_positions/HN_pos_in_exonic_regions_50bp_flank_n4096.Rdata")
+total_target_size = sum(as.numeric(width(reduce(exon_ranges, ignore.strand=T))))
+```
+
+We compute an enrichment ratio for each of the HN as the mutation rate withn HN pattern to the mutation outside HN pattern: 
+
+$$ratio = \frac {(mutations\ overlapping\ HN_k / genomic\ length\ covered\ by\ HN_k)}{(mutations\ not\ overlapping\ HN_k / genomic\ length\ not\ covered\ by\ HN_k)} $$  
+
+Both $genomic\ length$ and $mutations$ refer to those within the defined target reginos (i.e. exonic regions).
+
+This ratio should therefore adjust for the relative frequency of each HN within target regions. 
+
+We used all possible 4096 HN patterns. Positions of those HN are determined on both strands.
+
+```{r, message=FALSE}
+load("../../../Data/Giannakis_WXS_CRC/Giannakis_colon_cancer_mutations.Rdata")
+data[, cancer_entity:=rep("COREAD", nrow(data))]
+
+setkey(ed, 'Individual ID')
+```
+
+```{r}
+# determine counts of mutation per sample
+# then classify samples by mutation count quantiles outlier status ("HIGH") and POLE mutation status
+total_mut_counts_ts = data[, .(count = .N), by = c("Tumor_Sample_Barcode", "Variant_Type", "cancer_entity")]
+total_mut_counts_tab = dcast.data.table(total_mut_counts_ts, Tumor_Sample_Barcode + cancer_entity ~ Variant_Type, value.var="count")
+total_mut_counts_tab = total_mut_counts_tab[,lapply(.SD,function(x){ifelse(is.na(x),0,x)})]
+total_mut_counts_tab[, INDEL:=INS+DEL]
+setkey(total_mut_counts_tab, "Tumor_Sample_Barcode")
+setorder(total_mut_counts_tab, cancer_entity, SNP)
+
+# this is a wide definition of POLE mutations - we take all likely protein chaning mutations in the POLE CDS, not only the ones
+# in the exonuclease domain
+sel_impact = c("De_novo_Start_OutOfFrame","Frame_Shift_Del","Frame_Shift_Ins","In_Frame_Del","In_Frame_Ins","Missense_Mutation","Nonsense_Mutation","Nonstop_Mutation","Splice_Site","Start_Codon_Del","Start_Codon_Ins","Stop_Codon_Ins")
+pole_mutated_cases = unique(subset(data, Hugo_Symbol=="POLE" & Variant_Classification %in% sel_impact)$Tumor_Sample_Barcode)
+
+# determine quartiles and outlier based on a normal distritution approximation 
+tmp = total_mut_counts_tab[, .(mad = mad(log10(SNP+1)), median=median(log10(SNP+1)), sample_cnt = .N, Q1=quantile(SNP, 0.25), Q2=median(SNP), Q3=quantile(SNP, 0.75), Q95=quantile(SNP, 0.975)), by="cancer_entity"]
+setkey(tmp, "cancer_entity")
+tmp$CI95p_log = tmp$median + 2* tmp$mad
+tmp$CI95p = 10**tmp$CI95p_log
+
+total_mut_counts_tab[, CI95p_upper:= tmp[total_mut_counts_tab$cancer_entity]$CI95p]
+total_mut_counts_tab[, Q1:= tmp[total_mut_counts_tab$cancer_entity]$Q1]
+total_mut_counts_tab[, Q2:= tmp[total_mut_counts_tab$cancer_entity]$Q2]
+total_mut_counts_tab[, Q3:= tmp[total_mut_counts_tab$cancer_entity]$Q3]
+
+total_mut_counts_tab[, index:= unlist(Map(function(x) 1:x, tmp[unique(total_mut_counts_tab$cancer_entity)]$sample_cnt))]
+total_mut_counts_tab[, outlier:=ifelse(CI95p_upper < SNP, "HIGH","NON-HIGH")]
+
+total_mut_counts_tab[, pole_mutated:= ifelse(Tumor_Sample_Barcode %in% pole_mutated_cases, "POLE mut","no POLE mut")]
+
+total_mut_counts_tab[, SNV_count_class:= ifelse(pole_mutated=="POLE mut", "POLEmut", ifelse(SNP<Q1, "Q1", ifelse(SNP<Q2, "Q2", ifelse(SNP<Q3, "Q3", ifelse(SNP<CI95p_upper, "Q4", "Outlier")))))]
+setkey(total_mut_counts_tab, "Tumor_Sample_Barcode")
+
+```
+
+```{r, fig.width=14}
+ggplot(total_mut_counts_tab, aes(x=index, y=SNP, color = outlier)) + geom_point() + facet_grid(pole_mutated~cancer_entity) + scale_y_log10() + ggtitle("Mutation count per sample in samples with and without POLE mutation")
+```
+
+```{r}
+ftable(total_mut_counts_tab$pole_mutated, total_mut_counts_tab$outlier, ifelse(total_mut_counts_tab$SNP > 1000, ">1000 SNV","<= 1000 SNV"))
+```
+
+```{r}
+# filter mutations and add count and POLE dependent classes
+data_filtered = data[data$Variant_Type %in% c("SNP", "INS","DEL")]
+data_filtered[, SNV_count_class := total_mut_counts_tab[Tumor_Sample_Barcode]$SNV_count_class]
+data_filtered[, cancer_entity_class := paste0(cancer_entity, "_", SNV_count_class)]
+data_filtered[, var_id := paste0(Chromosome,"_", Start_position,"_", Reference_Allele,"_", Tumor_Seq_Allele2)]
+data_filtered[, mutID_per_entity := paste0(cancer_entity_class, "_", var_id)]
+
+mut_ranges = with(data_filtered, GRanges(Chromosome, IRanges(Start_position, End_position), strand="*", Reference_Allele, Tumor_Seq_Allele2, donorID = factor(Tumor_Sample_Barcode),  variant_type = Variant_Type, cancer_entity = cancer_entity, cancer_entity_class = cancer_entity_class, mutID_per_entity=mutID_per_entity, SNV_count_class = SNV_count_class  ) )
+
+mut_ranges_unique = mut_ranges[!duplicated(mut_ranges$mutID_per_entity)]
+
+oo = findOverlaps(mut_ranges_unique, exon_ranges, ignore.strand=T)
+mut_ranges_unique_exonic_only = mut_ranges_unique[unique(queryHits(oo))]
+```
+
+```{r}
+tmp = with(mut_ranges_unique_exonic_only, data.table(sampleID = donorID, cancer_entity_class=cancer_entity_class, variant_type = variant_type))
+tmp2 = tmp[, .(sample_count = length(unique(sampleID))), by="cancer_entity_class"]
+setorder(tmp2, cancer_entity_class)
+tmp2
+```
+
+# Only T/A>X *SNV*
+
+```{r}
+mut_ranges_unique_exonic_T2X_only_SNV = mut_ranges_unique_exonic_only[grepl("A|T", mut_ranges_unique_exonic_only$Reference_Allele, perl = T) & mut_ranges_unique_exonic_only$variant_type == "SNP" ]
+```
+
+
+```{r}
+combined_tab = compute_pattern_enrichment_targeted(pattern_pos_exonic_only, mut_ranges_unique_exonic_T2X_only_SNV, total_target_size, oligofreqs_exonic, pattern_bp_covered, entity_column="cancer_entity_class", sample_id_column="donorID", variant_id_column = "mutID_per_entity")
+```
+
+```{r}
+ofile = file.path("../../../Data/Giannakis_WXS_CRC",paste0("6nucleotide_Results_",analysis_name,"_A.T_to_X_SNV_mutations.Rdata"))
+save(combined_tab, file=ofile)
+```
+
+
+# Software versions
+
+```{r}
+sessionInfo()
+```
+

@@ -1,0 +1,5 @@
+Data from Ianelli et al. was downloaded from SRA. Only the first read from all mate pairs was used. BC/UMIs were removed and the remaining sequence aligned against hg19. BED files were produced without further filtering from BAM files.
+
+SRA: SRP103771
+BioProject: PRJNA382378
+GEO: GSE97589 

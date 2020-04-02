@@ -1,0 +1,247 @@
+---
+title: "PCAWG WGS cohort analysis - Alexandrov 2018 signatures, global"
+author: "Hilmar Berger"
+output:
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE}
+rm(list=ls())
+library(data.table)
+library(Biostrings)
+library(pheatmap)
+
+library(deconstructSigs)
+library(BiocParallel)
+
+library(ggplot2)
+library(naturalsort)
+
+# setwd("/data_genome2/projects/MB222-GuideSeq/Cancers_profiles/Association_PN_with_Cancer_Variants/Stratton_signatures/Finnish_cohort/")
+```
+
+# Overview
+
+We want to test if pentanucleotides are somehow associated to known or novel mutational signatures.
+We will use the trinucleotide change frequencies as provided PCAWG (Alexandrov et al. 2020, Nature)
+
+```{r}
+# Pentanucleotide change counts for each sample
+tnc_data = fread("/data_genome2/public_data/Alexandrov_ICGC/v2020/WGS_PCAWG/WGS_PCAWG.96.csv")
+sids = colnames(tnc_data)[3:ncol(tnc_data)]
+tmp = strsplit(sids, "::")
+ed = data.frame(row.names=sids, cancer_entity = unlist(sapply(tmp, `[`,1)), specimenID=unlist(sapply(tmp, `[`,2)), stringsAsFactors = F)
+
+tnc_mat = t(as.matrix(tnc_data[,3:ncol(tnc_data)]))
+colnames(tnc_mat) = paste0(substr(tnc_data$Trinucleotide,1,1),"[",tnc_data$`Mutation type`,"]", substr(tnc_data$Trinucleotide,3,3))
+
+#pnc_mat_rel = sweep(pnc_mat, 1, apply(pnc_mat,1,sum),"/")
+```
+
+
+```{r}
+pole_d_variants = fread("../../processed_data/POLE_D_variants_ICGC.txt")
+pole_d_variant_samples = unique(pole_d_variants$sampleID)
+
+sample_env = new.env()
+load("/data_genome1/public_data/ICGC/analysis/ImportedData_r28/ICGC_DCC_release28_projects_donors_samples_specimen.Rdata", envir=sample_env)
+
+sample_desc = get("samples", sample_env)
+setkey(sample_desc, icgc_sample_id)
+
+pole_d_variant_specimen = unique(sample_desc[pole_d_variant_samples]$icgc_specimen_id)
+ed$POLE.D_mutant = ifelse(ed$specimenID %in% pole_d_variant_specimen, "POLE/D1 mutated", "POLE/D1 WT")
+```
+
+```{r}
+ed_specimen = ed
+rownames(ed_specimen) = ed_specimen$specimenID
+
+```
+
+# Known signatures
+
+We use package deconstructSigs to estimate the contribution of the mutational signatures published by Alexandrov 2018 in all samples. We add new signatures derived from the Lee-Six/Stratton paper on signatures in colorectal cells.
+
+```{r}
+new_sigs = read.csv(file="/data_genome2/public_data/Alexandrov_ICGC/v2018/sigProfiler_SBS_signatures_2018_03_28.csv")
+new_sigs_fixed = as.data.frame(t(new_sigs[, 3:ncol(new_sigs)]))
+colnames(new_sigs_fixed) = apply(new_sigs[, 1:2], 1, function(x) {paste0(substr(x[2],1,1),"[", x[1],"]", substr(x[2],3,3))})
+```
+
+## Stratton colon epithelium signature
+
+We additionally add signatures extracted from the supplementary data (i.e. git repository) of the Lee-Six paper. There we used the provided code for using a Hierarchical Dirichlet Process (HDP) method to extract SBS signatures.
+
+```{r}
+lee_six_sigs = read.table("/data_genome1/public_data/Stratton_crypt_signatures/git/colon_microbiopsies/signature_extraction/subsitutions_hdp_signature_extraction/Signature_category_counts.txt", sep="\t", header=T)
+
+lee_six_mat = as.matrix(lee_six_sigs[, 2:ncol(lee_six_sigs)])
+tmp_c = as.character(lee_six_sigs$X)
+nuc_change = gsub("\\.",">", substr(tmp_c, 1, 3))
+trinuc_change = paste0(substr(tmp_c,8,8),"[",nuc_change,"]",substr(tmp_c,10,10))
+
+rownames(lee_six_mat) = trinuc_change
+
+lee_six_mat_new_sigs = lee_six_mat[, c(paste0("N",1:5))]
+
+alexandrov_and_lee_six_sigs = as.matrix(rbind(t(lee_six_mat_new_sigs), new_sigs_fixed[,rownames(lee_six_mat_new_sigs)]))
+
+```
+
+```{r}
+set.seed(19825)
+reprocess_data = F
+if(reprocess_data) {
+
+  sigs.input = as.data.frame(tnc_mat)
+  ed_sigs_input = ed
+  
+  all_donors = sort(rownames(sigs.input))
+  all_donors = all_donors[(apply(sigs.input, 1, sum)>0)]
+  
+  sigs.input_selected = sigs.input[all_donors,]
+  
+  sig_fun = function(sample_id) {
+    sigs_found = NA
+    try((sigs_found = whichSignatures(tumor.ref = sigs.input_selected, 
+                     signatures.ref = as.data.frame(alexandrov_and_lee_six_sigs), 
+                     sample.id = sample_id, contexts.needed=TRUE, tri.counts.method = 'default', signature.cutoff = 0.02)) )
+    return(sigs_found)
+  }
+  
+  all_sigs = bplapply(all_donors, sig_fun, BPPARAM=MulticoreParam(workers=24) )
+
+  save(sigs.input, all_sigs, ed_sigs_input, file="All_signatures_deconstructSigs_global_Alexandrov_LeeSix.Rdata")
+} else {
+  load("All_signatures_deconstructSigs_global_Alexandrov_LeeSix.Rdata")
+}
+```
+
+
+```{r}
+all_donors = sort(rownames(sigs.input))
+all_donors = all_donors[(apply(sigs.input, 1, sum)>0)]
+
+failed_samples = (1:length(all_sigs))[!unlist(lapply(all_sigs, is.list))]
+
+all_sigs_filtered = all_sigs
+all_donors_final = all_donors
+if(length(failed_samples)>0) {
+  all_sigs_filtered[failed_samples] <- NULL
+  all_donors_final = all_donors[-failed_samples]
+}
+
+names(all_sigs_filtered) = all_donors_final
+
+signature_weight_mat = as.matrix(do.call(rbind, lapply(all_sigs_filtered, function(x) x$weights)))
+```
+
+# Signature contributions across all samples and contexts
+
+```{r, fig.width=16, fig.height = 10}
+col_anno = ed_sigs_input[,c("cancer_entity","POLE.D_mutant"),drop=F]
+
+#anno_colors = list(match=c("yes"="red","no"="blue"))
+#anno_colors = list(region_class=c("AnTn"="red","TTT"="orange","other"="blue"))
+pheatmap(t(signature_weight_mat), cluster_cols=T, show_colnames = F, annotation_col = col_anno)
+
+```
+
+
+```{r}
+sig_mat_ts = reshape2::melt(signature_weight_mat)
+colnames(sig_mat_ts) = c("ID", "Signature", "Contribution")
+sig_mat_ts$sampleID = sig_mat_ts$ID
+sig_mat_ts$cancer_entity = ed[as.character(sig_mat_ts$sampleID), "cancer_entity"]
+sig_mat_ts$POLE.D_mutant = ed[as.character(sig_mat_ts$sampleID), "POLE.D_mutant"]
+```
+
+```{r, fig.width=15, fig.height=12}
+ggplot(subset(sig_mat_ts, Signature %in% c("SBS28","N2","SBS17a","SBS17b")), aes(x=Signature, y=Contribution,fill=POLE.D_mutant)) + geom_boxplot(outlier.shape = 20, outlier.alpha = 0.3) + facet_wrap(cancer_entity~.,ncol=3 ) + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+<!-- # Correlation of signature contributions across samples -->
+
+<!-- ```{r, fig.height=8} -->
+<!-- cc = cor(signature_weight_mat[,apply(signature_weight_mat, 2, sum)>0], method="spearman") -->
+<!-- pheatmap(cc, main="Correlation of signature contribution across samples") -->
+<!-- ``` -->
+
+
+<!-- # Selected signatures -->
+
+<!-- ```{r, fig.width=15, fig.height=6} -->
+<!-- ggplot(subset(sig_mat_ts, Signature=="N2"), aes(x=Signature, y=Contribution)) + geom_boxplot(outlier.shape = 20, outlier.alpha = 0.3) + facet_grid(. ~ cancer_entity) + theme(axis.text.x = element_text(angle = 90, hjust = 1))  + ggtitle("Signature N2") -->
+<!-- ``` -->
+
+<!-- <!-- ```{r, fig.width=15, fig.height=6} --> -->
+<!-- <!-- ggplot(subset(sig_mat_ts, Signature=="SBS9"), aes(x=Signature, y=Contribution)) + geom_boxplot(outlier.shape = 20, outlier.alpha = 0.3) + facet_grid(. ~ cancer_entity) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ggtitle("Signature 9") --> -->
+<!-- <!-- ``` --> -->
+
+<!-- <!-- ```{r, fig.width=15, fig.height=6} --> -->
+<!-- <!-- ggplot(subset(sig_mat_ts, Signature=="SBS41"), aes(x=Signature, y=Contribution)) + geom_boxplot(outlier.shape = 20, outlier.alpha = 0.3) + facet_grid(. ~ cancer_entity) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ggtitle("Signature 41") --> -->
+<!-- <!-- ``` --> -->
+
+<!-- # Correlation of proportion mutated at colibactin motifs with signature contributions estimated by deconstructSigs -->
+
+
+<!-- ```{r} -->
+<!-- motif_enrichment_estimates = read.table("../../PN_enrichment_around_variants/Results_Riku/Per_sample_results_PN_SNV_enrichment.txt", sep="\t", header=T, stringsAsFactors = F) -->
+<!-- rownames(motif_enrichment_estimates) = motif_enrichment_estimates$sample_name_full -->
+<!-- ``` -->
+
+
+<!-- ```{r, fig.height=8} -->
+<!-- cc = cor(signature_weight_mat[,apply(signature_weight_mat, 2, sum)>0], motif_enrichment_estimates[rownames(signature_weight_mat),]$total_mut_proportion_colibactin_HN, method="spearman", use="pairwise") -->
+<!-- cc[order(-cc[,1]),] -->
+<!-- ``` -->
+
+<!-- ```{r, fig.height=6} -->
+<!-- plot(signature_weight_mat[, "N2"], motif_enrichment_estimates[rownames(signature_weight_mat),]$total_mut_proportion_colibactin_HN, xlab="SBSA* (i.e. N2) contribution", ylab="Proportion of total mutations at colibactin pentanucleotide motifs", pch=20, col=rgb(0,0,0,0.3)) -->
+<!-- ``` -->
+
+<!-- ```{r, fig.height=6} -->
+<!-- plot(signature_weight_mat[, "SBS41"], motif_enrichment_estimates[rownames(signature_weight_mat),]$total_mut_proportion_colibactin_HN, xlab="SBS41 contribution", ylab="Proportion of total mutations at colibactin pentanucleotide motifs", pch=20) -->
+<!-- ``` -->
+
+<!-- ```{r, fig.height=6} -->
+<!-- plot(signature_weight_mat[, "SBS28"], motif_enrichment_estimates[rownames(signature_weight_mat),]$total_mut_proportion_colibactin_HN, xlab="SBS28 contribution", ylab="Proportion of total mutations at colibactin pentanucleotide motifs", pch=20) -->
+<!-- ``` -->
+
+
+<!-- ```{r, fig.height=6} -->
+<!-- plot(signature_weight_mat[, "SBS17b"], motif_enrichment_estimates[rownames(signature_weight_mat),]$total_mut_proportion_colibactin_HN, xlab="SBS17b contribution", ylab="Proportion of total mutations at colibactin pentanucleotide motifs", pch=20) -->
+<!-- ``` -->
+
+<!-- ```{r, fig.height=6} -->
+<!-- plot(signature_weight_mat[, "SBS28"], signature_weight_mat[, "N2"], xlab="SBS28 contribution", ylab="N2 contribution", pch=20) -->
+<!-- ``` -->
+
+
+<!-- # Correlation of (mean log2 ratio of adjusted mutation rate for colibactin motifs) with signature contributions estimated by deconstructSigs -->
+
+<!-- ```{r, fig.height=8} -->
+<!-- cc = cor(signature_weight_mat[,apply(signature_weight_mat, 2, sum)>0], motif_enrichment_estimates[rownames(signature_weight_mat),]$mean_log2r_colibactin_PN, method="spearman", use="pairwise") -->
+<!-- cc[order(-cc[,1]),] -->
+<!-- ``` -->
+
+<!-- ```{r, fig.height=6} -->
+<!-- plot(signature_weight_mat[, "N2"], motif_enrichment_estimates[rownames(signature_weight_mat),]$mean_log2r_colibactin_PN, xlab="SBSA* (i.e. N2) contribution", ylab="mean log2 ratio of adjusted mutation rate for colibactin motifs", pch=20, col=rgb(0,0,0,0.3)) -->
+<!-- ``` -->
+
+
+```{r}
+save(signature_weight_mat, file="Signature_weights_PCAWG_WGS_cohort_Alexandrov2018_and_LeeSix.Rdata")
+```
+

@@ -1,0 +1,81 @@
+---
+title: "Pattern site identification - WGS"
+author: "Hilmar Berger"
+output:
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE}
+library(Biostrings)
+library(GenomicFeatures)
+library(ggplot2)
+library(knitr)
+library(data.table)
+
+library(BSgenome.Hsapiens.UCSC.hg38)
+rm(list=ls())
+
+library(BiocParallel)
+bpp = MulticoreParam(workers = 6)
+```
+
+# Overview 
+
+We want to analyze possible enrichment of mutations at individual hexanuclear patterns in cancers.  We identify hexanucleotide positions genomewide for selected HN, all HN with 6 A/T and 100 random PN. 
+
+```{r}
+sc = standardChromosomes(Hsapiens)
+sc = sc[!sc %in% c("chrM", "chrY")]
+
+si = as.data.frame(seqinfo(Hsapiens))
+si = si[sc,]
+
+all_standard_chrome_ranges = GRanges(rownames(si), IRanges(1, si$seqlengths-1))
+g_views = Views(Hsapiens, all_standard_chrome_ranges)
+
+# count global pentanucleotide freqs
+of = oligonucleotideFrequency(g_views, 6)
+oligofreqs_genomic = apply(of, 2, sum)
+```
+
+
+```{r}
+# this includes AAWWTT and all other [A/T]6 hexanucleotides
+pattern_dict_sel = DNAStringSet(mkAllStrings(c("A","T"), 6))
+
+set.seed(12345)
+pattern_dict_r = DNAStringSet(mkAllStrings(c("A","C","G","T"), 6))[sample.int(1024, 100)]
+pattern_dict = unique(c(pattern_dict_sel, pattern_dict_r))
+pattern_pos = vmatchPDict(pattern_dict, Hsapiens)
+
+suppressMessages(seqlevelsStyle(pattern_pos) <- "NCBI")
+sc = standardChromosomes(pattern_pos)
+sc = sc[sc!="MT"]
+pattern_pos = keepSeqlevels(pattern_pos, sc, pruning.mode = "coarse")
+
+pattern_pos$pattern = factor(as.character(pattern_dict)[as.integer(pattern_pos$index)])
+```
+
+```{r}
+# for each pattern, collapse pattern hits which are overlapping on the same or opposing strands
+ttt = split(pattern_pos, pattern_pos$pattern)
+ttt2 = reduce(ttt, ignore.strand=T)
+# compute the total covered genome length in bp for each pattern
+pattern_bp_covered = unlist(lapply(ttt2, function(x) sum(width(x))))
+```
+
+
+```{r}
+curr_date = Sys.time()
+save(pattern_pos, pattern_dict, pattern_bp_covered, oligofreqs_genomic, all_standard_chrome_ranges, curr_date, file="HN_pos_genomic_n100_and_AT6_hg38.Rdata")
+```
+

@@ -1,0 +1,190 @@
+---
+title: "Finnish WGS cohort analysis - Alexandrov 2018 (COSMICv3) and Lee-Six et al. signatures"
+author: "Hilmar Berger"
+output:
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+```{r, message=FALSE}
+rm(list=ls())
+library(data.table)
+library(Biostrings)
+library(pheatmap)
+
+library(deconstructSigs)
+library(BiocParallel)
+
+library(ggplot2)
+library(naturalsort)
+```
+
+# Overview
+
+We want to test if pentanucleotides are somehow associated to known or novel mutational signatures.
+We will use the trinucleotide change frequencies as provided by Riku Katainen and Lauri Aaltonen.
+
+```{r, message=FALSE}
+data = fread("../../../Data/WGS_cohort/SBS_Trinucleotide_signature_contributions/Trinucleotide_mutcounts_CRC_WGS_n200.txt", sep="\t")
+trinuc_change_mat = as.matrix(data[, 2:ncol(data)])
+tmp = data$`#mutType`
+
+# the notation of trinucleotide changes does not follow the general standard from e.g. COSMIC signatures. Fix notation. 
+nuc_change = paste0(substr(tmp,2,2),">",substr(tmp,6,6))
+
+plus_strand_nuc_changes_accepted = c("C>A","C>G","C>T","T>A","T>C","T>G")
+
+revcomp_nuc_change = paste0(as.character(complement(DNAStringSet(substr(tmp,2,2)))),">",as.character(complement(DNAStringSet(substr(tmp,6,6)))))
+revcomp_trinuc = as.character(reverseComplement(DNAStringSet(substr(tmp, 1, 3))))
+
+trinuc_change = ifelse(nuc_change %in% plus_strand_nuc_changes_accepted, 
+                       paste0(substr(tmp, 1,1),"[",nuc_change,"]", substr(tmp,3,3)), 
+                       paste0(substr(revcomp_trinuc, 1,1),"[",revcomp_nuc_change,"]", substr(revcomp_trinuc,3,3)) )
+
+rownames(trinuc_change_mat) = trinuc_change
+trinuc_change_mat = trinuc_change_mat[order(rownames(trinuc_change_mat)),]
+
+ed = data.frame(sampleID=colnames(data)[2:ncol(data)], stringsAsFactors = F)
+tt = regmatches(ed$sampleID, regexpr("(.+)_T_", ed$sampleID))
+ed$ID = make.names(substr(tt, 1, nchar(tt)-3))
+tt2 = sapply(strsplit(ed$sampleID,"-"), `[`,1 )
+ed$group = ifelse(tt2 %in% c("POLE","MSI"), tt2, "other" )
+rownames(ed) = ed$sampleID
+```
+
+# Known signatures
+
+We use package deconstructSigs to estimate the contribution of the mutational signatures published by Alexandrov 2018 in all samples. We add new signatures derived from the Lee-Six/Stratton paper on signatures in colorectal cells.
+
+```{r}
+new_sigs = read.csv(file="../../../Data/External/SBS_signatures/sigProfiler_SBS_signatures_2018_03_28.csv")
+new_sigs_fixed = as.data.frame(t(new_sigs[, 3:ncol(new_sigs)]))
+colnames(new_sigs_fixed) = apply(new_sigs[, 1:2], 1, function(x) {paste0(substr(x[2],1,1),"[", x[1],"]", substr(x[2],3,3))})
+```
+
+## Stratton colon epithelium signature
+
+We additionally add signatures extracted from the supplementary data (i.e. git repository) of the Lee-Six paper. There we used the provided code for using a Hierarchical Dirichlet Process (HDP) method to extract SBS signatures.
+
+```{r}
+lee_six_sigs = read.table("../../../Data/External/SBS_signatures/Signature_category_counts_LeeSix.txt", sep="\t", header=T)
+
+lee_six_mat = as.matrix(lee_six_sigs[, 2:ncol(lee_six_sigs)])
+tmp_c = as.character(lee_six_sigs$X)
+nuc_change = gsub("\\.",">", substr(tmp_c, 1, 3))
+trinuc_change = paste0(substr(tmp_c,8,8),"[",nuc_change,"]",substr(tmp_c,10,10))
+
+rownames(lee_six_mat) = trinuc_change
+
+lee_six_mat_new_sigs = lee_six_mat[, c(paste0("N",1:5))]
+
+alexandrov_and_lee_six_sigs = as.matrix(rbind(t(lee_six_mat_new_sigs), new_sigs_fixed[,rownames(lee_six_mat_new_sigs)]))
+
+```
+
+## A-priori similarity of all signatures
+
+```{r, fig.width=10, fig.height=10}
+cosineDist <- function(x){
+  as.dist(1 - x%*%t(x)/(sqrt(rowSums(x^2) %*% t(rowSums(x^2))))) 
+}
+
+tmp2 = as.matrix(cosineDist(alexandrov_and_lee_six_sigs))
+pheatmap(1-tmp2, main="Signature similarity (cosine correlation)")
+```
+
+
+```{r}
+set.seed(19825)
+reprocess_data = T
+if(reprocess_data) {
+
+  sigs.input = as.data.frame(t(trinuc_change_mat))
+  ed_sigs_input = ed
+  
+  all_donors = sort(rownames(sigs.input))
+  all_donors = all_donors[(apply(sigs.input, 1, sum)>0)]
+  
+  sigs.input_selected = sigs.input[all_donors,]
+  
+  sig_fun = function(sample_id) {
+    sigs_found = NA
+    try((sigs_found = whichSignatures(tumor.ref = sigs.input_selected, 
+                     signatures.ref = as.data.frame(alexandrov_and_lee_six_sigs), 
+                     sample.id = sample_id, contexts.needed=TRUE, tri.counts.method = 'default', signature.cutoff = 0.02)) )
+    return(sigs_found)
+  }
+  
+  all_sigs = bplapply(all_donors, sig_fun, BPPARAM=MulticoreParam(workers=24) )
+
+  save(sigs.input, all_sigs, ed_sigs_input, file="../../../Data/WGS_cohort/SBS_Trinucleotide_signature_contributions/All_signatures_deconstructSigs_global_Alexandrov_LeeSix.Rdata")
+} else {
+  load("../../../Data/WGS_cohort/SBS_Trinucleotide_signature_contributions/All_signatures_deconstructSigs_global_Alexandrov_LeeSix.Rdata")
+}
+```
+
+
+```{r}
+all_donors = sort(rownames(sigs.input))
+all_donors = all_donors[(apply(sigs.input, 1, sum)>0)]
+
+failed_samples = (1:length(all_sigs))[!unlist(lapply(all_sigs, is.list))]
+
+all_sigs_filtered = all_sigs
+all_donors_final = all_donors
+if(length(failed_samples)>0) {
+  all_sigs_filtered[failed_samples] <- NULL
+  all_donors_final = all_donors[-failed_samples]
+}
+
+names(all_sigs_filtered) = all_donors_final
+
+signature_weight_mat = as.matrix(do.call(rbind, lapply(all_sigs_filtered, function(x) x$weights)))
+```
+
+# Signature contributions across all samples and contexts
+
+```{r, fig.width=16, fig.height = 10}
+
+rownames(ed_sigs_input) = ed_sigs_input$TCGA_donor
+
+col_anno = ed_sigs_input[,c("group"),drop=F]
+rownames(col_anno) = ed_sigs_input$sampleID
+
+pheatmap(t(signature_weight_mat), cluster_cols=T, show_colnames = F, annotation_col = col_anno)
+
+```
+
+
+```{r}
+sig_mat_ts = reshape2::melt(signature_weight_mat)
+colnames(sig_mat_ts) = c("ID", "Signature", "Contribution")
+sig_mat_ts$sampleID = sig_mat_ts$ID
+sig_mat_ts$cancer_entity = ed[as.character(sig_mat_ts$sampleID), "group"]
+```
+
+```{r, fig.width=15, fig.height=12}
+ggplot(sig_mat_ts, aes(x=Signature, y=Contribution)) + geom_boxplot(outlier.shape = 20, outlier.alpha = 0.3) + facet_grid(cancer_entity~.) + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+# Correlation of signature contributions across samples
+
+```{r, fig.height=8}
+cc = cor(signature_weight_mat[,apply(signature_weight_mat, 2, sum)>0], method="spearman")
+pheatmap(cc, main="Correlation of signature contribution across samples")
+```
+
+
+```{r}
+save(signature_weight_mat, file="../../../Data/WGS_cohort/SBS_Trinucleotide_signature_contributions/Signature_weights_WGS_cohort_Alexandrov2018_and_LeeSix.Rdata")
+```
+

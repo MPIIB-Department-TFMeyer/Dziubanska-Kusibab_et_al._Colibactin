@@ -1,0 +1,339 @@
+---
+title: "Pentanucleotide change sigs PCAWG"
+author: "Hilmar Berger"
+date: "3/21/2020"
+output: html_document
+---
+
+```{r, message=FALSE}
+library(data.table)
+library(reshape2)
+library(ggplot2)
+library(pheatmap)
+```
+
+# Data import
+
+## PCAWG WGS pentanucleotide changes
+
+```{r}
+# Pentanucleotide change counts for each sample
+pnc_data = fread("../../../Data/External/PCAWG/WGS_PCAWG.1536.csv")
+sids = colnames(pnc_data)[3:ncol(pnc_data)]
+tmp = strsplit(sids, "::")
+ed = data.frame(row.names=sids, cancer_entity = unlist(sapply(tmp, `[`,1)), specimenID=unlist(sapply(tmp, `[`,2)), stringsAsFactors = F)
+
+pnc_mat = t(as.matrix(pnc_data[,3:ncol(pnc_data)]))
+colnames(pnc_mat) = paste0(substr(pnc_data$Pentanucleotide,1,2),"[",pnc_data$`Mutation type`,"]", substr(pnc_data$Pentanucleotide,4,5))
+
+pnc_mat_rel = sweep(pnc_mat, 1, apply(pnc_mat,1,sum),"/")
+```
+
+## PCAWG WGS trinucleotide based signature contributions
+
+```{r}
+sbs_tnc_sigs = fread("../../../Data/External/PCAWG/PCAWG_sigProfiler_SBS_signatures_in_samples.csv")
+
+sbs_tnc_sigs_mat = as.matrix(sbs_tnc_sigs[, 4:ncol(sbs_tnc_sigs)])
+sbs_tnc_sigs_mat_rel = sweep(sbs_tnc_sigs_mat,1, apply(sbs_tnc_sigs_mat, 1, sum), "/")
+rownames(sbs_tnc_sigs_mat_rel) = sbs_tnc_sigs$`Sample Names`
+```
+
+## Trinucleotide signature contributions estimated by deconstructSigs on PCAWG trinucletide counts
+
+```{r}
+# These are SBS contributions estimated by deconstructSigs on the same samples using TNC counts from PCAWG
+sbs_tnc_sigs_with_LeeSix_env = new.env()
+load("../../../Data/PCAWG/Signature_weights_PCAWG_WGS_cohort_Alexandrov2018_and_LeeSix.Rdata", sbs_tnc_sigs_with_LeeSix_env)
+
+sbs_tnc_sigs_deconstructSigs_mat = get("signature_weight_mat", sbs_tnc_sigs_with_LeeSix_env)
+rownames(sbs_tnc_sigs_deconstructSigs_mat) = ed[rownames(sbs_tnc_sigs_deconstructSigs_mat), "specimenID"]
+```
+
+## POLE/D1 mutations from the PCAWG project (ICGC)
+
+```{r}
+pole_d_variants = fread("../../../Data/External/PCAWG/POLE_D_variants_ICGC.txt")
+pole_d_variant_samples = unique(pole_d_variants$sampleID)
+
+sample_env = new.env()
+load("../../../Data/External/PCAWG/ICGC_DCC_release26_projects_donors_samples_specimen.Rdata", envir=sample_env)
+
+sample_desc = get("samples", sample_env)
+setkey(sample_desc, icgc_sample_id)
+
+pole_d_variant_specimen = unique(sample_desc[pole_d_variant_samples]$icgc_specimen_id)
+ed$POLE.D_mutant = ifelse(ed$specimenID %in% pole_d_variant_specimen, "POLE/D1 mutated", "POLE/D1 WT")
+```
+
+```{r}
+ed_specimen = ed
+rownames(ed_specimen) = ed_specimen$specimenID
+```
+
+# Data overview
+
+## SBS trinucleotide contributions across all samples and cancer entities
+
+```{r, fig.width=16, fig.height=12}
+pheatmap(sbs_tnc_sigs_mat_rel, annotation_row = ed_specimen, cluster_cols = F, show_rownames = F)
+```
+
+# Projection of trinucleotide signatures to pentanucleotide change space
+
+For each signature of interest we select the trinucleotide changes that contribute strongest to the signature.
+
+```{r}
+source("../shared_scripts/trinuc_signaturesl.R")
+
+tmp = unlist(alexandrov_and_lee_six_sigs["SBS28",])
+tmp = tmp[order(-tmp)]
+tmp_cs = cumsum(tmp)
+SBS28_tc = names(tmp[tmp>0.02 & tmp_cs<0.8])
+
+SBS28_tc_weights = tmp[SBS28_tc]
+
+tmp = unlist(alexandrov_and_lee_six_sigs["SBS41",])
+tmp = tmp[order(-tmp)]
+tmp_cs = cumsum(tmp)
+SBS41_tc = names(tmp[tmp>0.02 & tmp_cs<0.8])
+SBS41_tc_weights = tmp[SBS41_tc]
+
+tmp = unlist(alexandrov_and_lee_six_sigs["SBS17b",])
+tmp = tmp[order(-tmp)]
+tmp_cs = cumsum(tmp)
+SBS17b_tc = names(tmp[tmp>0.02 & tmp_cs<0.9])
+SBS17b_tc_weights = tmp[SBS17b_tc]
+
+tmp = unlist(alexandrov_and_lee_six_sigs["SBS26",])
+tmp = tmp[order(-tmp)]
+tmp_cs = cumsum(tmp)
+SBS26_tc = names(tmp[tmp>0.02 & tmp_cs<0.9])
+SBS26_tc_weights = tmp[SBS26_tc]
+
+tmp = expected_mut_CAM[order(-expected_mut_CAM$CAM6),]
+tmp$cs = cumsum(tmp$CAM6)
+CAM6_tc = as.character(subset(tmp, CAM6>0.00 & cs<0.8)$tc)
+```
+
+
+
+```{r, fig.width=12, fig.height=6}
+xx = apply(alexandrov_and_lee_six_sigs[, CAM6_tc], 1, function(x) cor(x, expected_mut_CAM[CAM6_tc,"CAM6"], method="spearman", use="complete") )
+barplot(sort(xx, decreasing = T)[1:15], las=2, main="Top 15 signatures with highest overlap at TNC", ylab="Spearman correlation")
+```
+
+## CAM6 pentanucleotide change signature
+
+```{r}
+CAM6_pnc_tab_text = "CAM_motif,PN,weight
+AAATTT,AATTT,2
+AAATTT,ATTTA,0.5
+AAATTT,ATTTC,0.5
+AAATTT,ATTTG,0.5
+AAATTT,ATTTT,0.5
+AAATTT,ATTAA,0.125
+AAATTT,ATTAC,0.125
+AAATTT,ATTAG,0.125
+AAATTT,ATTAT,0.125
+AAATTT,ATTCA,0.125
+AAATTT,ATTCC,0.125
+AAATTT,ATTCG,0.125
+AAATTT,ATTCT,0.125
+AAATTT,ATTGA,0.125
+AAATTT,ATTGC,0.125
+AAATTT,ATTGG,0.125
+AAATTT,ATTGT,0.125
+AAATTT,ATTTA,0.125
+AAATTT,ATTTC,0.125
+AAATTT,ATTTG,0.125
+AAATTT,ATTTT,0.125
+AAAATT,AATTT,1
+AAAATT,AATTA,0.25
+AAAATT,AATTC,0.25
+AAAATT,AATTG,0.25
+AAAATT,AATTT,0.25
+AAAATT,ATTAA,0.0625
+AAAATT,ATTAC,0.0625
+AAAATT,ATTAG,0.0625
+AAAATT,ATTAT,0.0625
+AAAATT,ATTCA,0.0625
+AAAATT,ATTCC,0.0625
+AAAATT,ATTCG,0.0625
+AAAATT,ATTCT,0.0625
+AAAATT,ATTGA,0.0625
+AAAATT,ATTGC,0.0625
+AAAATT,ATTGG,0.0625
+AAAATT,ATTGT,0.0625
+AAAATT,ATTTA,0.0625
+AAAATT,ATTTC,0.0625
+AAAATT,ATTTG,0.0625
+AAAATT,ATTTT,0.0625
+AAAATT,ATTTT,1
+AAAATT,TTTTA,0.25
+AAAATT,TTTTC,0.25
+AAAATT,TTTTG,0.25
+AAAATT,TTTTT,0.25
+AAAATT,TTTAA,0.0625
+AAAATT,TTTAC,0.0625
+AAAATT,TTTAG,0.0625
+AAAATT,TTTAT,0.0625
+AAAATT,TTTCA,0.0625
+AAAATT,TTTCC,0.0625
+AAAATT,TTTCG,0.0625
+AAAATT,TTTCT,0.0625
+AAAATT,TTTGA,0.0625
+AAAATT,TTTGC,0.0625
+AAAATT,TTTGG,0.0625
+AAAATT,TTTGT,0.0625
+AAAATT,TTTTA,0.0625
+AAAATT,TTTTC,0.0625
+AAAATT,TTTTG,0.0625
+AAAATT,TTTTT,0.0625
+AATATT,AATAT,2
+AATATT,TATTA,0.5
+AATATT,TATTC,0.5
+AATATT,TATTG,0.5
+AATATT,TATTT,0.5
+AATATT,ATTAA,0.125
+AATATT,ATTAC,0.125
+AATATT,ATTAG,0.125
+AATATT,ATTAT,0.125
+AATATT,ATTCA,0.125
+AATATT,ATTCC,0.125
+AATATT,ATTCG,0.125
+AATATT,ATTCT,0.125
+AATATT,ATTGA,0.125
+AATATT,ATTGC,0.125
+AATATT,ATTGG,0.125
+AATATT,ATTGT,0.125
+AATATT,ATTTA,0.125
+AATATT,ATTTC,0.125
+AATATT,ATTTG,0.125
+AATATT,ATTTT,0.125
+"
+
+CAM6_pnc_tab = as.data.table(read.table(text=CAM6_pnc_tab_text, sep=",", header=T, stringsAsFactors = F))
+CAM6_pnc_tab$weight_overall = CAM6_pnc_tab$weight/sum(CAM6_pnc_tab$weight)
+
+CAM6_pnc_final = CAM6_pnc_tab[, .(CAM6_weight=sum(weight_overall)), by="PN"]
+```
+
+## Pentanucleotide annotation table
+
+```{r}
+pnc_anno = data.frame(pn=pnc_data$Pentanucleotide, pnc=paste0(substr(pnc_data$Pentanucleotide,1,2),"[",pnc_data$`Mutation type`,"]", substr(pnc_data$Pentanucleotide,4,5)), stringsAsFactors = F)
+pnc_anno$tnc = substr(pnc_anno$pnc, 2,8)
+pnc_anno$nc = substr(pnc_anno$pnc,4,6)
+
+pnc_anno$tn = substr(pnc_anno$pn, 2,4)
+
+pnc_anno = merge(pnc_anno, CAM6_pnc_final, by.x="pn", by.y="PN", all.x=T, sort=F)
+pnc_anno$CAM6_weight = ifelse(is.na(pnc_anno$CAM6_weight), 0, pnc_anno$CAM6_weight)
+
+pnc_anno$SBS28_weights_raw=ifelse(pnc_anno$tnc %in% names(SBS28_tc_weights), SBS28_tc_weights[pnc_anno$tnc], 0)
+pnc_anno$SBS41_weights_raw=ifelse(pnc_anno$tnc %in% names(SBS41_tc_weights), SBS41_tc_weights[pnc_anno$tnc], 0)
+pnc_anno$SBS17b_weights_raw=ifelse(pnc_anno$tnc %in% names(SBS17b_tc_weights), SBS17b_tc_weights[pnc_anno$tnc], 0)
+pnc_anno$SBS26_weights_raw=ifelse(pnc_anno$tnc %in% names(SBS26_tc_weights), SBS26_tc_weights[pnc_anno$tnc], 0)
+
+pnc_anno$SBS28_weights = pnc_anno$SBS28_weights_raw/sum(pnc_anno$SBS28_weights_raw)
+pnc_anno$SBS41_weights = pnc_anno$SBS41_weights_raw/sum(pnc_anno$SBS41_weights_raw)
+pnc_anno$SBS17b_weights = pnc_anno$SBS17b_weights_raw/sum(pnc_anno$SBS17b_weights_raw)
+pnc_anno$SBS26_weights = pnc_anno$SBS26_weights_raw/sum(pnc_anno$SBS26_weights_raw)
+
+rownames(pnc_anno) = pnc_anno$pnc
+```
+
+# Correlation of pentanucleotide change contributions to CAM6 signatures and to SBS trinucleotide contributions
+
+```{r}
+cam6_w_ordered = pnc_anno[colnames(pnc_mat_rel),]$CAM6_weight
+```
+
+# Heatmaps
+
+```{r}
+tmp = ed
+tmp$fullID = rownames(ed)
+tmp = merge(tmp, sbs_tnc_sigs_mat_rel[,c("SBS28","SBS41","SBS57","SBS26","SBS40","SBS17b"), drop=F], by.x="specimenID",by.y=0, all.x=T, sort=F)
+tmp = merge(tmp, sbs_tnc_sigs_deconstructSigs_mat[, c("N2"),drop=F], by.x="specimenID", by.y=0, all.x=T, sort=F)
+rownames(tmp) = tmp$fullID
+tmp$SBS28_detection = ifelse(tmp$SBS28>0, "SBS28","nd")
+tmp$SBS41_detection = ifelse(tmp$SBS41>0, "SBS41","nd")
+tmp$SBS57_detection = ifelse(tmp$SBS57>0, "SBS57","nd")
+tmp$SBS17b_detection = ifelse(tmp$SBS17b>0, "SBS17b","nd")
+tmp$SBS26_detection = ifelse(tmp$SBS26>0, "SBS26","nd")
+tmp$SBS40_detection = ifelse(tmp$SBS40>0, "SBS40","nd")
+tmp$SBSA_detection = ifelse(tmp$N2>0.05, "SBSA","nd")
+
+zz = apply(pnc_mat_rel, 1, function(x) sum(x*cam6_w_ordered))
+tmp$CAM6_weighted_sum = 0
+tmp[names(zz),]$CAM6_weighted_sum = zz
+tmp$COREAD = ifelse(grepl("ColoRect-AdenoCA", rownames(tmp)), "yes","no")
+tmp$UCEC = ifelse(grepl("Uterus-AdenoCA", rownames(tmp)), "yes","no")
+row_anno = tmp[, c("POLE.D_mutant","cancer_entity","SBS28_detection", "SBS40_detection","SBS26_detection","SBS17b_detection", "CAM6_weighted_sum","SBSA_detection", "COREAD","UCEC")]
+
+col_anno = pnc_anno[, c("pn","SBS28_weights", "SBS41_weights", "CAM6_weight", "SBS17b_weights", "SBS26_weights")]
+col_anno$s5  = substr(col_anno$pn, 1,2)
+col_anno$s3  = substr(col_anno$pn, 4,5)
+
+
+anno_colors = list(POLE.D_mutant=c("POLE/D1 WT"="white","POLE/D1 mutated"="black"), "SBS28_detection"=c("SBS28"="red","nd"="white"), "SBS41_detection"=c("SBS41"="red","nd"="white"),"SBS40_detection"=c("SBS40"="red","nd"="white"), "SBS26_detection"=c("SBS26"="red","nd"="white"), "SBS17b_detection"=c("SBS17b"="red","nd"="white"),"SBSA_detection"=c("SBSA"="green","nd"="white"), "COREAD"=c("yes"="blue","no"="white"), "UCEC"=c("yes"="brown","no"="white"))
+
+```
+
+```{r}
+xx = subset(pnc_anno, CAM6_weight>0.02| SBS28_weights  > 0 | SBS17b_weights > 0)
+xx = xx[order(xx$pn,xx$nc),]
+
+tmp_mat = pnc_mat_rel[, xx$pnc]
+```
+
+```{r, fig.width=18, fig.height=10}
+row_anno2 = row_anno[, c("POLE.D_mutant","SBS28_detection","SBS17b_detection","SBSA_detection","CAM6_weighted_sum")]
+col_anno2 = pnc_anno[, c("SBS28_weights","SBS17b_weights", "CAM6_weight")]
+colnames(col_anno2) = gsub("CAM6_weight","AAWWTT weights",colnames(col_anno2))
+colnames(row_anno2) = gsub("CAM6_weighted_sum","AAWWTT PN signature",colnames(row_anno2))
+tmp_mat_sel = tmp_mat[rownames(subset(ed, cancer_entity=="ColoRect-AdenoCA")),]
+```
+
+```{r, fig.width=18, fig.height=10}
+tmp_mat_sel_ordered = tmp_mat_sel[, order(-pnc_anno[colnames(tmp_mat_sel),"SBS28_weights"],-pnc_anno[colnames(tmp_mat_sel),"CAM6_weight"])]
+rr = pheatmap(tmp_mat_sel_ordered, annotation_row = row_anno2, annotation_col = col_anno2, show_rownames = F, cluster_cols = F, cluster_rows=T, annotation_colors = anno_colors, clustering_distance_rows = "correlation", main="Colorectal cancer only, SBS28 PNC", fontsize_col = 8, gaps_col = sum(pnc_anno$SBS28_weights>0))
+```
+
+
+```{r, fig.width=18, fig.height=10}
+dev.off()
+pdf(file="../../../Results/4_CDM-association-with-cancer/SBS28_in_COAD_WGS_PCAWG.pdf", width=18,height=10)
+#heatmap(tmp_mat_sel, annotation_row = row_anno2, annotation_col = col_anno2, show_rownames = F, cluster_cols = T, cluster_rows=T, annotation_colors = anno_colors, clustering_distance_rows = "correlation", fontsize_col = 8)
+pheatmap(tmp_mat_sel_ordered, annotation_row = row_anno2, annotation_col = col_anno2, show_rownames = F, cluster_cols = F, cluster_rows=T, annotation_colors = anno_colors, clustering_distance_rows = "correlation", main="", fontsize_col = 8, gaps_col = sum(pnc_anno$SBS28_weights>0))
+dev.off()
+```
+
+
+```{r, fig.width=16, fig.height=10}
+tmp_mat_sel = tmp_mat[rownames(subset(ed, cancer_entity=="Stomach-AdenoCA")),]
+tmp_mat_sel = tmp_mat_sel[apply(tmp_mat_sel,1,sum)>0,]
+```
+
+
+```{r, fig.width=16, fig.height=10}
+tmp_mat_sel_ordered = tmp_mat_sel[, order(-pnc_anno[colnames(tmp_mat_sel),"SBS17b_weights"],-pnc_anno[colnames(tmp_mat_sel),"CAM6_weight"])]
+rr = pheatmap(tmp_mat_sel_ordered, annotation_row = row_anno2, annotation_col = col_anno2, show_rownames = F, cluster_cols = F, cluster_rows=T, annotation_colors = anno_colors, clustering_distance_rows = "correlation", main="Stomach-AdenoCA only", fontsize_col = 8, gaps_col = sum(pnc_anno$SBS17b_weights>0))
+```
+
+```{r, fig.width=18, fig.height=10}
+dev.off()
+pdf(file="../../../Results/4_CDM-association-with-cancer/SBS17_in_STAD_WGS_PCAWG.pdf", width=18,height=10)
+#pheatmap(tmp_mat_sel, annotation_row = row_anno2, annotation_col = col_anno2, show_rownames = F, cluster_cols = T, cluster_rows=T, annotation_colors = anno_colors, clustering_distance_rows = "correlation", main="Stomach-AdenoCA only", fontsize_col = 8)
+pheatmap(tmp_mat_sel_ordered, annotation_row = row_anno2, annotation_col = col_anno2, show_rownames = F, cluster_cols = F, cluster_rows=T, annotation_colors = anno_colors, clustering_distance_rows = "correlation", main="", fontsize_col = 8, gaps_col = sum(pnc_anno$SBS17b_weights>0))
+dev.off()
+```
+
+# Software versions
+
+```{r}
+sessionInfo()
+```
+

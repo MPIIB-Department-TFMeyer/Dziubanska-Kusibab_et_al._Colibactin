@@ -1,0 +1,10 @@
+Download mc3.v0.2.8.PUBLIC.maf.gz: 
+https://www.synapse.org/#!Synapse:syn7214402/wiki/405297
+synapse get syn7824274
+
+column description:
+https://github.com/mskcc/vcf2maf/blob/master/docs/vep_maf_readme.txt
+
+List of excluded cases (Bailey et al.) is from 
+Bailey et al. 2018, Comprehensive Characterization of Cancer Driver Genes and Mutations
+PMID: 29625053

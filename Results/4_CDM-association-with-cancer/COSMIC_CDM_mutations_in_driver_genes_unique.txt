@@ -1,0 +1,389 @@
+Chromosome	Position	Reference allele	Variant allele	nuc_change	mutation_type	gene_symbol	Ensemble transcript	Tissue	cancer_entity_verbose	protein_impact	donorID	overlapping_CAM_5	overlapping_CAM_6	p2_5_CAM6	pattern_type	pattern_hit_pn	pattern_pos_pn	pattern_hit_hn	pattern_pos_hn	entity_driver	pancancer_driver
+X	66905914	A	T	T>A	SNV	AR	ENST00000374690	Biliary tract	biliary_tract_carcinoma_NS	TRUE	BD143T	yes	yes	FALSE	At AAWWTT motif	AAATT	1	AAAATT	2	NA	PanCancerDriver
+11	108155085	A	G	T>C	SNV	ATM	ENST00000278616	Biliary tract	biliary_tract_carcinoma_NS	TRUE	BD223T	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	NA	PanCancerDriver
+13	32968997	T	G	T>G	SNV	BRCA2	ENST00000544455	Biliary tract	biliary_tract_carcinoma_NS	TRUE	BD182T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+1	209974597	AT	A	TA>T	InDel	IRF6	ENST00000367021	Biliary tract	biliary_tract_carcinoma_adenocarcinoma	TRUE	GB07	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+1	39750765	A	G	T>C	SNV	MACF1	ENST00000361689	Biliary tract	biliary_tract_carcinoma_NS	TRUE	BD223T	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		NA	PanCancerDriver
+3	52668671	T	TT	T>TT	InDel	PBRM1	ENST00000356770	Biliary tract	biliary_tract_carcinoma_NS	TRUE	BD167T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+3	52668670	A	AT	T>TA	InDel	PBRM1	ENST00000356770	Biliary tract	biliary_tract_carcinoma_NS	TRUE	T_CCA_JP_4	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+3	52682399	A	AT	T>TA	InDel	PBRM1	ENST00000356770	Biliary tract	biliary_tract_carcinoma_NS	TRUE	T_CCA_TH_13	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+17	56492694	A	C	T>G	SNV	RNF43	ENST00000407977	Biliary tract	biliary_tract_carcinoma_NS	TRUE	BD233T	yes	yes	FALSE	At AAWWTT motif	AAATT	4	AAAATT	5	NA	PanCancerDriver
+17	56492775	AT	A	TA>T	InDel	RNF43	ENST00000407977	Biliary tract	biliary_tract_carcinoma_NS	TRUE	T_CCA_JP_9	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+3	142281823	T	A	T>A	SNV	ATR	NM_001184	Bone	bone_Ewings_sarcoma-peripheral_primitive_neuroectodermal_tumour_NS	TRUE	CHEWS020	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+X	76912115	A	AA	T>TT	InDel	ATRX	ENST00000373344	Bone	bone_osteosarcoma_osteoblastic	TRUE	SJOS002_D	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+16	3900982	AT	A	TA>T	InDel	CREBBP	ENST00000262367	Bone	bone_Ewings_sarcoma-peripheral_primitive_neuroectodermal_tumour_NS	TRUE	10-P083	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+2	39233648	T	A	T>A	SNV	SOS1	ENST00000426016	Bone	bone_osteosarcoma_NS	TRUE	SJDOSTEOS008	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	NA	PanCancerDriver
+17	47696404	T	G	T>G	SNV	SPOP	ENST00000393328	Bone	bone_osteosarcoma_NS	TRUE	BZ33	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+X	123215256	T	TA	T>TA	InDel	STAG2	ENST00000218089	Bone	bone_Ewings_sarcoma-peripheral_primitive_neuroectodermal_tumour_NS	TRUE	2250152	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+1	235345576	T	C	T>C	SNV	ARID4B	ENST00000366603	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD4076a	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Known Driver	Other
+3	142280229	AT	A	TA>T	InDel	ATR	NM_001184	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD5956a	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+3	142274739	AT	A	TA>T	InDel	ATR	NM_001184	Breast	breast_carcinoma_basal_(triple-negative)_carcinoma	TRUE	SA218	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+16	68835613	T	A	T>A	SNV	CDH1	ENST00000261769	Breast	breast_carcinoma_lobular_carcinoma	TRUE	PD6016a2	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+16	68842433	A	AA	T>TT	InDel	CDH1	ENST00000261769	Breast	breast_carcinoma_lobular_carcinoma	TRUE	PD7238a	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+17	57721790	A	G	T>C	SNV	CLTC	ENST00000269122	Breast	breast_carcinoma_HER-positive_carcinoma	TRUE	DN11153	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		Known Driver	Other
+1	115280684	T	C	T>C	SNV	CSDE1	ENST00000369530	Breast	breast_carcinoma_HER-positive_carcinoma	TRUE	DN11120	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		Known Driver	Other
+7	55260492	T	A	T>A	SNV	EGFR	ENST00000275493	Breast	breast_carcinoma_NS	TRUE	BC79-tumour	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	Known Driver	PanCancerDriver
+X	20152099	A	C	T>G	SNV	EIF1AX	ENST00000379607	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD6684a	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		Known Driver	PanCancerDriver
+10	8106058	T	A	T>A	SNV	GATA3	ENST00000379328	Breast	breast_carcinoma_luminal_NS_carcinoma	TRUE	BRC18	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+5	56183211	A	G	T>C	SNV	MAP3K1	ENST00000399503	Breast	breast_carcinoma_ER-PR-positive_carcinoma	TRUE	MBC_82	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		Known Driver	PanCancerDriver
+5	56177784	A	AT	T>TA	InDel	MAP3K1	ENST00000399503	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD9574a	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAAATT	3	Known Driver	PanCancerDriver
+5	56177785	T	TT	T>TT	InDel	MAP3K1	ENST00000399503	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD9574a	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	3	AAAATT	4	Known Driver	PanCancerDriver
+3	168833732	A	T	T>A	SNV	MECOM	ENST00000392736	Breast	breast_carcinoma_basal_(triple-negative)_carcinoma	TRUE	SA101	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Known Driver	Other
+6	131926384	T	C	T>C	SNV	MED23	ENST00000368068	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD13307a	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Known Driver	Other
+6	131919845	AT	A	TA>T	InDel	MED23	ENST00000368068	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD23564a	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	Other
+7	151845958	AT	A	TA>T	InDel	MLL3	ENST00000355193	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD18733a	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	Other
+7	151891329	A	AT	T>TA	InDel	MLL3	ENST00000355193	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD24204a	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Known Driver	Other
+7	151891330	T	TT	T>TT	InDel	MLL3	ENST00000355193	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD24204a	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	3	Known Driver	Other
+7	151945054	T	C	T>C	SNV	MLL3	ENST00000355193	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD6047a	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	Known Driver	Other
+17	29486055	A	T	T>A	SNV	NF1	ENST00000358273	Breast	breast_carcinoma_NS	TRUE	BC88-tumour	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	1	AAATTT	1	Known Driver	PanCancerDriver
+7	106523591	T	A	T>A	SNV	PIK3CG	ENST00000440650	Breast	breast_carcinoma_ER-PR-positive_carcinoma	TRUE	MBC_144	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+10	89720725	T	TG	T>TG	InDel	PTEN	ENST00000371953	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD5953a	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+13	48954320	ATT	A	TAA>T	InDel	RB1	ENST00000267163	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD24194a	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+3	186508180	T	A	T>A	SNV	RFC4	ENST00000392481	Breast	breast_carcinoma_basal_(triple-negative)_carcinoma	TRUE	MBC_120	yes	yes	FALSE	At AAWWTT motif	AAAAT	0	AAAATT	0	Known Driver	Other
+17	7578249	A	AT	T>TA	InDel	TP53	ENST00000269305	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD9585a	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAATTT	2	Known Driver	PanCancerDriver
+17	7578250	T	TT	T>TT	InDel	TP53	ENST00000269305	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD9585a	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAATTT	3	Known Driver	PanCancerDriver
+17	7576865	A	T	T>A	SNV	TP53	ENST00000269305	Breast	breast_carcinoma_ductal_carcinoma	TRUE	PD9604a	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	Known Driver	PanCancerDriver
+5	112174310	A	G	T>C	SNV	APC	ENST00000457016	CNS	central_nervous_system_glioma_astrocytoma_Grade_IV	TRUE	P164	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Other genes	PanCancerDriver
+11	108122625	AT	A	TA>T	InDel	ATM	ENST00000278616	CNS	central_nervous_system_glioma_astrocytoma_Grade_IV	TRUE	SJHGG037_D	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Other genes	PanCancerDriver
+11	108155088	TT	T	AA>A	InDel	ATM	ENST00000278616	CNS	central_nervous_system_glioma_NS	TRUE	SJHGG073_A	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	4	NA	PanCancerDriver
+X	76952103	T	C	T>C	SNV	ATRX	ENST00000373344	CNS	central_nervous_system_glioma_astrocytoma_Grade_IV	TRUE	P124	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	3	Known Driver	PanCancerDriver
+X	76937403	A	C	T>G	SNV	ATRX	ENST00000373344	CNS	central_nervous_system_glioma_astrocytoma_Grade_III	TRUE	P83	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	NA	PanCancerDriver
+1	78430634	AT	A	TA>T	InDel	FUBP1	ENST00000370768	CNS	central_nervous_system_glioma_oligodendroglioma_Grade_III	TRUE	19	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+X	44935956	A	AA	T>TT	InDel	KDM6A	NM_021140.1	CNS	central_nervous_system_primitive_neuroectodermal_tumour-medulloblastoma_NS	TRUE	ICGC_MB49	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+X	44969456	A	AA	T>TT	InDel	KDM6A	NM_021140.1	CNS	central_nervous_system_primitive_neuroectodermal_tumour-medulloblastoma_NS	TRUE	MBRep_T48	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+11	118373906	A	C	T>G	SNV	MLL	ENST00000534358	CNS	central_nervous_system_glioma_astrocytoma_Grade_IV	TRUE	GBM_IV-21	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Known Driver	Other
+5	67589147	A	G	T>C	SNV	PIK3R1	ENST00000521381	CNS	central_nervous_system_glioma_astrocytoma_Grade_III	TRUE	NCHP_DIPG107	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		NA	PanCancerDriver
+X	123210253	T	C	T>C	SNV	STAG2	ENST00000371160	CNS	central_nervous_system_primitive_neuroectodermal_tumour-medulloblastoma_NS	TRUE	MD-141	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+1	11177077	A	C	T>G	SNV	MTOR	ENST00000361445	Germ cell	genital_tract_germ_cell_tumour_seminoma	TRUE	GCT25	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+3	142176574	T	A	T>A	SNV	ATR	NM_001184	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_diffuse_large_B_cell_lymphoma	TRUE	QC2-18-T2	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		Other genes	PanCancerDriver
+7	140453154	T	C	T>C	SNV	BRAF	ENST00000288602	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_chronic_lymphocytic_leukaemia-small_lymphocytic_lymphoma	TRUE	279	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+13	32907427	AA	A	TT>T	InDel	BRCA2	ENST00000544455	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_acute_lymphoblastic_T_cell_leukaemia	TRUE	PATCDZ	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		NA	PanCancerDriver
+16	50362648	A	G	T>C	SNV	BRD7	ENST00000394688	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_chronic_lymphocytic_leukaemia-small_lymphocytic_lymphoma	TRUE	CLL035	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		NA	PanCancerDriver
+22	29120993	T	A	T>A	SNV	CHEK2	ENST00000328354	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_polycythaemia_vera	TRUE	PD4772a	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		NA	PanCancerDriver
+22	29095854	T	C	T>C	SNV	CHEK2	ENST00000328354	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_myelofibrosis	TRUE	PD5027a	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+16	3786733	A	T	T>A	SNV	CREBBP	ENST00000262367	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_diffuse_large_B_cell_lymphoma	TRUE	QC2-12-T2	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+16	3788563	A	T	T>A	SNV	CREBBP	ENST00000262367	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_NS	TRUE	tumor_4115001	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		NA	PanCancerDriver
+16	67663356	A	G	T>C	SNV	CTCF	ENST00000264010	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_myeloid_leukaemia	TRUE	CN-AML-CR-44-Dx	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Other genes	PanCancerDriver
+7	148494910	T	G	T>G	SNV	CUL1	ENST00000409469	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_adult_T_cell_lymphoma-leukaemia	TRUE	ATL089	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+X	41205649	T	G	T>G	SNV	DDX3X	ENST00000399959	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_chronic_lymphocytic_leukaemia-small_lymphocytic_lymphoma	TRUE	435-06-01TD	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	NA	PanCancerDriver
+2	25457161	A	C	T>G	SNV	DNMT3A	ENST00000321117	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_myeloid_leukaemia_therapy_related	TRUE	AML21	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+6	74229144	A	AA	T>TT	InDel	EEF1A1	ENST00000316292	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_NS	TRUE	tumor_4158483	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	0	NA	PanCancerDriver
+20	22562667	T	C	T>C	SNV	FOXA2	ENST00000377115	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_chronic_lymphocytic_leukaemia-small_lymphocytic_lymphoma	TRUE	1407-01-03TD	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+17	63014404	A	T	T>A	SNV	GNA13	ENST00000439174	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_diffuse_large_B_cell_lymphoma	TRUE	42_tFL	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	Known Driver	Other
+2	209116182	A	C	T>G	SNV	IDH1	ENST00000345146	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_diffuse_large_B_cell_lymphoma	TRUE	DLBCL834	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Other genes	PanCancerDriver
+1	65304170	T	G	T>G	SNV	JAK1	ENST00000342505	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_chronic_lymphocytic_leukaemia-small_lymphocytic_lymphoma	TRUE	669-02-3TD	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		NA	PanCancerDriver
+4	55593481	A	G	T>C	SNV	KIT	ENST00000288135	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_myeloid_leukaemia	TRUE	pros_02_dx	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	Known Driver	PanCancerDriver
+11	118375920	A	AA	T>TT	InDel	KMT2A	NM_005933.1	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_acute_lymphoblastic_T_cell_leukaemia	TRUE	PATZWA	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+8	128748844	A	G	T>C	SNV	MYC	ENST00000377970	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_NS	TRUE	tumor_4178310	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+17	16049856	T	A	T>A	SNV	NCOR1	ENST00000268712	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_adult_T_cell_lymphoma-leukaemia	TRUE	ATL021	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+17	29654610	A	G	T>C	SNV	NF1	ENST00000358273	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_myeloid_leukaemia	TRUE	2014_SWES_13_DX	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		Known Driver	PanCancerDriver
+9	37034028	T	C	T>C	SNV	PAX5	ENST00000358127	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_NS	TRUE	tumor_4135099	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+3	52678783	AT	A	TA>T	InDel	PBRM1	ENST00000356770	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_diffuse_large_B_cell_lymphoma	TRUE	CH-54-T2	yes	yes	FALSE	At AAWWTT motif	AAAAT	4	AATATT	3	Other genes	PanCancerDriver
+5	67522748	T	TGGCC	T>TGGCC	InDel	PIK3R1	ENST00000521381	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_myeloid_leukaemia	TRUE	TARGET-20-PANNHB-09A-03D	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+10	89690835	T	G	T>G	SNV	PTEN	ENST00000371953	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_chronic_lymphocytic_leukaemia-small_lymphocytic_lymphoma	TRUE	831-01-4TD	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	1	AAATTT	4	NA	PanCancerDriver
+12	112888195	T	C	T>C	SNV	PTPN11	ENST00000351677	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_acute_lymphoblastic_T_cell_leukaemia	TRUE	PASWXB	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAATTT	3	NA	PanCancerDriver
+12	112888197	T	G	T>G	SNV	PTPN11	ENST00000351677	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_myeloid_leukaemia	TRUE	TARGET-20-PASRTP-09A-01D	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	5	Known Driver	PanCancerDriver
+8	117864871	A	T	T>A	SNV	RAD21	ENST00000297338	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_myeloid_leukaemia	TRUE	2014_SWES_10_DX	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		Known Driver	Other
+8	117864871	A	C	T>G	SNV	RAD21	ENST00000297338	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_myeloid_leukaemia	TRUE	SNUH_G09_S1	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		Known Driver	Other
+13	49037921	T	TG	T>TG	InDel	RB1	ENST00000267163	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_NS	TRUE	tumor_4144951	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+21	33060735	T	C	T>C	SNV	SCAF4	ENST00000286835	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_diffuse_large_B_cell_lymphoma	TRUE	PM-5	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Other genes	PanCancerDriver
+2	39239475	T	C	T>C	SNV	SOS1	ENST00000426016	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_leukaemia_of_ambiguous_lineage	TRUE	CML024T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+17	47696643	A	T	T>A	SNV	SPOP	ENST00000393328	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_acute_lymphoblastic_leukaemia	TRUE	SJERG020051_D1	yes	yes	FALSE	At AAWWTT motif	AAATT	4	AAAATT	5	NA	PanCancerDriver
+3	176752053	A	C	T>G	SNV	TBL1XR1	ENST00000430069	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_adult_T_cell_lymphoma-leukaemia	TRUE	ATL010	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	0	NA	PanCancerDriver
+3	176752053	A	G	T>C	SNV	TBL1XR1	ENST00000430069	Haematopoietic	haematopoietic_and_lymphoid_tissue_lymphoid_neoplasm_diffuse_large_B_cell_lymphoma	TRUE	CH-109-T2	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	0	Other genes	PanCancerDriver
+4	106157703	T	G	T>G	SNV	TET2	ENST00000305737	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_myeloid_leukaemia	TRUE	2013-004_diagnosis	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Known Driver	Other
+4	106196829	T	G	T>G	SNV	TET2	ENST00000380013	Haematopoietic	haematopoietic_and_lymphoid_tissue_haematopoietic_neoplasm_acute_myeloid_leukaemia	TRUE	2014-009_diagnosis	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		Known Driver	Other
+12	46231468	T	A	T>A	SNV	ARID2	ENST00000334344	Kidney	kidney_NS_NS	TRUE	C0089T	yes	yes	FALSE	At AAWWTT motif	AAATT	4	AAAATT	5	NA	PanCancerDriver
+11	108199953	T	A	T>A	SNV	ATM	ENST00000278616	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	LRV177TU-CUT1-DNA	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	3	AAAATT	4	Known Driver	PanCancerDriver
+14	21882512	T	A	T>A	SNV	CHD8	ENST00000430710	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	BK0058	yes	yes	FALSE	At AAWWTT motif	AAAAT	1	AAAATT	2	Other genes	PanCancerDriver
+17	57754398	T	C	T>C	SNV	CLTC	ENST00000269122	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	BK0003	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	Other
+13	73335614	A	T	T>A	SNV	DIS3	ENST00000377767	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	BK0027	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Known Driver	Other
+6	44219155	A	G	T>C	SNV	HSP90AB1	ENST00000371646	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	ccRCC-15	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	Other
+X	53247536	T	TATTTT	T>TATTTT	InDel	KDM5C	ENST00000375401	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	RS1141067TU-CUT1-DNA	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		Known Driver	PanCancerDriver
+5	56177619	A	C	T>G	SNV	MAP3K1	ENST00000399503	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	BK0022	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		Other genes	PanCancerDriver
+5	37002842	T	TA	T>TA	InDel	NIPBL	ENST00000282516	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	ccRCC-92	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+1	120465382	T	C	T>C	SNV	NOTCH2	ENST00000256646	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	ccRCC-23	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		Other genes	PanCancerDriver
+3	52643477	T	G	T>G	SNV	PBRM1	ENST00000356770	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	CCC-FP-29-S	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		Known Driver	PanCancerDriver
+3	52643770	AT	A	TA>T	InDel	PBRM1	ENST00000356770	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	K2110076TU-CUT2-DNA	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Known Driver	PanCancerDriver
+3	52621400	AT	A	TA>T	InDel	PBRM1	ENST00000356770	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	K2140261TU-CUT1-40	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Known Driver	PanCancerDriver
+3	52682400	T	TATTTTTTT	T>TATTTTTTT	InDel	PBRM1	ENST00000296302	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	LR437TU-CUT1-DNA	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Known Driver	PanCancerDriver
+3	52643770	A	T	T>A	SNV	PBRM1	ENST00000356770	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	LRV069TU-CUT1-40	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Known Driver	PanCancerDriver
+3	52643476	AT	A	TA>T	InDel	PBRM1	ENST00000356770	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	RS114512TU-CUT1-40	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		Known Driver	PanCancerDriver
+3	52598078	AT	A	TA>T	InDel	PBRM1	ENST00000356770	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	RS114839TU-CUT1-40	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAATTT	2	Known Driver	PanCancerDriver
+3	47163129	T	TT	T>TT	InDel	SETD2	ENST00000409792	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	K2110120TU-CUT1-DNA	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+3	47161938	AT	A	TA>T	InDel	SETD2	ENST00000409792	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	K2140140TU-CUT1-DNA	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+3	47144852	T	A	T>A	SNV	SETD2	ENST00000409792	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	LR314TU-CUT1-DNA	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		Known Driver	PanCancerDriver
+3	47164420	AAT	A	TTA>T	InDel	SETD2	ENST00000409792	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	RS1141142TU-CUT1-DNA	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	1	AAATTT	1	Known Driver	PanCancerDriver
+3	47163607	T	TATTTT	T>TATTTT	InDel	SETD2	ENST00000409792	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	RS114792TU-CUT1-DNA	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAATTT	3	Known Driver	PanCancerDriver
+15	75703846	A	G	T>C	SNV	SIN3A	ENST00000394947	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	ccRCC-19	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Known Driver	PanCancerDriver
+X	128631863	AT	A	TA>T	InDel	SMARCA1	NM_003069.2	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	ccRCC-11	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+X	128621027	A	C	T>G	SNV	SMARCA1	NM_003069.2	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	ccRCC-2	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAATTT	2	Other genes	PanCancerDriver
+15	57523367	AAATT	A	TTTAA>T	InDel	TCF12	ENST00000438423	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	ccRCC-49	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		Known Driver	PanCancerDriver
+3	10188296	AT	A	TA>T	InDel	VHL	ENST00000256474	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	ccRCC-59	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+3	10188297	T	TATTTTTT	T>TATTTTTT	InDel	VHL	ENST00000256474	Kidney	kidney_carcinoma_clear_cell_renal_cell_carcinoma	TRUE	LRV146TU-CUT1-40	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Known Driver	PanCancerDriver
+12	52374875	A	G	T>C	SNV	ACVR1B	ENST00000541224	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	MGH-Zca	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AATATT	1	Known Driver	PanCancerDriver
+2	148657065	A	AT	T>TA	InDel	ACVR2A	ENST00000241416	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	I2L-P23-Tumor-Biopsy	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+2	148654011	A	C	T>G	SNV	ACVR2A	ENST00000241416	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T346942	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	Other genes	PanCancerDriver
+5	112173627	T	G	T>G	SNV	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	CRC-2	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		Known Driver	PanCancerDriver
+5	112175760	AT	A	TA>T	InDel	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	CRC528	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+5	112174384	T	G	T>G	SNV	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	HUB-02-B2-029	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	4	Known Driver	PanCancerDriver
+5	112163677	A	T	T>A	SNV	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	HUB-02-B2-123	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Known Driver	PanCancerDriver
+5	112174384	T	A	T>A	SNV	APC	ENST00000457016	Large intestine	large_intestine_adenoma_NS	TRUE	SE2	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	4	NA	PanCancerDriver
+5	112174310	A	T	T>A	SNV	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T16	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Known Driver	PanCancerDriver
+5	112173624	A	ATT	T>TAA	InDel	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T224	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		Known Driver	PanCancerDriver
+5	112174784	A	T	T>A	SNV	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T250	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Known Driver	PanCancerDriver
+5	112175760	A	AT	T>TA	InDel	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T3502	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+5	112175350	A	AT	T>TA	InDel	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T3706	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Known Driver	PanCancerDriver
+5	112175764	T	TG	T>TG	InDel	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T4519	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Known Driver	PanCancerDriver
+5	112175350	A	T	T>A	SNV	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T684	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Known Driver	PanCancerDriver
+5	112174152	T	A	T>A	SNV	APC	ENST00000457016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	WGC074456	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		Known Driver	PanCancerDriver
+X	66942764	A	C	T>G	SNV	AR	ENST00000374690	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T132	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		Other genes	PanCancerDriver
+12	46231467	T	A	T>A	SNV	ARID2	ENST00000334344	Large intestine	large_intestine_carcinoma_squamous_cell_carcinoma	TRUE	AC-V16-Tumor-SM-9J46G	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	3	AAAATT	4	NA	PanCancerDriver
+12	46244512	AT	A	TA>T	InDel	ARID2	ENST00000334344	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	I2L-P27-Tumor-Biopsy	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Other genes	PanCancerDriver
+X	76849200	T	G	T>G	SNV	ATRX	ENST00000373344	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	587282	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		Known Driver	PanCancerDriver
+X	76907724	T	G	T>G	SNV	ATRX	ENST00000373344	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T50	yes	yes	FALSE	At AAWWTT motif	AAAAT	1	AAAATT	2	Known Driver	PanCancerDriver
+17	65909129	A	C	T>G	SNV	BPTF	ENST00000306378	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T2434	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	1	AAATTT	1	Known Driver	Other
+7	140453154	T	C	T>C	SNV	BRAF	ENST00000288602	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	CRC-08T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+7	140453154	T	G	T>G	SNV	BRAF	ENST00000288602	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	sysucc-657T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+7	140453152	A	G	T>C	SNV	BRAF	ENST00000288602	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T3059	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		Known Driver	PanCancerDriver
+21	40571096	T	G	T>G	SNV	BRWD1	ENST00000333229	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	587398	yes	yes	FALSE	At AAWWTT motif	AAAAT	1	AAAATT	2	Known Driver	Other
+1	51436143	A	G	T>C	SNV	CDKN2C	ENST00000262662	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	C32	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		Other genes	PanCancerDriver
+12	88484572	A	T	T>A	SNV	CEP290	ENST00000552810	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	NCI-H716	yes	yes	FALSE	At AAWWTT motif	AAAAT	0	AAAATT	0	Known Driver	Other
+16	53243572	A	G	T>C	SNV	CHD9	NM_025134.3	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T183221	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	Known Driver	Other
+22	29106014	T	C	T>C	SNV	CHEK2	ENST00000382580	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T2364	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAATTT	3	Other genes	PanCancerDriver
+1	36202586	A	C	T>G	SNV	CLSPN	ENST00000318121	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T1184	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		Known Driver	Other
+16	58585074	T	C	T>C	SNV	CNOT1	ENST00000317147	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T304	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	Other
+X	20153939	T	C	T>C	SNV	EIF1AX	ENST00000379607	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	HUB-02-B2-063	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Other genes	PanCancerDriver
+X	20152098	A	C	T>G	SNV	EIF1AX	ENST00000379607	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T236849	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Other genes	PanCancerDriver
+22	41531900	A	C	T>G	SNV	EP300	ENST00000263253	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	sysucc-1116T	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		Known Driver	PanCancerDriver
+4	153245380	T	G	T>G	SNV	FBXW7	ENST00000281708	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	sysucc-1062T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Known Driver	PanCancerDriver
+10	123324045	T	A	T>A	SNV	FGFR2	ENST00000457416	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	SNU-283	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+9	5077514	A	G	T>C	SNV	JAK2	ENST00000381652	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	C80	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	0	AAAATT	1	Other genes	PanCancerDriver
+X	44922910	A	G	T>C	SNV	KDM6A	ENST00000377967	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	HUB-02-B2-115III	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+X	44929390	A	T	T>A	SNV	KDM6A	ENST00000377967	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	HUB-02-B2-115III	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Other genes	PanCancerDriver
+X	44929393	A	G	T>C	SNV	KDM6A	ENST00000377967	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	HUB-02-B2-115III	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Other genes	PanCancerDriver
+1	39852987	A	G	T>C	SNV	MACF1	ENST00000360115	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	JCQ-HMCaA	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	0	AAAATT	1	Other genes	PanCancerDriver
+22	22162034	A	AT	T>TA	InDel	MAPK1	ENST00000215832	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	C84	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+X	70343519	AT	A	TA>T	InDel	MED12	ENST00000374080	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T473	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	Other
+14	75513732	T	C	T>C	SNV	MLH3	ENST00000355774	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	MGH-Zca	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		Known Driver	Other
+14	75506672	T	G	T>G	SNV	MLH3	ENST00000355774	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T312708	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	Known Driver	Other
+5	80057451	A	T	T>A	SNV	MSH3	ENST00000265081	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T2457	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		Other genes	PanCancerDriver
+5	80168959	T	C	T>C	SNV	MSH3	ENST00000265081	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T491	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Other genes	PanCancerDriver
+2	48027735	T	C	T>C	SNV	MSH6	ENST00000234420	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T3483	yes	yes	FALSE	At AAWWTT motif	AAATT	4	AAAATT	5	Known Driver	Other
+1	11300365	A	C	T>G	SNV	MTOR	ENST00000361445	Large intestine	large_intestine_carcinoma_squamous_cell_carcinoma	TRUE	AC-P02-Tumor-SM-63B4K	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		NA	PanCancerDriver
+17	8439102	A	T	T>A	SNV	MYH10	ENST00000269243	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	6C	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		Known Driver	Other
+17	15950344	AT	A	TA>T	InDel	NCOR1	ENST00000268712	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T3237	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+5	37048669	AT	A	TA>T	InDel	NIPBL	ENST00000282516	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T3454	yes	yes	FALSE	At AAWWTT motif	AAAAT	4	AATATT	3	Other genes	PanCancerDriver
+3	52682400	T	TT	T>TT	InDel	PBRM1	ENST00000356770	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	HUB-02-B2-084	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Other genes	PanCancerDriver
+5	67592002	A	G	T>C	SNV	PIK3R1	ENST00000521381	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T3038	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	Known Driver	PanCancerDriver
+3	121238831	A	T	T>A	SNV	POLQ	NM_006596.3	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T2976	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		Other genes	PanCancerDriver
+10	89690835	T	G	T>G	SNV	PTEN	ENST00000371953	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T3637	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	1	AAATTT	4	Known Driver	PanCancerDriver
+7	151188079	T	C	T>C	SNV	RHEB	ENST00000262187	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	SNU-283	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		Other genes	PanCancerDriver
+18	42530878	A	C	T>G	SNV	SETBP1	ENST00000282030	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T1160	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	0	Other genes	PanCancerDriver
+2	198285185	T	A	T>A	SNV	SF3B1	ENST00000335508	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	Lzc-scaA	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		Known Driver	PanCancerDriver
+18	45372045	T	G	T>G	SNV	SMAD2	ENST00000262160	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	MGH-Zca	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	Known Driver	PanCancerDriver
+18	48604755	A	G	T>C	SNV	SMAD4	ENST00000342988	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T663	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		Known Driver	PanCancerDriver
+18	48604756	A	T	T>A	SNV	SMAD4	ENST00000342988	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	WGC067101	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		Known Driver	PanCancerDriver
+2	39233645	A	G	T>C	SNV	SOS1	ENST00000426016	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T25	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	2	Other genes	PanCancerDriver
+3	30686300	A	T	T>A	SNV	TGFBR2	ENST00000359013	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T2812	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	2	Known Driver	PanCancerDriver
+17	7578249	A	AT	T>TA	InDel	TP53	ENST00000269305	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T2364	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAATTT	2	Known Driver	PanCancerDriver
+5	14390365	T	C	T>C	SNV	TRIO	ENST00000344204	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T3440	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	Other
+X	41091727	A	T	T>A	SNV	USP9X	ENST00000324545	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	WGC067171	yes	yes	FALSE	At AAWWTT motif	AAATT	1	AAAATT	2	Other genes	PanCancerDriver
+2	43452587	A	C	T>G	SNV	ZFP36L2	ENST00000282388	Large intestine	large_intestine_carcinoma_adenocarcinoma	TRUE	T3261	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		Other genes	PanCancerDriver
+2	148657065	A	G	T>C	SNV	ACVR2A	ENST00000241416	Liver	liver_carcinoma_NS	TRUE	HCC82	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+12	46231160	A	AA	T>TT	InDel	ARID2	ENST00000334344	Liver	liver_carcinoma_hepatocellular_carcinoma	TRUE	CHC1137T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+12	46287484	A	G	T>C	SNV	ARID2	ENST00000334344	Liver	liver_other_neoplasm	TRUE	LICA-CN-HCC147T	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	NA	PanCancerDriver
+12	46245764	T	TT	T>TT	InDel	ARID2	ENST00000334344	Liver	liver_other_neoplasm	TRUE	THCC_28T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+11	108205786	A	T	T>A	SNV	ATM	ENST00000278616	Liver	liver_other_neoplasm	TRUE	CHG-22T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+3	142274739	A	AT	T>TA	InDel	ATR	NM_001184	Liver	liver_carcinoma_NS	TRUE	HCC51T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+17	63554187	T	A	T>A	SNV	AXIN2	ENST00000307078	Liver	liver_carcinoma_hepatocellular_carcinoma	TRUE	CHC2048T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+7	140453154	T	G	T>G	SNV	BRAF	ENST00000288602	Liver	liver_carcinoma_NS	TRUE	RK268_C01	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+17	41246181	A	G	T>C	SNV	BRCA1	ENST00000471181	Liver	liver_carcinoma_NS	TRUE	RK254_C01	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	NA	PanCancerDriver
+19	13566007	A	C	T>G	SNV	CACNA1A	ENST00000325084	Liver	liver_carcinoma_NS	TRUE	HCC78	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+19	13423541	A	T	T>A	SNV	CACNA1A	ENST00000360228_v70	Liver	liver_other_neoplasm	TRUE	LICA-CN-HCC019T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+22	29095854	T	C	T>C	SNV	CHEK2	ENST00000328354	Liver	liver_carcinoma_NS	TRUE	RK304_C01	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+11	57571131	A	G	T>C	SNV	CTNND1	ENST00000399050	Liver	liver_carcinoma_NS	TRUE	HX17T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+5	35876089	T	A	T>A	SNV	IL7R	ENST00000303115	Liver	liver_carcinoma_NS	TRUE	HCC96	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		NA	PanCancerDriver
+X	44921926	T	G	T>G	SNV	KDM6A	NM_021140.1	Liver	liver_carcinoma_NS	TRUE	RK091_C01	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		NA	PanCancerDriver
+12	25368435	T	G	T>G	SNV	KRAS	ENST00000256078	Liver	liver_other_neoplasm	TRUE	CHG-2T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		NA	PanCancerDriver
+1	39903461	A	G	T>C	SNV	MACF1	ENST00000360115	Liver	liver_other_neoplasm	TRUE	LICA-CN-HCC122T	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAAATT	3	NA	PanCancerDriver
+1	11270957	T	G	T>G	SNV	MTOR	ENST00000361445	Liver	liver_carcinoma_hepatocellular_carcinoma	TRUE	CHC433T	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAATTT	3	NA	PanCancerDriver
+1	11199682	T	G	T>G	SNV	MTOR	ENST00000361445	Liver	liver_other_neoplasm	TRUE	LICA-CN-HCC136T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+17	15950346	T	G	T>G	SNV	NCOR1	ENST00000268712	Liver	liver_other_neoplasm	TRUE	HCC-JP-454-T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		NA	PanCancerDriver
+17	29554607	A	C	T>G	SNV	NF1	ENST00000358273	Liver	liver_other_neoplasm	TRUE	CHG-2013-28357T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+17	29556314	T	A	T>A	SNV	NF1	ENST00000358273	Liver	liver_other_neoplasm	TRUE	CHG-2013-28357T	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	1	AAATTT	4	NA	PanCancerDriver
+17	29550525	A	G	T>C	SNV	NF1	ENST00000358273	Liver	liver_carcinoma_NS	TRUE	RK197_C01	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		NA	PanCancerDriver
+2	178098800	T	C	T>C	SNV	NFE2L2	ENST00000397062	Liver	liver_carcinoma_NS	TRUE	BN17	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		NA	PanCancerDriver
+2	178098799	T	G	T>G	SNV	NFE2L2	ENST00000397062	Liver	liver_carcinoma_hepatocellular_carcinoma	TRUE	CHC1040T	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+2	178098799	T	A	T>A	SNV	NFE2L2	ENST00000397062	Liver	liver_other_neoplasm	TRUE	CHC2448T	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+2	178098800	T	G	T>G	SNV	NFE2L2	ENST00000397062	Liver	liver_carcinoma_NS	TRUE	RK004_C01	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		NA	PanCancerDriver
+5	36986247	A	G	T>C	SNV	NIPBL	ENST00000282516	Liver	liver_carcinoma_NS	TRUE	HCC17	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+5	37038774	A	G	T>C	SNV	NIPBL	ENST00000282516	Liver	liver_carcinoma_NS	TRUE	RK050_C	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		NA	PanCancerDriver
+3	178943781	T	G	T>G	SNV	PIK3CA	ENST00000263967	Liver	liver_carcinoma_hepatocellular_carcinoma	TRUE	CHC2110Tbis	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		NA	PanCancerDriver
+5	67592002	A	C	T>G	SNV	PIK3R1	ENST00000521381	Liver	liver_other_neoplasm	TRUE	HCC-JP-500-T	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	NA	PanCancerDriver
+10	89692952	T	G	T>G	SNV	PTEN	ENST00000371953	Liver	liver_carcinoma_hepatocellular_carcinoma	TRUE	CHC2358T	yes	yes	FALSE	At AAWWTT motif	AAAAT	0	AAAATT	0	NA	PanCancerDriver
+7	6439807	T	G	T>G	SNV	RAC1	ENST00000356142	Liver	liver_carcinoma_NS	TRUE	RK316_C01	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+13	48955464	AT	A	TA>T	InDel	RB1	ENST00000267163	Liver	liver_carcinoma_NS	TRUE	HCC57T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+2	219452366	T	C	T>C	SNV	RQCD1	ENST00000273064	Liver	liver_carcinoma_NS	TRUE	HX17T	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+3	47164206	A	G	T>C	SNV	SETD2	ENST00000409792	Liver	liver_carcinoma_hepatocellular_carcinoma	TRUE	CHC1915T	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		NA	PanCancerDriver
+2	198270041	T	C	T>C	SNV	SF3B1	ENST00000335508	Liver	liver_carcinoma_NS	TRUE	RK051_C01	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+2	198266479	T	C	T>C	SNV	SF3B1	ENST00000335508	Liver	liver_other_neoplasm	TRUE	THCC_85T	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	NA	PanCancerDriver
+3	30686300	AT	A	TA>T	InDel	TGFBR2	ENST00000359013	Liver	liver_other_neoplasm	TRUE	LICA-CN-HCC025T	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	2	NA	PanCancerDriver
+1	36757061	T	G	T>G	SNV	THRAP3	ENST00000354618	Liver	liver_carcinoma_NS	TRUE	HCC168	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+17	7578247	A	T	T>A	SNV	TP53	ENST00000269305	Liver	liver_carcinoma_NS	TRUE	RK070_C01	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	0	NA	PanCancerDriver
+5	132270481	T	A	T>A	SNV	AFF4	ENST00000265343	Lung	lung_carcinoma_adenocarcinoma	TRUE	LUAD-UF7HM	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	5	Known Driver	Other
+7	140439743	T	C	T>C	SNV	BRAF	ENST00000288602	Lung	lung_carcinoma_NS	TRUE	2014_Lung_sq_47_T	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	3	AAAATT	4	NA	PanCancerDriver
+13	32910801	T	TAA	T>TAA	InDel	BRCA2	ENST00000544455	Lung	lung_carcinoma_adenocarcinoma	TRUE	CH-LA4	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Other genes	PanCancerDriver
+20	20020367	T	G	T>G	SNV	CRNKL1	ENST00000377340	Lung	lung_carcinoma_adenocarcinoma	TRUE	LUAD-F00121	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	Known Driver	Other
+2	225338963	T	C	T>C	SNV	CUL3	ENST00000264414	Lung	lung_carcinoma_NS	TRUE	2014_Lung_sq_44_T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+9	5065037	T	A	T>A	SNV	JAK2	ENST00000381652	Lung	lung_carcinoma_adenocarcinoma	TRUE	LUAD-B02477	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		Other genes	PanCancerDriver
+X	53247537	T	A	T>A	SNV	KDM5C	ENST00000375401	Lung	lung_carcinoma_adenocarcinoma	TRUE	LUAD-NYU184	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		Other genes	PanCancerDriver
+4	55593481	A	G	T>C	SNV	KIT	ENST00000288135	Lung	lung_carcinoma_NS	TRUE	2014_Lung_sq_91_T	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	NA	PanCancerDriver
+1	39797892	A	G	T>C	SNV	MACF1	ENST00000360115	Lung	lung_carcinoma_squamous_cell_carcinoma	TRUE	700LC	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Other genes	PanCancerDriver
+12	49424505	A	T	T>A	SNV	MLL2	ENST00000301067	Lung	lung_carcinoma_squamous_cell_carcinoma	TRUE	2984_T	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	0	AAAATT	1	Known Driver	Other
+12	49424506	A	T	T>A	SNV	MLL2	ENST00000301067	Lung	lung_carcinoma_squamous_cell_carcinoma	TRUE	2984_T	yes	yes	FALSE	At AAWWTT motif	AAATT	1	AAAATT	2	Known Driver	Other
+3	136667243	T	C	T>C	SNV	NCK1	ENST00000288986	Lung	lung_carcinoma_adenocarcinoma	TRUE	LUAD-YKER9	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	3	Known Driver	Other
+3	138461542	A	AT	T>TA	InDel	PIK3CB	ENST00000477593	Lung	lung_carcinoma_adenocarcinoma	TRUE	LUAD-NYU802	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+3	121206923	T	A	T>A	SNV	POLQ	NM_006596.3	Lung	lung_carcinoma_squamous_cell_carcinoma	TRUE	30LC	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	Other genes	PanCancerDriver
+3	121263667	A	AT	T>TA	InDel	POLQ	NM_006596.3	Lung	lung_carcinoma_small_cell_carcinoma	TRUE	S00842	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+10	89720870	T	A	T>A	SNV	PTEN	ENST00000371953	Lung	lung_carcinoma_bronchioloalveolar_adenocarcinoma	TRUE	010	yes	yes	FALSE	At AAWWTT motif	AAAAT	1	AAAATT	2	NA	PanCancerDriver
+10	89720871	T	A	T>A	SNV	PTEN	ENST00000371953	Lung	lung_carcinoma_bronchioloalveolar_adenocarcinoma	TRUE	010	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	NA	PanCancerDriver
+13	48881469	T	TA	T>TA	InDel	RB1	ENST00000267163	Lung	lung_carcinoma_adenocarcinoma	TRUE	004	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		Known Driver	PanCancerDriver
+13	49037918	A	T	T>A	SNV	RB1	ENST00000267163	Lung	lung_carcinoma_squamous_cell_carcinoma	TRUE	13280	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		Known Driver	PanCancerDriver
+13	48941663	T	C	T>C	SNV	RB1	ENST00000267163	Lung	lung_carcinoma_NS	TRUE	2014_Lung_sq_88_T	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	5	NA	PanCancerDriver
+13	48955464	AT	A	TA>T	InDel	RB1	ENST00000267163	Lung	lung_carcinoma_small_cell_carcinoma	TRUE	S02120	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+13	48923143	AT	A	TA>T	InDel	RB1	ENST00000267163	Lung	lung_carcinoma_small_cell_carcinoma	TRUE	S02274	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+13	48955465	T	TT	T>TT	InDel	RB1	ENST00000267163	Lung	lung_carcinoma_small_cell_carcinoma	TRUE	S02354	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+11	64536504	T	C	T>C	SNV	SF1	ENST00000377390	Lung	lung_carcinoma_NS	TRUE	2014_Lung_sq_83_T	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		NA	PanCancerDriver
+2	198265534	T	A	T>A	SNV	SF3B1	ENST00000335508	Lung	lung_carcinoma_adenocarcinoma	TRUE	IGC-03-1007	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	3	Known Driver	PanCancerDriver
+X	128599884	T	A	T>A	SNV	SMARCA1	NM_003069.2	Lung	lung_carcinoma_adenocarcinoma	TRUE	LUAD-D01278	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		Other genes	PanCancerDriver
+1	197112286	A	G	T>C	SNV	ASPM	ENST00000367409	Melanoma	skin_malignant_melanoma_NS	TRUE	YUWIA	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	0	Known Driver	Other
+12	88512304	AT	A	TA>T	InDel	CEP290	ENST00000552810	Melanoma	skin_malignant_melanoma_NS	TRUE	ME024	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Known Driver	Other
+4	153253793	A	T	T>A	SNV	FBXW7	ENST00000281708	Melanoma	skin_malignant_melanoma_NS	TRUE	2492711	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	0	AAAATT	1	Known Driver	PanCancerDriver
+4	153245413	A	AA	T>TT	InDel	FBXW7	ENST00000263981	Melanoma	skin_malignant_melanoma_NS	TRUE	60T	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	Known Driver	PanCancerDriver
+17	29486059	T	A	T>A	SNV	NF1	ENST00000358273	Melanoma	skin_malignant_melanoma_NS	TRUE	1731645	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	5	Known Driver	PanCancerDriver
+3	121217469	A	T	T>A	SNV	POLQ	NM_006596.3	Melanoma	skin_malignant_melanoma_NS	TRUE	YUAVEY	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Other genes	PanCancerDriver
+3	142232455	A	C	T>G	SNV	ATR	NM_001184	Oesophagus	oesophagus_carcinoma_adenocarcinoma	TRUE	LP2000104-DNA_A01	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	2	NA	PanCancerDriver
+4	187542282	AAT	A	TTA>T	InDel	FAT1	ENST00000441802	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	3N07-VS-3T07	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		NA	PanCancerDriver
+4	187542283	A	G	T>C	SNV	FAT1	ENST00000441802	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	ESCC_57	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+4	187535453	AT	A	TA>T	InDel	FAT1	ENST00000441802	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	ESCC-D10	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	NA	PanCancerDriver
+7	74113377	A	T	T>A	SNV	GTF2I	ENST00000324896	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	3N39-VS-3T39	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		NA	PanCancerDriver
+X	44918512	A	G	T>C	SNV	KDM6A	NM_021140.1	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	ESCC_9	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+12	49438279	T	C	T>C	SNV	KMT2D	ENST00000301067	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	ESCC_142	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		NA	PanCancerDriver
+17	38818271	A	AT	T>TA	InDel	KRT222	ENST00000394052	Oesophagus	oesophagus_carcinoma_adenocarcinoma	TRUE	ESO-0023	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+5	56170892	T	G	T>G	SNV	MAP3K1	ENST00000399503	Oesophagus	oesophagus_carcinoma_adenocarcinoma	TRUE	LP6005690-DNA_D01	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+2	178098799	T	A	T>A	SNV	NFE2L2	ENST00000397062	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	224	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+2	178098800	T	A	T>A	SNV	NFE2L2	ENST00000397062	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	ESCC_169	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		NA	PanCancerDriver
+2	178098799	T	G	T>G	SNV	NFE2L2	ENST00000397062	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	ESCC12-T1	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+5	37008133	AT	A	TA>T	InDel	NIPBL	ENST00000282516	Oesophagus	oesophagus_carcinoma_adenocarcinoma	TRUE	ESO-864	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+3	178943810	A	G	T>C	SNV	PIK3CA	ENST00000263967	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	3N59-VS-3T59	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+9	98232112	A	G	T>C	SNV	PTCH1	ENST00000331920	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	3N08-VS-3T08	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		NA	PanCancerDriver
+10	89692949	T	A	T>A	SNV	PTEN	ENST00000371953	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	3N39-VS-3T39	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	3	NA	PanCancerDriver
+1	198700851	T	G	T>G	SNV	PTPRC	ENST00000442510	Oesophagus	oesophagus_carcinoma_adenocarcinoma	TRUE	ESO-838	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		NA	PanCancerDriver
+5	86659192	A	G	T>C	SNV	RASA1	ENST00000274376	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	3N62-VS-3T62	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+3	47144888	T	A	T>A	SNV	SETD2	ENST00000409792	Oesophagus	oesophagus_carcinoma_adenocarcinoma	TRUE	SS6003314	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		NA	PanCancerDriver
+15	75705285	A	G	T>C	SNV	SIN3A	ENST00000394947	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	1N60-VS-1T60	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	NA	PanCancerDriver
+X	123205128	T	A	T>A	SNV	STAG2	ENST00000218089	Oesophagus	oesophagus_carcinoma_adenocarcinoma	TRUE	ESO01T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+X	123205127	T	G	T>G	SNV	STAG2	ENST00000218089	Oesophagus	oesophagus_carcinoma_adenocarcinoma	TRUE	ESO17T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		NA	PanCancerDriver
+17	7576865	AT	A	TA>T	InDel	TP53	ENST00000269305	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	ESCC_240	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	NA	PanCancerDriver
+17	80789349	AT	A	TA>T	InDel	ZNF750	ENST00000269394	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	ESCC_30	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+17	80790329	A	T	T>A	SNV	ZNF750	ENST00000269394	Oesophagus	oesophagus_carcinoma_squamous_cell_carcinoma	TRUE	ESCC_55	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+2	29443697	A	C	T>G	SNV	ALK	ENST00000389048	Other	autonomic_ganglia_neuroblastoma_NS	TRUE	N198T	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+2	29443697	A	T	T>A	SNV	ALK	ENST00000389048	Other	autonomic_ganglia_neuroblastoma_NS	TRUE	TARGET-30-PANRVJ	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+2	29443697	A	G	T>C	SNV	ALK	ENST00000389048	Other	autonomic_ganglia_neuroblastoma_NS	TRUE	TARGET-30-PARKNP	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+2	29443696	A	C	T>G	SNV	ALK	ENST00000389048	Other	autonomic_ganglia_neuroblastoma_NS	TRUE	TARGET-30-PARLTG	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		NA	PanCancerDriver
+1	94670749	A	C	T>G	SNV	ARHGAP29	ENST00000260526	Other	NS_malignant_melanoma_NS	TRUE	D38	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	1	AAATTT	1	Known Driver	Other
+12	46298735	A	T	T>A	SNV	ARID2	ENST00000334344	Other	pituitary_adenoma_GH	TRUE	ER_4784	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+3	33602360	AT	A	TA>T	InDel	CLASP2	ENST00000333778	Other	NS_malignant_melanoma_NS	TRUE	Pat_48_A	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	Other
+7	81331922	A	C	T>G	SNV	HGF	ENST00000222390	Other	parathyroid_adenoma_NS	TRUE	16	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+15	42000378	T	G	T>G	SNV	MGA	XM_031689.7	Other	thymus_thymoma_spindle	TRUE	P-Thy018	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	5	NA	PanCancerDriver
+5	80083385	A	T	T>A	SNV	MSH3	NM_002439.1	Other	NS_NS_NS	TRUE	PD4603a	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		NA	PanCancerDriver
+17	15973727	A	C	T>G	SNV	NCOR1	ENST00000268712	Other	NS_NS_NS	TRUE	PD4595a	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+3	141274747	A	T	T>A	SNV	RASA2	ENST00000286364	Other	NS_malignant_melanoma_NS	TRUE	D28	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	Other
+13	48881465	A	T	T>A	SNV	RB1	ENST00000267163	Other	breast_other_fibroadenoma	TRUE	004	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		NA	PanCancerDriver
+2	55253745	AT	A	TA>T	InDel	RTN4	ENST00000337526	Other	NS_malignant_melanoma_NS	TRUE	Pat_74_B	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	Other
+12	52374873	A	G	T>C	SNV	ACVR1B	ENST00000541224	Pancreas	pancreas_carcinoma_NS	TRUE	Bulk-T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+11	108143312	A	AT	T>TA	InDel	ATM	ENST00000278616	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	PDA_073	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		Known Driver	PanCancerDriver
+11	108206666	A	T	T>A	SNV	ATM	ENST00000278616	Pancreas	pancreas_carcinoid-endocrine_tumour_NS	TRUE	QGP1	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		NA	PanCancerDriver
+7	140453154	T	C	T>C	SNV	BRAF	ENST00000288602	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	8051712	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+14	21859176	T	TT	T>TT	InDel	CHD8	ENST00000430710	Pancreas	pancreas_carcinoma_NS	TRUE	ACINAR08	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+17	11984778	T	G	T>G	SNV	MAP2K4	ENST00000353533	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	PDA_060	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		Known Driver	PanCancerDriver
+5	37008134	T	TT	T>TT	InDel	NIPBL	ENST00000282516	Pancreas	pancreas_carcinoma_NS	TRUE	45	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+3	52643770	A	T	T>A	SNV	PBRM1	ENST00000356770	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	PCSI_0001_Pa_P	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Known Driver	PanCancerDriver
+2	190660593	A	G	T>C	SNV	PMS1	ENST00000441310	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	8015562	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		Other genes	PanCancerDriver
+5	86645130	T	C	T>C	SNV	RASA1	ENST00000274376	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	PCSI_0125_Pa_P	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+3	47165704	T	C	T>C	SNV	SETD2	ENST00000409792	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	8016486	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	Other genes	PanCancerDriver
+3	47163606	AT	A	TA>T	InDel	SETD2	ENST00000409792	Pancreas	pancreas_carcinoma_NS	TRUE	PCSI_0612_Pa_P_526	yes	yes	FALSE	At AAWWTT motif	AAATT	2	AAATTT	2	NA	PanCancerDriver
+2	198288673	A	C	T>G	SNV	SF3B1	ENST00000335508	Pancreas	pancreas_carcinoma_NS	TRUE	31	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		NA	PanCancerDriver
+16	70573032	T	C	T>C	SNV	SF3B3	ENST00000302516	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	PCSI_0090_Pa_X	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Known Driver	Other
+18	45372042	AT	A	TA>T	InDel	SMAD2	ENST00000262160	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	PDA_102	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Other genes	PanCancerDriver
+18	48604755	A	T	T>A	SNV	SMAD4	ENST00000342988	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	8031681	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		Known Driver	PanCancerDriver
+18	48575172	A	AA	T>TT	InDel	SMAD4	ENST00000342988	Pancreas	pancreas_NS_NS	TRUE	Pa14C	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+18	48575126	A	AA	T>TT	InDel	SMAD4	ENST00000342988	Pancreas	pancreas_NS_NS	TRUE	Pa200X	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+9	101891173	A	G	T>C	SNV	TGFBR1	ENST00000374994	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	8035249	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Known Driver	Other
+17	7578247	A	T	T>A	SNV	TP53	ENST00000269305	Pancreas	pancreas_carcinoma_NS	TRUE	14	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	0	NA	PanCancerDriver
+17	7576865	A	T	T>A	SNV	TP53	ENST00000269305	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	8068556	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	Known Driver	PanCancerDriver
+17	7576865	A	C	T>G	SNV	TP53	ENST00000269305	Pancreas	pancreas_carcinoma_NS	TRUE	PCSI_0589_Pa_X_526	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	NA	PanCancerDriver
+21	44524486	A	G	T>C	SNV	U2AF1	ENST00000291552	Pancreas	pancreas_carcinoma_ductal_carcinoma	TRUE	8013294	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Known Driver	PanCancerDriver
+2	148654011	A	G	T>C	SNV	ACVR2A	ENST00000241416	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	DA1200D	no	yes	TRUE	At pos. 2/5 in AAWWTT	other		AATATT	1	Known Driver	PanCancerDriver
+5	112178276	A	G	T>C	SNV	APC	ENST00000457016	Prostate	prostate_carcinoma_NS	TRUE	6115224	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+12	46298812	T	G	T>G	SNV	ARID2	ENST00000334344	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	0090_CRUK_PC_0090_T1_DNA	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	Known Driver	PanCancerDriver
+2	25990507	AT	A	TA>T	InDel	ASXL2	ENST00000435504	Prostate	prostate_carcinoma_NS	TRUE	MO_1249	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+11	108099905	AT	A	TA>T	InDel	ATM	ENST00000278616	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	0139_CRUK_PC_0139_T1_DNA	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+11	108155098	T	G	T>G	SNV	ATM	ENST00000278616	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	CPCG0203-F1	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Known Driver	PanCancerDriver
+3	142274739	A	AT	T>TA	InDel	ATR	NM_001184	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	CPCG0248-F1	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+7	140453154	T	C	T>C	SNV	BRAF	ENST00000288602	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	0012_CRUK_PC_0012_T1_DNA	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Known Driver	PanCancerDriver
+13	32968994	A	AT	T>TA	InDel	BRCA2	ENST00000544455	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	CPCG0589-F1	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+7	81392145	T	G	T>G	SNV	HGF	ENST00000222390	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	MSK-PCa4_organoid	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Other genes	PanCancerDriver
+1	209974597	A	C	T>G	SNV	IRF6	ENST00000367021	Prostate	prostate_carcinoma_NS	TRUE	6115233	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+7	151917713	T	A	T>A	SNV	MLL3	ENST00000355193	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	CPCG0196-F3	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	Known Driver	Other
+3	138417861	T	C	T>C	SNV	PIK3CB	ENST00000477593	Prostate	prostate_carcinoma_NS	TRUE	MO_1074	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+2	190719547	A	AG	T>TC	InDel	PMS1	ENST00000441310	Prostate	prostate_carcinoma_NS	TRUE	1115161	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	2	NA	PanCancerDriver
+17	56492694	A	T	T>A	SNV	RNF43	ENST00000407977	Prostate	prostate_carcinoma_NS	TRUE	MO_1262	yes	yes	FALSE	At AAWWTT motif	AAATT	4	AAAATT	5	NA	PanCancerDriver
+3	47161938	A	AT	T>TA	InDel	SETD2	ENST00000409792	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	CPCG0378-F1	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+17	47696417	A	G	T>C	SNV	SPOP	ENST00000393328	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	0090_CRUK_PC_0090_T1_DNA	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		Other genes	PanCancerDriver
+17	47696637	A	C	T>G	SNV	SPOP	ENST00000393328	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	0132_CRUK_PC_0132_T1_DNA	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		Other genes	PanCancerDriver
+17	47696644	A	C	T>G	SNV	SPOP	ENST00000393328	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	03-027M1	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Other genes	PanCancerDriver
+17	47696644	A	T	T>A	SNV	SPOP	ENST00000393328	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	CPCG0388-F1	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	Other genes	PanCancerDriver
+17	47696643	A	T	T>A	SNV	SPOP	ENST00000393328	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	CPCG0471-F1	yes	yes	FALSE	At AAWWTT motif	AAATT	4	AAAATT	5	Other genes	PanCancerDriver
+17	47696643	A	C	T>G	SNV	SPOP	ENST00000393328	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	Left_adrenal	yes	yes	FALSE	At AAWWTT motif	AAATT	4	AAAATT	5	Other genes	PanCancerDriver
+17	47696643	A	G	T>C	SNV	SPOP	ENST00000393328	Prostate	prostate_carcinoma_adenocarcinoma	TRUE	MC-3T	yes	yes	FALSE	At AAWWTT motif	AAATT	4	AAAATT	5	Other genes	PanCancerDriver
+10	89692946	A	C	T>G	SNV	PTEN	ENST00000371953	Salivary gland	salivary_gland_carcinoma_adenoid_cystic_carcinoma	TRUE	609	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	0	NA	PanCancerDriver
+11	108142028	T	C	T>C	SNV	ATM	ENST00000278616	Skin	skin_carcinoma_squamous_cell_carcinoma	TRUE	S0029	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		NA	PanCancerDriver
+17	29676230	A	T	T>A	SNV	NF1	ENST00000358273	Skin	skin_carcinoma_NS	TRUE	ML_65_T_01	yes	yes	FALSE	At AAWWTT motif	AAATT	0	AAATTT	0	NA	PanCancerDriver
+7	6439807	T	A	T>A	SNV	RAC1	ENST00000356142	Skin	skin_carcinoma_NS	TRUE	ML_09_T_01	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+15	59323526	AT	A	TA>T	InDel	RNF111	ENST00000348370	Skin	skin_carcinoma_squamous_cell_carcinoma	TRUE	WD_10	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+X	128626033	T	G	T>G	SNV	SMARCA1	NM_003069.2	Skin	skin_carcinoma_squamous_cell_carcinoma	TRUE	WD_03	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		NA	PanCancerDriver
+11	100962556	A	G	T>C	SNV	PGR	NM_000926.2	Soft tissue	soft_tissue_rhabdomyosarcoma_alveolar	TRUE	RH18C	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+9	135781205	T	C	T>C	SNV	TSC1	ENST00000298552	Soft tissue	soft_tissue_rhabdomyosarcoma_alveolar	TRUE	RMS106	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	0	AAAATT	1	NA	PanCancerDriver
+1	146736201	T	A	T>A	SNV	CHD1L	ENST00000369258	Stomach	stomach_carcinoma_intestinal_adenocarcinoma	TRUE	pfg043T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		Known Driver	Other
+6	152382247	T	G	T>G	SNV	ESR1	ENST00000440973	Stomach	stomach_carcinoma_intestinal_adenocarcinoma	TRUE	pfg043T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Other genes	PanCancerDriver
+7	148525945	A	G	T>C	SNV	EZH2	ENST00000320356	Stomach	stomach_carcinoma_adenocarcinoma	TRUE	ESO-177	yes	yes	FALSE	At AAWWTT motif	AAAAT	0	AAAATT	0	Known Driver	Other
+4	83348623	A	AT	T>TA	InDel	HNRPDL	ENST00000295470	Stomach	stomach_carcinoma_intestinal_adenocarcinoma	TRUE	pfg107T	yes	yes	FALSE	At AAWWTT motif	AAATT	4	AAAATT	5	Known Driver	Other
+1	11273542	A	C	T>G	SNV	MTOR	ENST00000361445	Stomach	stomach_carcinoma_intestinal_adenocarcinoma	TRUE	pfg062T	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		Other genes	PanCancerDriver
+3	52678783	AT	A	TA>T	InDel	PBRM1	ENST00000356770	Stomach	stomach_carcinoma_adenocarcinoma	TRUE	ESO-177	yes	yes	FALSE	At AAWWTT motif	AAAAT	4	AATATT	3	Other genes	PanCancerDriver
+10	89720654	A	T	T>A	SNV	PTEN	ENST00000371953	Stomach	stomach_carcinoma_adenocarcinoma	TRUE	pfg029T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Known Driver	PanCancerDriver
+17	56435204	A	AT	T>TA	InDel	RNF43	ENST00000407977	Stomach	stomach_carcinoma_adenocarcinoma	TRUE	ESO-S41	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+18	48604755	A	C	T>G	SNV	SMAD4	ENST00000342988	Stomach	stomach_carcinoma_intestinal_adenocarcinoma	TRUE	pfg043T	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	0	other		Known Driver	PanCancerDriver
+21	44524487	T	C	T>C	SNV	U2AF1	ENST00000291552	Stomach	stomach_carcinoma_intestinal_adenocarcinoma	TRUE	pfg060T	yes	yes	FALSE	At AAWWTT motif	AAAAT	2	AAAATT	3	Other genes	PanCancerDriver
+2	148677876	T	C	T>C	SNV	ACVR2A	ENST00000241416	Thyroid	thyroid_carcinoma_NS	TRUE	THY_3C	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	1	AAATTT	4	Other genes	PanCancerDriver
+X	76949332	T	G	T>G	SNV	ATRX	ENST00000373344	Upper aerodigestive tract	upper_aerodigestive_tract_carcinoma_squamous_cell_carcinoma	TRUE	SJG-018	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Other genes	PanCancerDriver
+7	140477861	T	C	T>C	SNV	BRAF	ENST00000288602	Upper aerodigestive tract	upper_aerodigestive_tract_carcinoma_squamous_cell_carcinoma	TRUE	52T	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	0	other		Other genes	PanCancerDriver
+11	57578954	A	G	T>C	SNV	CTNND1	ENST00000361391	Upper aerodigestive tract	upper_aerodigestive_tract_carcinoma_squamous_cell_carcinoma	TRUE	HN_00761	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Other genes	PanCancerDriver
+22	41569685	AT	A	TA>T	InDel	EP300	ENST00000263253	Upper aerodigestive tract	upper_aerodigestive_tract_carcinoma_NS	TRUE	OSCC-GB_01420111	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+3	180688136	A	G	T>C	SNV	FXR1	ENST00000357559	Upper aerodigestive tract	upper_aerodigestive_tract_carcinoma_squamous_cell_carcinoma	TRUE	SJG-013	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		Known Driver	Other
+17	16068402	T	C	T>C	SNV	NCOR1	ENST00000268712	Upper aerodigestive tract	upper_aerodigestive_tract_carcinoma_squamous_cell_carcinoma	TRUE	HN_62699	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		Other genes	PanCancerDriver
+2	178098800	T	C	T>C	SNV	NFE2L2	ENST00000397062	Upper aerodigestive tract	upper_aerodigestive_tract_carcinoma_NS	TRUE	OSCC-GB_00800111	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	4	other		NA	PanCancerDriver
+3	121206813	A	C	T>G	SNV	POLQ	NM_006596.3	Upper aerodigestive tract	upper_aerodigestive_tract_carcinoma_squamous_cell_carcinoma	TRUE	HN_62417	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		Other genes	PanCancerDriver
+12	46211627	A	T	T>A	SNV	ARID2	ENST00000334344	Urinary tract	urinary_tract_carcinoma_transitional_cell_carcinoma	TRUE	18698	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	1	other		NA	PanCancerDriver
+12	46211628	A	T	T>A	SNV	ARID2	ENST00000334344	Urinary tract	urinary_tract_carcinoma_transitional_cell_carcinoma	TRUE	18698	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		NA	PanCancerDriver
+12	46211629	A	G	T>C	SNV	ARID2	ENST00000334344	Urinary tract	urinary_tract_carcinoma_transitional_cell_carcinoma	TRUE	18698	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+12	46211630	T	C	T>C	SNV	ARID2	ENST00000334344	Urinary tract	urinary_tract_carcinoma_transitional_cell_carcinoma	TRUE	18698	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+7	140453152	A	G	T>C	SNV	BRAF	ENST00000288602	Urinary tract	urinary_tract_carcinoma_transitional_cell_carcinoma	TRUE	B89-1	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	2	other		NA	PanCancerDriver
+7	140453154	T	C	T>C	SNV	BRAF	ENST00000288602	Urinary tract	urinary_tract_carcinoma_transitional_cell_carcinoma	TRUE	B98	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	4	other		NA	PanCancerDriver
+1	36202588	T	A	T>A	SNV	CLSPN	ENST00000251195	Urinary tract	urinary_tract_carcinoma_NS	TRUE	B79-Tumor	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	2	other		Known Driver	Other
+2	225362490	A	C	T>G	SNV	CUL3	ENST00000264414	Urinary tract	urinary_tract_carcinoma_transitional_cell_carcinoma	TRUE	B80-8	yes	no	FALSE	At AAATT/AAAAT motif	AAAAT	3	other		NA	PanCancerDriver
+X	47044746	T	TTGGCCAGTGACGACCGCCCA	T>TTGGCCAGTGACGACCGCCCA	InDel	RBM10	ENST00000377604	Urinary tract	urinary_tract_carcinoma_transitional_cell_carcinoma	TRUE	B47	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	3	other		NA	PanCancerDriver
+X	123210212	T	C	T>C	SNV	STAG2	ENST00000218089	Urinary tract	urinary_tract_carcinoma_transitional_cell_carcinoma	TRUE	B109	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAATT	3	AAAATT	4	NA	PanCancerDriver
+16	67654607	A	C	T>G	SNV	CTCF	ENST00000264010	Uterus	endometrium_carcinoma_serous_carcinoma	TRUE	T70	yes	no	FALSE	At AAATT/AAAAT motif	AAATT	1	other		NA	PanCancerDriver
+7	81350138	A	C	T>G	SNV	HGF	ENST00000222390	Uterus	endometrium_carcinoma_carcinosarcoma-malignant_mesodermal_mixed_tumour	TRUE	DA14042	yes	yes	TRUE	At pos. 2/5 in AAWWTT	AAAAT	3	AAAATT	4	NA	PanCancerDriver

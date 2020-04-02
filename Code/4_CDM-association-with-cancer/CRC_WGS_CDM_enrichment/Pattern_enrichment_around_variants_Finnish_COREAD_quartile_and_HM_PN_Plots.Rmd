@@ -1,0 +1,212 @@
+---
+title: "Pattern overlap global - Finnish COREAD data, single_samples, WWWWW pentanucleotides - Plots"
+author: "Hilmar Berger"
+output:
+ html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: false
+    number_sections: true
+    code_folding: hide
+    
+pdf_document:
+    fig_caption: true
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+---
+
+
+```{r, message=FALSE}
+library(Biostrings)
+library(GenomicRanges)
+library(ggplot2)
+library(knitr)
+library(data.table)
+#library(gridExtra)
+library(ggpubr)
+rm(list=ls())
+```
+
+```{r}
+ed = read.table("../../../Data/WGS_cohort/Mutation_counts_at_motifs/Sample_sequencing_overview.txt", sep="\t", header=T, comment.char = "", stringsAsFactors = F)
+tt = regmatches(ed$X.Sample, regexpr("(.+)_T_", ed$X.Sample))
+ed$ID = make.names(substr(tt, 1, nchar(tt)-3))
+rownames(ed) = make.names(ed$X.Sample)
+
+tt2 = sapply(strsplit(ed$X.Sample,"-"), `[`,1 )
+ed$group = ifelse(tt2 %in% c("POLE","MSI"), tt2, "MSS" )
+```
+
+
+# Overview
+
+Results in this document describe the analysis of enrichment at the pentanucleotide motif AAWWTT in a data set of about 200 colorectal cancer samples from a finnisch CRC cohort with WGS sequencing.
+
+Mutations were analyzed for SNV at A/T reference bases.
+
+Mutation rates (mutations per bp of the genomic target sequence covered by a given pentanucleotide pattern) were determined for all possible 32 WWWWW pentanucleotides (16 after removal of reverse complementary duplicates). Additional, the mutation rate of AAATT/AAATT and AAAAT/ATTTT was compared to the distribution of mutation rates for pentanucleotides consisting only of A/T (furtheron referred to as [A/T]5).
+
+```{r}
+analysis_name = "Finnish_COREAD_WGS_cohort"
+all_data_files = list.files(path="../../../Data/WGS_cohort/", pattern=paste0("5nucleotide_Results_",analysis_name,".+Rdata"), full.names = T)
+names(all_data_files) = gsub(".Rdata", "", gsub(paste0("5nucleotide_Results_",analysis_name,"_"),"", basename(all_data_files)))
+```
+
+```{r}
+selected_HN = c("AAATT","AAAAT")
+```
+
+
+```{r}
+all_pattern = mkAllStrings(c("A","C","G","T"), 5)
+at_cnt = unlist(Map(function(x) sum(alphabetFrequency(DNAString(x))[c("A","T")]), all_pattern))
+```
+
+
+```{r, warning=FALSE}
+# Note that Fisher's exact test and ChiSquare test assume indepdence of the elements. We consider mutated sites but 
+# actually count the total as the sum of all PN in target regions. PN might be overlapping (therefore
+# not be independent) and mutations (e.g. indels) might be longer than 1. 
+# So the test is only kind of an indication - we should replace it by something more appropriate
+
+# x$mutation_hit, x$mutation_no_hit, x$pattern_bp, x$non_pattern_bp
+fisher.func <- function(x) { m = matrix(c(x[1], x[2], x[3]-x[1], x[4]-x[2]), 2, 2); fisher.test(m)}
+chisq.func <- function(x) { m = matrix(c(x[1], x[2], x[3]-x[1], x[4]-x[2]), 2, 2); chisq.test(m)}
+
+all_result_tabs = list()
+for (n in names(all_data_files)) {
+  load(all_data_files[n])
+
+  combined_tab$sel_pn = (combined_tab$pattern %in% selected_HN)
+  combined_tab$at_cnt = at_cnt[combined_tab$pattern]
+  combined_tab$at_rich_non_sel = (!combined_tab$sel_pn & combined_tab$at_cnt == 5)
+  combined_tab$cancer_entity = factor(ed[as.character(combined_tab$entity),"group"], levels=c("MSI","POLE","MSS"))
+  combined_tab$count_class = combined_tab$entity
+
+  combined_tab = subset(combined_tab, pattern %in% all_W5_pattern_norevcomp$pattern)
+    
+  all_result_tabs[[n]] = combined_tab
+}
+```
+
+```{r}
+mut_sets_ordered = c("all_mutations")
+```
+
+
+# Comparison AAWWTT patterns to all other [A/T]5 patterns
+
+Stars denote significant difference between AAWWTT motif and [A/T]5 motifs (raw Mann-Whitney-U test p < 0.05 and FDR < 20%).  First line is [number of mutations overlapping AAWWTT motif] / [all mutations in cohort]. Error bars describe the  +/- 2SD intervals for mutation rate (mutations/bp covered by motif) of [A/T]5 motifs excluding AAWWTT pattern after subtracting their mean. Dots represent the mutation rates for the two indepedent AAWWTT motifs (AAATTT/AAATTT, AAAATT/AATTTT) considered to be associated to colibactin after subtracting the mean of the [A/T]5 motifs. Crosses are the mean of the two AAWWTT motifs. 
+
+
+```{r}
+n = mut_sets_ordered[1]
+  tmp = as.data.table(all_result_tabs[[n]])
+  tmp$log2r = log2(tmp$hit_per_bp_in_pattern)
+  tmp$log2r = ifelse(is.infinite(tmp$log2r), sign(tmp$log2r) * max(abs(tmp$log2r[!is.infinite(tmp$log2r)]))*1.5, tmp$log2r)
+  tmp$mutation_list = n
+  tmp[, at_rich_non_sel_mean := mean(ifelse(at_rich_non_sel, log2r, NA), na.rm=T), by="entity"]
+  tmp[, sel_mean := mean(ifelse(sel_pn, log2r, NA), na.rm=T), by="entity"]
+  tmp[, sel_vs_atrich := sel_mean - at_rich_non_sel_mean]
+  tmp[, class:= factor(ifelse(at_cnt==5, ifelse(sel_pn,"AAWWTT", "[A/T]5"),"other"), levels=c("AAWWTT","[A/T]5","other"))]
+  tmp[, pn_vs_at5:= log2r - at_rich_non_sel_mean]
+  
+  by_entity_dist = tmp[, .( mean_distance = mean(sel_vs_atrich)), by=c("entity", "cancer_entity")]
+  setkey(by_entity_dist, "entity")
+  tmp$dist_sel_vs_atrich = by_entity_dist[as.character(tmp$entity)]$mean_distance
+  tmp$entity = factor(tmp$entity, levels=by_entity_dist[order(by_entity_dist$cancer_entity, -by_entity_dist$mean_distance)]$entity)
+  #tmp = tmp[order(tmp$entity, tmp$rank)]
+
+  l2r = split(tmp$pn_vs_at5, tmp$entity)
+  cl = split(tmp$class,  tmp$entity)
+  p_at5 = mapply(function(log2r, class) {a = log2r[class=="AAWWTT"]; b = log2r[class=="[A/T]5"]; if(length(a)>1 && length(b)>1) {p=wilcox.test(a,b )$p.value} else {p=NA}; return(p)}, l2r, cl)
+  p_other = mapply(function(log2r, class) {a = log2r[class=="AAWWTT"]; b = log2r[class=="other"]; if(length(a)>1 && length(b)>1) {p=wilcox.test(a,b )$p.value} else {p=NA}; return(p)}, l2r, cl)
+  
+  tmp$p_at5 = p_at5[as.character(tmp$entity)]
+  tmp$p_other = p_other[as.character(tmp$entity)]
+  tmp$padj_at5 = p.adjust(tmp$p_at5, "BH")
+  tmp$padj_other = p.adjust(tmp$p_other, "BH")
+
+ at_rich_non_sel_stats = tmp[tmp$at_rich_non_sel, .(vmean=mean(pn_vs_at5), vsd=mad(pn_vs_at5), n=.N, t97.5=qt(0.975, .N-1), entity = unique(entity)), by=c("cancer_entity", "count_class")]
+ at_rich_non_sel_stats[, ci:=t97.5*(vsd/sqrt(n))]
+ setkey(at_rich_non_sel_stats, "entity")
+
+ max_y = max(c(tmp[tmp$sel_pn]$pn_vs_at5, at_rich_non_sel_stats$vmean+2*at_rich_non_sel_stats$vsd))
+ min_y = min(c(tmp[tmp$sel_pn]$pn_vs_at5, at_rich_non_sel_stats$vmean-2*at_rich_non_sel_stats$vsd))
+ 
+ tmp$sig_label = with(tmp, ifelse(pn_vs_at5>0 & p_at5 < 0.05 & padj_at5 < 0.2, "*", ""))
+ sel_tmp = subset(tmp, sel_pn)
+ sel_tmp[, total_mut:=sum(mutation_hit), by="entity"]
+ sel_tmp[, count_text:=paste0(unique(total_mut),"/",unique(total_mutation_counts), "\n[", unique(sample_counts),"]"), by="entity"]
+ 
+```
+
+
+```{r, fig.width=18, fig.height=9}
+ce_counts = cumsum(as.integer(table(by_entity_dist$cancer_entity)))
+names(ce_counts) = names(table(by_entity_dist$cancer_entity))
+rects <- data.frame(xstart = c(0,ce_counts[1:2])+0.5, xend = ce_counts+0.5, 
+         col = names(ce_counts))
+p1 = ggplot(sel_tmp, aes(y=pn_vs_at5, x=entity)) + geom_point(aes(col=pattern)) +
+        geom_rect(data=rects, aes(ymin=min_y*1.5, ymax=max_y*1.6, xmin=xstart, xmax=xend, fill=col), alpha =0.3, inherit.aes=F) + 
+        #geom_errorbar(data=at_rich_non_sel_stats, aes(ymin=vmean-ci, ymax=vmean+ci, x=count_class), inherit.aes = F) + 
+        geom_errorbar(data=at_rich_non_sel_stats, aes(ymin=vmean-2*vsd, ymax=vmean+2*vsd, x=entity), inherit.aes = F, alpha=.3) + 
+        geom_text(aes(y=max_y*1.3, label=sig_label), size=5)  +
+        #facet_wrap(~cancer_entity, scales = "free_x") + 
+        stat_summary(fun.y=mean, colour="black", shape=3, geom="point") + 
+        coord_cartesian(ylim=c(min_y*1.2,max_y*1.35)) + 
+        ggtitle("Mutation enrichment for patterns") + ylab("Log2(adj. mutation rate)") + 
+        geom_hline(yintercept=0) + 
+        theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank(), text = element_text(size=14), axis.title.y=element_text(size=20), legend.text=element_text(size=16), legend.title=element_blank(), axis.text.y=element_text(size=20)) + 
+        scale_fill_manual(values = c("orange", "lightgrey", "green")) + scale_color_manual(values = c("red","blue")) + 
+        guides(colour = guide_legend(override.aes = list(size=3)), fill = guide_legend(override.aes = list(size=3))) 
+
+p2 = ggplot(sel_tmp, aes(y=mutation_hit+1, x=entity)) + geom_point(aes(col=pattern)) +
+        geom_rect(data=rects, aes(ymin=0, ymax=1e7, xmin=xstart, xmax=xend, fill=col), alpha =0.3, inherit.aes=F) + 
+        coord_cartesian(ylim=c(10,1e6L)) + 
+        ggtitle("Total number of mutations overlapping patterns") + ylab("Number") + 
+        theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank(), text = element_text(size=14), axis.title.y=element_text(size=20), axis.text.y=element_text(size=20)) + 
+        scale_fill_manual(values = c("orange", "lightgrey", "green")) + scale_color_manual(values = c("red","blue")) + scale_y_log10()
+
+p3 = ggplot(sel_tmp, aes(y=(mutation_hit+1)/total_mutation_counts, x=entity)) + geom_point(aes(col=pattern)) +
+        geom_rect(data=rects, aes(ymin=0, ymax=2, xmin=xstart, xmax=xend, fill=col), alpha =0.3, inherit.aes=F) + 
+        coord_cartesian(ylim=c(1e-2,0.3)) + 
+        ggtitle("Proportion of total mutations overlapping patterns") + ylab("Proportion") + 
+        theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank(), text = element_text(size=14), axis.title.y=element_text(size=20), axis.text.y=element_text(size=20)) + 
+        scale_fill_manual(values = c("orange", "lightgrey", "green")) + scale_color_manual(values = c("red","blue")) 
+
+print(ggarrange(p1,p2,p3, ncol=1, align="v", heights = c(0.5, 0.25, 0.25), common.legend = T))
+
+```
+
+```{r, fig.width=18, fig.height=9}
+png(file="../../../Results/4_CDM-association-with-cancer/Finnish_cohort_COREAD_enrichment_PN.png", width = 1800, height=900)
+ggarrange(p1,p2,p3, ncol=1, align="v", heights = c(0.5, 0.25, 0.25), common.legend = T)
+dev.off()
+```
+
+```{r, fig.width=18, fig.height=9}
+cairo_pdf(file="../../../Results/4_CDM-association-with-cancer/Finnish_cohort_COREAD_enrichment_PN_cairo.pdf", width = 18, height=9) 
+ggarrange(p1,p2,p3, ncol=1, align="v", heights = c(0.5, 0.25, 0.25), common.legend = T)
+dev.off()
+```
+
+```{r}
+tmp3 = subset(tmp, sel_pn)
+setnames(tmp3, "pn_vs_at5", "log2ratio_adjusted")
+xx = dcast.data.table(tmp3, entity ~ pattern, value.var = c("mutation_hit", "total_pattern_sites", "pattern_bp","hit_per_bp_in_pattern", "log2ratio_adjusted" ))
+setkey(xx, "entity")
+
+x2 = unique(tmp3[, c("entity","total_mutation_counts", "p_at5", "padj_at5", "cancer_entity"), with=F])
+setkey(x2, "entity")
+
+per_sample_table = merge(xx, x2)
+per_sample_table[, mean_log2r_colibactin_PN:= (log2ratio_adjusted_AAAAT+log2ratio_adjusted_AAATT)/2]
+per_sample_table[, total_mut_count_colibactin_PN:= mutation_hit_AAAAT + mutation_hit_AAATT]
+per_sample_table[, total_mut_proportion_colibactin_PN:= total_mut_count_colibactin_PN/total_mutation_counts]
+
+ed2 = ed
+rownames(ed2) = ed2$ID
+per_sample_table[, sample_name_full := ed2[as.character(entity),]$X.Sample ]
+fwrite(per_sample_table, file="../../../Data/WGS_cohort/Per_sample_results_PN_SNV_enrichment.txt", sep="\t", quote = F)
+```
+

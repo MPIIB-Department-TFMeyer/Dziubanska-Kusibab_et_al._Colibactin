@@ -86,27 +86,8 @@ p = marrangeGrob(all_grobs, nrow=10, ncol=4, top="" )  # layout_matrix = matrix(
 print(p)  
 ```
 
-<!-- ```{r} -->
-<!-- pdf(file="DREME_all_motifs.pdf", width = 11, height = 14) -->
-<!-- print(p) -->
-<!-- dev.off() -->
-<!-- ``` -->
-
-```{r, message=FALSE, fig.width=10, fig.height=4}
-empty = ggplot() + theme_void()
-all_grobs = list()
-for (s in names(all_seqlogos)) {
-    tmp = all_seqlogos[[s]][1:3]
-    if(length(tmp)<3) {for(i in 1:(10-length(tmp))) tmp[[paste0(s,"_t",i)]] = empty }
-    all_grobs = append(all_grobs, tmp[1:3] )
-}
-p = marrangeGrob(all_grobs, nrow=3, ncol=4, top="" )  # layout_matrix = matrix(c(1,2,2,2,3,3,4,4), ncol=2, nrow=4)
-print(p)  
-```
-
 ```{r}
-pdf(file="../../../../Results/1_DSB-overview/DREME_all_motifs_etoposide_vs_control_top10.pdf", width = 11, height = 4)
+pdf(file="../../../../Results/1_DSB-overview/DREME_all_motifs_etoposide_vs_control_top10.pdf", width = 11, height = 14)
 print(p)
 dev.off()
 ```
-

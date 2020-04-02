@@ -1,0 +1,65 @@
+---
+title: "MC3 import"
+author: "Hilmar Berger"
+date: "3/5/2019"
+output: html_document
+---
+
+```{r, message=FALSE}
+library(data.table)
+library(Biostrings)
+```
+
+
+```{r}
+# load("./ICGC_DCC_release26_projects_donors_samples_specimen.Rdata")
+# fwrite(donors, file="ICGC_DCC_rel26_all_donors.txt", sep="\t")
+donors = fread(cmd="zcat ICGC_DCC_rel26_all_donors.txt.gz")
+setkey(donors, "submitted_donor_id")
+```
+
+
+```{r}
+data_mc3 = fread("zcat mc3.v0.2.8.PUBLIC.maf.gz", sep="\t")
+
+tmp = strsplit(data_mc3$Tumor_Sample_Barcode, "-")
+data_mc3$TCGA_donor = unlist(sapply(tmp, function(x) paste(x[1:3], collapse="-")))
+
+# about 1000 tcga patients from mc3 are not in ICGC v26 tables, but seem to be in GDC
+#all_donors = unique(data_mc3$TCGA_donor)
+#sum(all_donors %in% donors$submitted_donor_id)
+#xx= all_donors[!all_donors %in% donors$submitted_donor_id]
+
+data_mc3$cancer_entity = donors[data_mc3$TCGA_donor]$cancer_entity
+data_mc3$project = donors[data_mc3$TCGA_donor]$project_code
+data_mc3$donor_sex = donors[data_mc3$TCGA_donor]$donor_sex
+
+all_trinuc = mkAllStrings(c("A","C","G","T"), 3)
+mids = substr(all_trinuc, 2, 2)
+revcomp = reverseComplement(DNAStringSet(all_trinuc))
+trinuc_CT = ifelse(mids %in% c("C", "T"), all_trinuc, as.character(revcomp))
+names(trinuc_CT) = all_trinuc
+
+# all(data_mc3$Reference_Allele==data_mc3$Tumor_Seq_Allele1) # TRUE
+
+ra = data_mc3$Reference_Allele
+ra = ifelse(data_mc3$Variant_Type=="SNP", ra, "N")
+ta = data_mc3$Tumor_Seq_Allele2
+ta = ifelse(data_mc3$Variant_Type=="SNP", ta, "N")
+
+data_mc3$nuc_change = with(data_mc3, ifelse(Variant_Type=="SNP", ifelse(ra %in% c("C", "T"), paste(ra,ta, sep=">") , paste(complement(DNAStringSet(ra)),complement(DNAStringSet(ta)), sep=">")), NA ) )
+data_mc3$trinuc_context = trinuc_CT[substr(data_mc3$CONTEXT, 5, 7)]
+
+data_mc3$trinuc_change = with(data_mc3, paste(substr(trinuc_context, 1, 1), "[", nuc_change, "]", substr(trinuc_context, 3, 3), sep=""))
+
+fwrite(data_mc3, file="./MC3_variants_with_trinuc_context.txt",sep="\t")
+
+```
+
+```{r}
+aa = data_mc3[, .(mut_count=.N), by=c("TCGA_donor", "cancer_entity")]
+aa[, .(dcount=.N), by=cancer_entity]
+```
+
+
+Data from MC3 has been annotated with donor information on cancer entity and sex as well as trinucleotide context and written to file *MC3_variants_with_trinuc_context.txt*.

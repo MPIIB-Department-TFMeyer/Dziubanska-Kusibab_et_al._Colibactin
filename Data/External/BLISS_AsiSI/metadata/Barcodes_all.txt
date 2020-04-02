@@ -1,0 +1,3 @@
+NGS_library	Sample_name	Barcode_sequence	Organism	Sample_Barcode_nr
+SRR5441980	AsiSI_induced	CATCACGC	Homo sapiens	1
+SRR5441981	AsiSI_uninduced	CATCACGC	Homo sapiens	1

@@ -1,0 +1,171 @@
+# DREME 5.0.5
+#     command: dreme -verbosity 1 -oc BB83 -dna -p /data_genome2/projects/MB222-GuideSeq/BLISS/break_ends/FASTA_window20/BB83_WT_window20.fasta -n /data_genome2/projects/MB222-GuideSeq/BLISS/break_ends/FASTA_window20/BB83_Mut_window20.fasta -e 0.05 -m 10
+#   positives: 409990 from /data_genome2/projects/MB222-GuideSeq/BLISS/break_ends/FASTA_window20/BB83_WT_window20.fasta (Mon Dec 16 18:10:25 CET 2019)
+#   negatives: 1206160 from /data_genome2/projects/MB222-GuideSeq/BLISS/break_ends/FASTA_window20/BB83_Mut_window20.fasta (Mon Dec 16 18:08:37 CET 2019)
+#        host: genome2.mpiib-berlin.mpg.de
+#        when: Mon Dec 16 19:37:47 CET 2019
+
+MEME version 5.0.5
+
+ALPHABET "DNA" DNA-LIKE
+A "Adenine" CC0000 ~ T "Thymine" 008000
+C "Cytosine" 0000CC ~ G "Guanine" FFB300
+N "Any base" = ACGT
+X = ACGT
+. = ACGT
+V "Not T" = ACG
+H "Not G" = ACT
+D "Not C" = AGT
+B "Not A" = CGT
+M "Amino" = AC
+R "Purine" = AG
+W "Weak" = AT
+S "Strong" = CG
+Y "Pyrimidine" = CT
+K "Keto" = GT
+U = T
+END ALPHABET
+
+strands: + -
+
+Background letter frequencies (from dataset):
+A 0.286 C 0.214 G 0.214 T 0.286
+
+
+MOTIF AAWWTTH DREME-1
+
+#             Word    RC Word        Pos        Neg    P-value    E-value
+# BEST     AAWWTTH    DAAWWTT      16611      31421   4.1e-454   1.9e-449
+#          AAAATTA    TAATTTT       4329       6906   6.6e-208   3.0e-203
+#          AATTTTA    TAAAATT       3303       4978   5.9e-185   2.7e-180
+#          AATTTTT    AAAAATT       3488       6367   1.1e-108   5.1e-104
+#          AAAATTT    AAATTTT       2285       3913   2.6e-089   1.2e-084
+#          AAATTTA    TAAATTT       2278       4056   3.4e-078   1.6e-073
+#          AATTTTC    GAAAATT       1946       3389   2.9e-072   1.3e-067
+#          AATATTA    TAATATT       2050       3826   2.0e-059   9.1e-055
+#          AATATTT    AAATATT       2801       5792   3.0e-051   1.4e-046
+#          AAAATTC    GAATTTT       1782       3445   4.2e-045   1.9e-040
+#          AAATTTC    GAAATTT       1336       2414   2.6e-044   1.2e-039
+#          AATATTC    GAATATT       1391       2679   3.6e-036   1.7e-031
+
+letter-probability matrix: alength= 4 w= 7 nsites= 16858 E= 1.9e-449
+1.000000 0.000000 0.000000 0.000000
+1.000000 0.000000 0.000000 0.000000
+0.413276 0.000000 0.000000 0.586724
+0.505813 0.000000 0.000000 0.494187
+0.000000 0.000000 0.000000 1.000000
+0.000000 0.000000 0.000000 1.000000
+0.457646 0.247242 0.000000 0.295112
+
+
+MOTIF CGNS DREME-2
+
+#             Word    RC Word        Pos        Neg    P-value    E-value
+# BEST        CGNS       SNCG      60400     159074   2.2e-135   1.0e-130
+#             CGGC       GCCG      11833      29105   6.8e-061   3.1e-056
+#             CGGG       CCCG      16449      41688   3.8e-060   1.7e-055
+#             CGCC       GGCG      15736      40226   1.7e-051   7.7e-047
+#             CGCG       CGCG       4825      11471   5.3e-035   2.4e-030
+#             CGAC       GTCG       6201      15521   5.3e-027   2.4e-022
+#             CGAG       CTCG      13099      34766   2.4e-024   1.1e-019
+#             CGTC       GACG       9354      24457   1.3e-022   5.9e-018
+#             CGTG       CACG      16779      45417   4.7e-021   2.2e-016
+
+letter-probability matrix: alength= 4 w= 4 nsites= 73363 E= 1.0e-130
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.208716 0.198070 0.302291 0.290923
+0.000000 0.441122 0.558878 0.000000
+
+
+MOTIF DAAAATM DREME-3
+
+#             Word    RC Word        Pos        Neg    P-value    E-value
+# BEST     DAAAATM    KATTTTH      13052      33132   7.7e-047   2.7e-042
+#          AAAAATA    TATTTTT       3498       8786   2.3e-015   8.0e-011
+#          TAAAATA    TATTTTA       3140       7886   5.6e-014   1.9e-009
+#          GAAAATA    TATTTTC       2054       5162   1.2e-009   4.1e-005
+#          TAAAATC    GATTTTA       1488       3758   4.3e-007   1.5e-002
+#          AAAAATC    GATTTTT       1923       4984   1.5e-006   5.2e-002
+#          GAAAATC    GATTTTC       1123       2853   2.0e-005   6.9e-001
+
+letter-probability matrix: alength= 4 w= 7 nsites= 13187 E= 2.7e-042
+0.410404 0.000000 0.240692 0.348904
+1.000000 0.000000 0.000000 0.000000
+1.000000 0.000000 0.000000 0.000000
+1.000000 0.000000 0.000000 0.000000
+1.000000 0.000000 0.000000 0.000000
+0.000000 0.000000 0.000000 1.000000
+0.656707 0.343293 0.000000 0.000000
+
+
+MOTIF AAWGTTH DREME-4
+
+#             Word    RC Word        Pos        Neg    P-value    E-value
+# BEST     AAWGTTH    DAACWTT       8219      20611   1.5e-034   5.1e-030
+#          AAAGTTA    TAACTTT       1533       3417   4.0e-019   1.4e-014
+#          AAAGTTT    AAACTTT       1281       2988   4.2e-012   1.4e-007
+#          AATGTTT    AAACATT       2102       5434   3.1e-007   1.1e-002
+#          AATGTTA    TAACATT       1524       4017   1.5e-004   5.2e+000
+#          AATGTTC    GAACATT        951       2537   5.5e-003   1.9e+002
+#          AAAGTTC    GAACTTT        869       2314   6.7e-003   2.3e+002
+
+letter-probability matrix: alength= 4 w= 7 nsites= 8255 E= 5.1e-030
+1.000000 0.000000 0.000000 0.000000
+1.000000 0.000000 0.000000 0.000000
+0.446396 0.000000 0.000000 0.553604
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000
+0.000000 0.000000 0.000000 1.000000
+0.369715 0.220594 0.000000 0.409691
+
+
+MOTIF CGS DREME-5
+
+#             Word    RC Word        Pos        Neg    P-value    E-value
+# BEST         CGS        SCG      20832      55680   1.5e-033   5.2e-029
+#              CGG        CCG      11624      30698   1.2e-023   4.0e-019
+#              CGC        GCG      13195      35421   7.0e-020   2.4e-015
+
+letter-probability matrix: alength= 4 w= 3 nsites= 21618 E= 5.2e-029
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.537145 0.462855 0.000000
+
+
+MOTIF ATAWATTA DREME-6
+
+#             Word    RC Word        Pos        Neg    P-value    E-value
+# BEST    ATAWATTA   TAATWTAT       1227       3010   6.2e-008   1.9e-003
+#         ATAAATTA   TAATTTAT        724       1742   4.0e-006   1.2e-001
+#         ATATATTA   TAATATAT        507       1272   1.5e-003   4.4e+001
+
+letter-probability matrix: alength= 4 w= 8 nsites= 1232 E= 1.9e-003
+1.000000 0.000000 0.000000 0.000000
+0.000000 0.000000 0.000000 1.000000
+1.000000 0.000000 0.000000 0.000000
+0.586851 0.000000 0.000000 0.413149
+1.000000 0.000000 0.000000 0.000000
+0.000000 0.000000 0.000000 1.000000
+0.000000 0.000000 0.000000 1.000000
+1.000000 0.000000 0.000000 0.000000
+
+
+MOTIF GATGTY DREME-7
+
+#             Word    RC Word        Pos        Neg    P-value    E-value
+# BEST      GATGTY     RACATC       5513      15068   1.5e-006   4.4e-002
+#           GATGTC     GACATC       2358       6287   2.6e-005   7.8e-001
+#           GATGTT     AACATC       3165       8805   3.6e-003   1.1e+002
+
+letter-probability matrix: alength= 4 w= 6 nsites= 5527 E= 4.4e-002
+0.000000 0.000000 1.000000 0.000000
+1.000000 0.000000 0.000000 0.000000
+0.000000 0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000
+0.000000 0.426814 0.000000 0.573186
+
+
+# Stopping reason: E-value threshold exceeded
+#    Running time: 5464.40 seconds

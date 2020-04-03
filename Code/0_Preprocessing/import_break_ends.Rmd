@@ -113,12 +113,6 @@ ed$technical_replicate=ifelse(grepl("b$",ed$library), TRUE, FALSE)
               
 ```
 
-
-```{r}
-save(break_ranges_excluded_difficult_regions, ed, file="../../Data/Breaks_filtered/Filtered_break_end_sites.Rdata" )
-```
-
-
 ```{r}
 suppressMessages(seqlevelsStyle(break_ranges_excluded_difficult_regions) <- "NCBI")
 ed = read.table("../../Data/ExpDesign_fixed.txt", sep="\t", header=T, stringsAsFactors = F)
@@ -145,7 +139,6 @@ for (s in included_samples) {
 }
 
 fwrite(breaks_agg, file="../../Data/Breaks_filtered/breaks_agg.txt", sep="\t")
-save(breaks_agg, file="../../Data/Breaks_filtered/Breaks_unique.Rdata")
 ```
 
 ```{r, fig.width=10}

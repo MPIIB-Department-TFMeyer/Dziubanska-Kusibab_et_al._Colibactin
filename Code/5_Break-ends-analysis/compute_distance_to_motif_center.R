@@ -3,10 +3,11 @@ require(GenomicRanges)
 
 # We assume that query and target regions have a direction (i.e. stranded-ness)
 # target regions are typically short oligonucleotide motifs
-# query regions are estimated double strand break sites derived either from a + or - stranded read
+# query regions are estimated double strand break sites derived either from a + or - stranded read and are
+# given as single nucleotide positions 5' of the break site
 # We assume that the point of reference in target regions is the center of the provided regions
 # We also assume that palindromic target regions are marked as such (those will only mapped to the + strand)
-# for each query region ()
+
 compute_distances <- function(query_region, target_regions, maxgap=1, break_between_nucleotides=F, palindrome_ref_strand = "+", use_center_ref_position = F) {
   
   pp = target_regions
@@ -42,7 +43,6 @@ compute_distances <- function(query_region, target_regions, maxgap=1, break_betw
   
   if (break_between_nucleotides) {
     increment = motif_strand_dir
-    #bp_incl_rel = ifelse(strand(selected_query_pos)=="+", bp_excl_rel-increment, bp_excl_rel+increment)
     bp_incl_rel = ifelse(strand(selected_query_pos)=="+", bp_excl_rel+increment, bp_excl_rel-increment)
     
     bp_dist = (bp_excl_rel + bp_incl_rel)/2

@@ -1,0 +1,45 @@
+Data set preparation see file README_RUN
+
+Mapping of figures to individual R/R markdown files:
+
+Fig  1B / Supp. Fig. 3A/B: 
+./Code/1_DSB-overview/DREME_E.coli/analysis/DREME_motif_overview.Rmd
+./Code/1_DSB-overview/DREME_Etoposide/analysis/DREME_motif_overview.Rmd
+
+Fig. 1C / Supp. Fig. 4A: ./Code/2_DSB-sequence-specificity/HN_enrichment_all_replicates.Rmd
+
+Supp Fig. 4B: ./Code/2_DSB-sequence-specificity/PN_enrichment_all_replicates.Rmd
+
+Supp Fig. 4C: ./Code/2_DSB-sequence-specificity/AT_content_and_NN_motif_enrichment.Rmd
+
+Supp Fig. 4D: ./Code/2_DSB-sequence-specificity/HN_distribution_around_nucleosomes.Rmd
+
+Fig. 2A / Suppl. Fig. 5A: ./Code/3_DSB-shape-characteristics/Sequence_and_Shape_correlation.Rmd
+
+Fig. 2B: ./Code/3_DSB-shape-characteristics/Multivariate/3D_final.R
+
+Fig. 2C / Suppl. Fig. 5B: External contribution by F. Battistini
+
+Suppl. Fig. 5C: ./Code/3_DSB-shape-characteristics/Complete_model/Pattern_analysis_shape_influence.Rmd
+
+Fig.3A ./Code/4_CDM-association-with-cancer/Giannakis_CDM_enrichment/Pattern_enrichment_around_variants_Giannakis_COREAD_quartile_and_HM_HN_4096_v2_Plots_final.Rmd
+
+Suppl. Fig. 6A: ./Code/4_CDM-association-with-cancer/MC3_CDM_enrichment/Pattern_enrichment_around_variants_MC3_PanCancer_quartile_and_HM_HN_4096_v2_Plots.Rmd
+
+Fig. 3B: ./Code/4_CDM-association-with-cancer/CRC_WGS_CDM_enrichment/Pattern_enrichment_around_variants_Finnish_COREAD_quartile_and_HM_HN_64_Plots.Rmd
+
+Suppl. Fig. 8: ./Code/4_CDM-association-with-cancer/CRC_WGS_CDM_enrichment/Pattern_enrichment_around_variants_Finnish_COREAD_quartile_and_HM_PN_64_Plots.Rmd
+
+Fig. 3C: ./Code/4_CDM-association-with-cancer/SBS_Derivations/Theoretical_AAWWTT_SBS_signature.Rmd
+
+Fig. 3D/3E: ./Code/4_CDM-association-with-cancer/CRC_WGS_CDM_enrichment/Finnish_cohort_further_correlations.Rmd
+
+Suppl. Fig. 6B: ./Code/4_CDM-association-with-cancer/Driver_genes/Analysis_of_hits_at_HN_and_PN_in_MC3_v2.Rmd and .../Analysis_of_hits_at_HN_and_PN_in_COSMIC_v2.Rmd
+
+Suppl. Fig. 7A/B: ./Code/4_CDM-association-with-cancer/Signature_contamination_analysis/PentanucleotideChanges.Rmd
+
+Fig. 4 B/C: ./Code/5_Break-ends-analysis/Break_ends_analysis_in_selected_motifs.Rmd
+
+Suppl. Fig. 9B: ./Code/5_Break-ends-analysis/Break_end_distribution_in_AsiSI_motif.Rmd
+
+

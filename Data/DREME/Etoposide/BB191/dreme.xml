@@ -1,0 +1,266 @@
+<dreme version="5.0.5" release="Mon Mar 18 20:12:19 2019 -0700">
+  <model>
+    <command_line>dreme -verbosity 1 -oc BB191 -dna -p /data_genome2/projects/MB222-GuideSeq/BLISS/break_ends/FASTA_window20/BB191_ETO_window20.fasta -n /data_genome2/projects/MB222-GuideSeq/BLISS/break_ends/FASTA_window20/BB191_Ctrl_window20.fasta -e 0.05 -m 50</command_line>
+    <positives name="BB191 ETO window20" count="6865044" file="/data_genome2/projects/MB222-GuideSeq/BLISS/break_ends/FASTA_window20/BB191_ETO_window20.fasta" last_mod_date="Mon Dec 16 18:13:00 CET 2019" />
+    <negatives name="BB191 Ctrl window20" count="4247590" from="file" file="/data_genome2/projects/MB222-GuideSeq/BLISS/break_ends/FASTA_window20/BB191_Ctrl_window20.fasta" last_mod_date="Mon Dec 16 18:14:11 CET 2019" />
+    <alphabet name="DNA" like="dna">
+      <letter id="A" symbol="A" complement="T" name="Adenine" colour="CC0000"/>
+      <letter id="C" symbol="C" complement="G" name="Cytosine" colour="0000CC"/>
+      <letter id="G" symbol="G" complement="C" name="Guanine" colour="FFB300"/>
+      <letter id="T" symbol="T" aliases="U" complement="A" name="Thymine" colour="008000"/>
+      <letter id="N" symbol="N" aliases="X." equals="ACGT" name="Any base"/>
+      <letter id="V" symbol="V" equals="ACG" name="Not T"/>
+      <letter id="H" symbol="H" equals="ACT" name="Not G"/>
+      <letter id="D" symbol="D" equals="AGT" name="Not C"/>
+      <letter id="B" symbol="B" equals="CGT" name="Not A"/>
+      <letter id="M" symbol="M" equals="AC" name="Amino"/>
+      <letter id="R" symbol="R" equals="AG" name="Purine"/>
+      <letter id="W" symbol="W" equals="AT" name="Weak"/>
+      <letter id="S" symbol="S" equals="CG" name="Strong"/>
+      <letter id="Y" symbol="Y" equals="CT" name="Pyrimidine"/>
+      <letter id="K" symbol="K" equals="GT" name="Keto"/>
+    </alphabet>
+    <strands>both</strands>
+    <background A="0.288" C="0.212" G="0.212" T="0.289" from="dataset"/>
+    <stop evalue="0.05" count="50"/>
+    <ngen>100</ngen>
+    <add_pv_thresh>0.01</add_pv_thresh>
+    <seed>1</seed>
+    <host>genome2.mpiib-berlin.mpg.de</host>
+    <when>Fri Mar 13 17:14:36 CET 2020</when>
+  </model>
+  <motifs>
+    <motif id="m01" alt="DREME-1" seq="ABTAH" length="5" nsites="1881273" p="1831253" n="1049301" pvalue="3.6e-1161" evalue="1.7e-1156" unerased_evalue="2.5e-946">
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.271423" G="0.287994" T="0.440583"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.399860" C="0.232455" G="0.000000" T="0.367685"/>
+      <match seq="ATTAA" p="331044" n="184965" pvalue="2.6e-286" evalue="1.2e-281"/>
+      <match seq="ATTAC" p="225426" n="125126" pvalue="2.3e-217" evalue="1.1e-212"/>
+      <match seq="AGTAA" p="280004" n="158901" pvalue="4.9e-175" evalue="2.3e-170"/>
+      <match seq="ATTAT" p="330081" n="189582" pvalue="2.0e-155" evalue="9.4e-151"/>
+      <match seq="ACTAA" p="222777" n="126489" pvalue="4.9e-137" evalue="2.3e-132"/>
+      <match seq="AGTAT" p="218933" n="124698" pvalue="2.4e-125" evalue="1.1e-120"/>
+      <match seq="ACTAT" p="203444" n="116256" pvalue="1.0e-107" evalue="4.8e-103"/>
+      <match seq="AGTAC" p="134269" n="75603" pvalue="2.5e-098" evalue="1.2e-093"/>
+      <match seq="ACTAC" p="144716" n="83218" pvalue="1.6e-065" evalue="7.4e-061"/>
+    </motif>
+    <motif id="m02" alt="DREME-2" seq="DTHA" length="4" nsites="5344862" p="4007777" n="2414494" pvalue="2.9e-553" evalue="1.3e-548" unerased_evalue="3.0e-973">
+      <pos A="0.302201" C="0.000000" G="0.247141" T="0.450657"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.184543" C="0.544518" G="0.000000" T="0.270939"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <match seq="TTTA" p="1207971" n="710999" pvalue="1.3e-296" evalue="5.5e-292"/>
+      <match seq="TTAA" p="425830" n="244888" pvalue="5.5e-196" evalue="2.4e-191"/>
+      <match seq="GTTA" p="508835" n="297281" pvalue="9.8e-148" evalue="4.3e-143"/>
+      <match seq="ATAA" p="866705" n="514543" pvalue="1.1e-139" evalue="4.9e-135"/>
+      <match seq="ATCA" p="871123" n="519938" pvalue="2.2e-107" evalue="9.5e-103"/>
+      <match seq="GTAA" p="400156" n="234612" pvalue="1.4e-101" evalue="6.2e-097"/>
+      <match seq="GTCA" p="672296" n="401134" pvalue="3.0e-082" evalue="1.3e-077"/>
+      <match seq="TTCA" p="1304009" n="791263" pvalue="2.3e-052" evalue="1.0e-047"/>
+      <match seq="ATTA" p="231128" n="139548" pvalue="1.0e-013" evalue="4.4e-009"/>
+    </motif>
+    <motif id="m03" alt="DREME-3" seq="RYRY" length="4" nsites="3108373" p="2574647" n="1554867" pvalue="1.8e-199" evalue="6.2e-195" unerased_evalue="6.4e-802">
+      <pos A="0.511923" C="0.000000" G="0.488077" T="0.000000"/>
+      <pos A="0.000000" C="0.425452" G="0.000000" T="0.574548"/>
+      <pos A="0.573887" C="0.000000" G="0.426113" T="0.000000"/>
+      <pos A="0.000000" C="0.487080" G="0.000000" T="0.512920"/>
+      <match seq="ATAC" p="353784" n="206536" pvalue="1.2e-103" evalue="3.9e-099"/>
+      <match seq="ACAC" p="595283" n="356808" pvalue="7.6e-056" evalue="2.5e-051"/>
+      <match seq="GCGC" p="69835" n="39758" pvalue="5.2e-041" evalue="1.8e-036"/>
+      <match seq="GCAC" p="650843" n="392755" pvalue="5.7e-039" evalue="1.9e-034"/>
+      <match seq="ATAT" p="307612" n="183409" pvalue="4.0e-038" evalue="1.3e-033"/>
+      <match seq="GTAC" p="101373" n="58980" pvalue="1.9e-033" evalue="6.4e-029"/>
+      <match seq="ACAT" p="604013" n="365466" pvalue="3.1e-029" evalue="1.1e-024"/>
+      <match seq="ACGC" p="108597" n="63819" pvalue="9.4e-026" evalue="3.1e-021"/>
+      <match seq="ACGT" p="51630" n="30719" pvalue="2.4e-008" evalue="8.2e-004"/>
+      <match seq="ATGC" p="531624" n="326392" pvalue="1.4e-004" evalue="4.8e+000"/>
+    </motif>
+    <motif id="m04" alt="DREME-4" seq="AGCYACY" length="7" nsites="87902" p="87825" n="48569" pvalue="5.3e-090" evalue="1.3e-085" unerased_evalue="1.5e-105">
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.735319" G="0.000000" T="0.264681"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.512093" G="0.000000" T="0.487907"/>
+      <match seq="AGCCACC" p="37668" n="20290" pvalue="2.6e-058" evalue="6.2e-054"/>
+      <match seq="AGCCACT" p="26950" n="15079" pvalue="1.3e-023" evalue="3.1e-019"/>
+      <match seq="AGCTACT" p="15968" n="9043" pvalue="7.3e-012" evalue="1.8e-007"/>
+      <match seq="AGCTACC" p="7376" n="4246" pvalue="8.9e-005" evalue="2.2e+000"/>
+    </motif>
+    <motif id="m05" alt="DREME-5" seq="CGH" length="3" nsites="677846" p="626196" n="376974" pvalue="1.6e-044" evalue="3.9e-040" unerased_evalue="1.1e-127">
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.438215" C="0.307297" G="0.000000" T="0.254488"/>
+      <match seq="CGA" p="366571" n="219391" pvalue="4.3e-037" evalue="1.1e-032"/>
+      <match seq="CGC" p="239705" n="143717" pvalue="3.6e-022" evalue="8.7e-018"/>
+      <match seq="CGT" p="205188" n="123619" pvalue="2.9e-014" evalue="6.9e-010"/>
+    </motif>
+    <motif id="m06" alt="DREME-6" seq="TRYA" length="4" nsites="343802" p="339624" n="203386" pvalue="3.2e-033" evalue="5.2e-029" unerased_evalue="9.1e-601">
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.290685" C="0.000000" G="0.709315" T="0.000000"/>
+      <pos A="0.000000" C="0.715514" G="0.000000" T="0.284486"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <match seq="TACA" p="138951" n="82911" pvalue="3.2e-017" evalue="5.2e-013"/>
+      <match seq="TATA" p="28953" n="16591" pvalue="1.2e-015" evalue="2.0e-011"/>
+      <match seq="TGCA" p="173937" n="105143" pvalue="7.7e-010" evalue="1.3e-005"/>
+    </motif>
+    <motif id="m07" alt="DREME-7" seq="TAA" length="3" nsites="301031" p="296544" n="177159" pvalue="3.4e-033" evalue="5.2e-029" unerased_evalue="1.7e-880">
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <match seq="TAA" p="296544" n="177159" pvalue="3.4e-033" evalue="5.2e-029"/>
+    </motif>
+    <motif id="m08" alt="DREME-8" seq="GCAATY" length="6" nsites="37795" p="37772" n="21786" pvalue="5.4e-017" evalue="8.0e-013" unerased_evalue="2.3e-050">
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.000000" C="0.414393" G="0.000000" T="0.585607"/>
+      <match seq="GCAATT" p="22119" n="12658" pvalue="1.0e-012" evalue="1.5e-008"/>
+      <match seq="GCAATC" p="15662" n="9134" pvalue="3.2e-006" evalue="4.7e-002"/>
+    </motif>
+    <motif id="m09" alt="DREME-9" seq="AAGGSCY" length="7" nsites="38128" p="38096" n="22144" pvalue="5.6e-014" evalue="8.3e-010" unerased_evalue="5.7e-022">
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.447257" G="0.552743" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.458430" G="0.000000" T="0.541570"/>
+      <match seq="AAGGCCT" p="8361" n="4690" pvalue="3.5e-008" evalue="5.2e-004"/>
+      <match seq="AAGGGCT" p="12284" n="7156" pvalue="2.5e-005" evalue="3.7e-001"/>
+      <match seq="AAGGCCC" p="9001" n="5274" pvalue="8.4e-004" evalue="1.2e+001"/>
+      <match seq="AAGGGCC" p="9113" n="5410" pvalue="8.1e-003" evalue="1.2e+002"/>
+    </motif>
+    <motif id="m10" alt="DREME-10" seq="GCYAC" length="5" nsites="131739" p="131047" n="78695" pvalue="1.1e-011" evalue="1.6e-007" unerased_evalue="6.5e-107">
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.722360" G="0.000000" T="0.277640"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <match seq="GCTAC" p="36671" n="21742" pvalue="2.7e-007" evalue="4.0e-003"/>
+      <match seq="GCCAC" p="94930" n="57274" pvalue="8.0e-007" evalue="1.2e-002"/>
+    </motif>
+    <motif id="m11" alt="DREME-11" seq="CCG" length="3" nsites="136684" p="133844" n="80538" pvalue="1.4e-010" evalue="2.0e-006" unerased_evalue="1.2e-015">
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <match seq="CCG" p="133844" n="80538" pvalue="1.4e-010" evalue="2.0e-006"/>
+    </motif>
+    <motif id="m12" alt="DREME-12" seq="GRWCCAC" length="7" nsites="21721" p="21708" n="12526" pvalue="2.2e-010" evalue="2.8e-006" unerased_evalue="2.6e-023">
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.492565" C="0.000000" G="0.507435" T="0.000000"/>
+      <pos A="0.612219" C="0.000000" G="0.000000" T="0.387781"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <match seq="GAACCAC" p="6623" n="3777" pvalue="3.1e-005" evalue="4.1e-001"/>
+      <match seq="GGTCCAC" p="4497" n="2579" pvalue="1.1e-003" evalue="1.4e+001"/>
+      <match seq="GATCCAC" p="4074" n="2341" pvalue="2.2e-003" evalue="2.9e+001"/>
+      <match seq="GGACCAC" p="6837" n="3999" pvalue="2.4e-003" evalue="3.1e+001"/>
+    </motif>
+    <motif id="m13" alt="DREME-13" seq="AAAGCCWT" length="8" nsites="5774" p="5774" n="3126" pvalue="7.6e-010" evalue="1.0e-005" unerased_evalue="6.5e-020">
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.494458" C="0.000000" G="0.000000" T="0.505542"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <match seq="AAAGCCAT" p="2855" n="1516" pvalue="5.8e-007" evalue="7.6e-003"/>
+      <match seq="AAAGCCTT" p="2919" n="1610" pvalue="1.1e-004" evalue="1.4e+000"/>
+    </motif>
+    <motif id="m14" alt="DREME-14" seq="AACAAYTT" length="8" nsites="3967" p="3967" n="2091" pvalue="1.2e-009" evalue="1.6e-005" unerased_evalue="2.1e-028">
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.369801" G="0.000000" T="0.630199"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <match seq="AACAATTT" p="2500" n="1306" pvalue="3.2e-007" evalue="4.2e-003"/>
+      <match seq="AACAACTT" p="1467" n="785" pvalue="5.1e-004" evalue="6.7e+000"/>
+    </motif>
+    <motif id="m15" alt="DREME-15" seq="GCTRGCY" length="7" nsites="16433" p="16418" n="9428" pvalue="3.2e-009" evalue="4.2e-005" unerased_evalue="3.8e-006">
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.242500" C="0.000000" G="0.757500" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.446358" G="0.000000" T="0.553642"/>
+      <match seq="GCTAGCT" p="2693" n="1398" pvalue="4.3e-008" evalue="5.6e-004"/>
+      <match seq="GCTAGCC" p="2070" n="1134" pvalue="4.9e-004" evalue="6.5e+000"/>
+      <match seq="GCTGGCC" p="5666" n="3282" pvalue="1.2e-003" evalue="1.6e+001"/>
+      <match seq="GCTGGCT" p="6827" n="4024" pvalue="7.4e-003" evalue="9.7e+001"/>
+    </motif>
+    <motif id="m16" alt="DREME-16" seq="AARCTGCT" length="8" nsites="5705" p="5705" n="3110" pvalue="5.8e-009" evalue="7.6e-005" unerased_evalue="1.6e-012">
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.611569" C="0.000000" G="0.388431" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <match seq="AAACTGCT" p="3489" n="1905" pvalue="5.4e-006" evalue="7.0e-002"/>
+      <match seq="AAGCTGCT" p="2216" n="1205" pvalue="1.5e-004" evalue="2.0e+000"/>
+    </motif>
+    <motif id="m17" alt="DREME-17" seq="GBTTTCTA" length="8" nsites="6086" p="6086" n="3372" pvalue="1.2e-007" evalue="1.6e-003" unerased_evalue="4.2e-010">
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.281794" G="0.279658" T="0.438547"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <match seq="GGTTTCTA" p="1702" n="908" pvalue="1.5e-004" evalue="2.0e+000"/>
+      <match seq="GCTTTCTA" p="1716" n="949" pvalue="2.8e-003" evalue="3.7e+001"/>
+      <match seq="GTTTTCTA" p="2669" n="1516" pvalue="4.0e-003" evalue="5.2e+001"/>
+    </motif>
+    <motif id="m18" alt="DREME-18" seq="GAYCTCA" length="7" nsites="16040" p="16036" n="9304" pvalue="3.8e-007" evalue="4.9e-003" unerased_evalue="2.5e-009">
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.570262" G="0.000000" T="0.429738"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <match seq="GACCTCA" p="9147" n="5264" pvalue="1.3e-005" evalue="1.7e-001"/>
+      <match seq="GATCTCA" p="6889" n="4040" pvalue="3.5e-003" evalue="4.5e+001"/>
+    </motif>
+    <motif id="m19" alt="DREME-19" seq="GGWCTCAC" length="8" nsites="6436" p="6436" n="3592" pvalue="3.4e-007" evalue="4.5e-003" unerased_evalue="1.2e-002">
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.371193" C="0.000000" G="0.000000" T="0.628807"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <match seq="GGTCTCAC" p="4047" n="2273" pvalue="9.9e-005" evalue="1.3e+000"/>
+      <match seq="GGACTCAC" p="2389" n="1319" pvalue="4.5e-004" evalue="5.9e+000"/>
+    </motif>
+    <motif id="m20" alt="DREME-20" seq="AAGGAWTC" length="8" nsites="3661" p="3661" n="1992" pvalue="1.8e-006" evalue="2.4e-002" unerased_evalue="2.7e-008">
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="0.000000" C="0.000000" G="1.000000" T="0.000000"/>
+      <pos A="1.000000" C="0.000000" G="0.000000" T="0.000000"/>
+      <pos A="0.533734" C="0.000000" G="0.000000" T="0.466266"/>
+      <pos A="0.000000" C="0.000000" G="0.000000" T="1.000000"/>
+      <pos A="0.000000" C="1.000000" G="0.000000" T="0.000000"/>
+      <match seq="AAGGAATC" p="1978" n="1047" pvalue="1.8e-005" evalue="2.3e-001"/>
+      <match seq="AAGGATTC" p="1734" n="968" pvalue="4.7e-003" evalue="6.2e+001"/>
+    </motif>
+  </motifs>
+  <run_time cpu="79362.75" real="79359.28" stop="evalue"/>
+</dreme>

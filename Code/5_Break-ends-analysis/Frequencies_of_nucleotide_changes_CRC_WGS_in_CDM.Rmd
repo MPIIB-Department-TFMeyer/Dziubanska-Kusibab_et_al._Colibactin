@@ -21,6 +21,7 @@ library(reshape2)
 library(ggplot2)
 library(data.table)
 library(ggthemes)
+library(scales)
 ```
 
 # Introduction
@@ -30,7 +31,6 @@ Please write how data were obtained by Helsinki.
 ```{r}
 input_folder = "../../Data/WGS_cohort/positional_mutation_counts" 
 all_files = list.files(file.path(input_folder), full.names = T)
-#setwd(input_folder)
 
 all_tabs = list()
 for (ff in all_files) {
@@ -61,14 +61,19 @@ all_tables[, prop_genomic:=count/pattern_freq_genomic]
 tmp = subset(all_tables, nuc_change %in% c("A","T","C","G") & analysis_set == "top_bottom")
 tmp$group = factor(tmp$group, levels=c("top20", "bottom20"))
 
-p = ggplot(tmp, aes(x=position, y=prop_genomic, fill=nuc_change)) + geom_bar(stat="identity") + facet_grid(group  ~ pattern) + theme_few() + theme(text = element_text(size=12), strip.text.x = element_text(size = 18), strip.text.y = element_text(size = 14)) + ylab("Proportion of mutated motifs in genome") + xlab("Position in Motif")
-print(p)
+# Source: https://davidmathlogic.com/colorblind/
+IBM_colorblind_scale  = c("#648FFF","#785EF0","#DC267F","#FE6100","#FFB000")
 
+p = ggplot(tmp, aes(x=position, y=prop_genomic, fill=nuc_change)) + geom_bar(stat="identity") + facet_grid(group  ~ pattern) + theme_few() + theme(text = element_text(size=12), strip.text.x = element_text(size = 18), strip.text.y = element_text(size = 14)) + ylab("Proportion of mutated motifs in genome") + xlab("Position in Motif") + scale_fill_manual(values=IBM_colorblind_scale[c(1,4,5,2)] )
+print(p)
+```
+
+```{r}
 pdf(file="../../Results/5_Break-ends-analysis/Mutation_positional_Top20_Bottom20_genomic_proportion.pdf", width = 7, height = 4)
 print(p)
 dev.off()
-
 ```
+
 
 # Software versions
 ```{r}

@@ -49,7 +49,7 @@ col_manual =  scale_color_manual(breaks=c("AT5", "AT6", "other"), values=c("red3
 ```{r}
 all_nuc_enrichment_tabs_agg = all_nuc_enrichment_tabs[, .(Mean=mean(logRatio, na.rm=T), SD=sd(logRatio, na.rm=T), rep_cnt=sum(!is.na(logRatio)), bc=ifelse(any(barcode_match_library!="no BC"),"BC f/r", "no BC"), SEM_err_prop= sqrt(sum(sd_log2ratio**2)/sum(!is.na(logRatio))) ), by=c("Nt","condition", "at_cnt")]
 all_nuc_enrichment_tabs_agg[, SEM:=pmax(SEM_err_prop, SD/sqrt(rep_cnt), na.rm=T ) ]
-all_nuc_enrichment_tabs_agg[, CI:=SEM * qt(0.975, rep_cnt)]
+all_nuc_enrichment_tabs_agg[, CI:=SEM * qt(0.975, rep_cnt-1)]
 setorder(all_nuc_enrichment_tabs_agg, condition, -Mean)
 
 ```
@@ -69,22 +69,24 @@ sel_tab_agg[, Nt:=factor(Nt, levels=Nt)]
 ```
 
 ### Overview
-```{r, fig.width=8, fig.height=6}
+
+Log2Ratio for each pattern (patterns similar to BC removed)
+
+```{r, fig.width=10, fig.height=6}
 
 tmp= sel_tab_agg[sel_tab_agg$bc=="no BC"]
 tmp[, AT_content := ifelse(at_cnt==6, "AT6", ifelse(at_cnt==5, "AT5", "other"))]
 p = ggplot(tmp, aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") +
-  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank(), text=element_text(size=14), legend.position=c(0.9, 0.85)) +
-  geom_hline(yintercept = 0) + coord_cartesian(ylim=c(-.4, 1.2), xlim=c(-20,nrow(tmp)+10)) + 
-  fill_manual + theme(plot.title = element_text(size=14)) + theme(plot.subtitle = element_text(size=12)) +
-  labs(x="Hexanucleotide sequences", y="Mean Log2 Ratio",  title="Log2Ratio for each pattern (patterns similar to BC  and including 0 in CI removed)", subtitle = "Error bars are 95%CI of the mean") 
+  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank(), text=element_text(size=28), axis.text.y=element_text(size=24), legend.position="none") +
+  geom_hline(yintercept = 0, size=0.5) + coord_cartesian(ylim=c(-.4, 1.2), xlim=c(-20,nrow(tmp)+10)) + 
+  fill_manual + labs(x="All Hexanucleotide sequences", y="Mean Log2 Ratio",  title="", subtitle = "") 
 
 print(p)
 
 ```
 
 ```{r}
-pdf("../../Results/2_DSB-sequence-specificity/HN_WTvsMut_all_bars.pdf", width=8, height = 6)
+pdf("../../Results/2_DSB-sequence-specificity/HN_WTvsMut_all_bars.pdf", width=10, height = 6)
 
 print(p)
 
@@ -93,20 +95,27 @@ dev.off()
 
 
 ### Top 50 patterns
-```{r, fig.width=8, fig.height=8}
+
+Log2Ratio for top50 patterns (patterns similar to BC removed)
+
+```{r, fig.width=14.5, fig.height=9}
 tmp= sel_tab_agg[sel_tab_agg$bc=="no BC"  ] # & sel_tab_agg$Mean-sel_tab_agg$CI > 0
 tmp[, AT_content := ifelse(at_cnt==6, "AT6", ifelse(at_cnt==5, "AT5", "other"))]
+tmp = tmp[1:50]
 
-p = ggplot(tmp[1:50], aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") + theme_classic() + #geom_point(alpha=0.52, size=2) +
+tmp2 = sel_tab[as.character(sel_tab$Nt) %in% as.character(tmp$Nt), ]
+
+p = ggplot(tmp, aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") + theme_classic() + #geom_point(alpha=0.52, size=2) +
   geom_errorbar(width=.1, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.6) + 
-  theme(axis.text.x = element_text(angle = 60, hjust = 1, size=9), text=element_text(size=16), legend.position=c(0.92, 0.85)) +
-  fill_manual + coord_cartesian(ylim=c(-.5, 2)) + theme(plot.title = element_text(size=14)) + theme(plot.subtitle = element_text(size=12)) + labs(x="Top 50 hexanucleotide sequences", y="Mean Log2 Ratio", title="Log2Ratio for top50 patterns (patterns similar to BC and including 0 in CI removed)", subtitle = "Error bars are 95%CI of the mean") 
+  geom_point(data=tmp2, aes(x=Nt, y=logRatio), inherit.aes = F, size=1.5) + 
+  theme(text=element_text(size=24), axis.text.x = element_text(angle = 60, hjust = 1, size=16), axis.text.y = element_text(size=24), legend.position="none") +
+  fill_manual + coord_cartesian(ylim=c(-.5, 2)) + labs(x="Top 50 hexanucleotide sequences", y="Mean Log2 Ratio", title="", subtitle = "") 
 
 print(p)
 ```
 
 ```{r}
-pdf("../../Results/2_DSB-sequence-specificity/HN_WTvsMut_top50_bars.pdf", width=8, height = 8)
+pdf("../../Results/2_DSB-sequence-specificity/HN_WTvsMut_top50_bars.pdf", width=14.5, height = 9)
 print(p)
 
 dev.off()
@@ -126,22 +135,25 @@ sel_tab_agg[, Nt:=factor(Nt, levels=Nt)]
 ```
 
 ### Overview
+
+Log2Ratio for each pattern (patterns similar to BC removed)
+
 ```{r, fig.width=8, fig.height=6}
 
 tmp= sel_tab_agg[sel_tab_agg$bc=="no BC"]
 tmp[, AT_content := ifelse(at_cnt==6, "AT6", ifelse(at_cnt==5, "AT5", "other"))]
+
 p = ggplot(tmp, aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") +
-  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank(), text=element_text(size=14), legend.position=c(0.9, 0.85)) +
-  geom_hline(yintercept = 0) + coord_cartesian(ylim=c(-.4, 1.2), xlim=c(-20,nrow(tmp)+10)) + 
-  fill_manual + theme(plot.title = element_text(size=14)) + theme(plot.subtitle = element_text(size=12)) +
-  labs(x="Hexanucleotide sequences", y="Mean Log2 Ratio",  title="Log2Ratio for each pattern (patterns similar to BC  and including 0 in CI removed)", subtitle = "Error bars are 95%CI of the mean") 
+  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank(), text=element_text(size=28), axis.text.y=element_text(size=24), legend.position="none") +
+  geom_hline(yintercept = 0, size=0.5) + coord_cartesian(ylim=c(-.4, 1.2), xlim=c(-20,nrow(tmp)+10)) + 
+  fill_manual + labs(x="All Hexanucleotide sequences", y="Mean Log2 Ratio",  title="", subtitle = "") 
 
 print(p)
 
 ```
 
 ```{r}
-pdf("../../Results/2_DSB-sequence-specificity/HN_WTvsNT_all_bars.pdf", width=8, height = 6)
+pdf("../../Results/2_DSB-sequence-specificity/HN_WTvsNT_all_bars.pdf", width=10, height = 6)
 print(p)
 dev.off()
 
@@ -150,21 +162,27 @@ dev.off()
 
 ### Top 50 patterns
 
-```{r, fig.width=8, fig.height=8}
+Log2Ratio for top50 patterns (patterns similar to BC removed)
+
+```{r, fig.width=14.5, fig.height=9}
 tmp= sel_tab_agg[sel_tab_agg$bc=="no BC"  ] # & sel_tab_agg$Mean-sel_tab_agg$CI > 0
 tmp[, AT_content := ifelse(at_cnt==6, "AT6", ifelse(at_cnt==5, "AT5", "other"))]
+tmp = tmp[1:50]
 
-p = ggplot(tmp[1:50], aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") + theme_classic() + #geom_point(alpha=0.52, size=2) +
+tmp2 = sel_tab[as.character(sel_tab$Nt) %in% as.character(tmp$Nt), ]
+
+p = ggplot(tmp, aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") + theme_classic() + #geom_point(alpha=0.52, size=2) +
   geom_errorbar(width=.1, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.6) + 
-  theme(axis.text.x = element_text(angle = 60, hjust = 1, size=9), text=element_text(size=16), legend.position=c(0.92, 0.85)) +
-  fill_manual + coord_cartesian(ylim=c(-.5, 2)) + theme(plot.title = element_text(size=14)) + theme(plot.subtitle = element_text(size=12)) + labs(x="Top 50 hexanucleotide sequences", y="Mean Log2 Ratio", title="Log2Ratio for top50 patterns (patterns similar to BC and including 0 in CI removed)", subtitle = "Error bars are 95%CI of the mean") 
+  geom_point(data=tmp2, aes(x=Nt, y=logRatio), inherit.aes = F, size=1.5) + 
+  theme(text=element_text(size=24), axis.text.x = element_text(angle = 60, hjust = 1, size=16), axis.text.y = element_text(size=24), legend.position="none") +
+  fill_manual + coord_cartesian(ylim=c(-.5, 2)) + labs(x="Top 50 hexanucleotide sequences", y="Mean Log2 Ratio", title="", subtitle = "") 
 
 print(p)
 
 ```
 
 ```{r}
-pdf("../../Results/2_DSB-sequence-specificity/HN_WTvsNT_top50_bars.pdf", width=8, height = 8)
+pdf("../../Results/2_DSB-sequence-specificity/HN_WTvsNT_top50_bars.pdf", width=14.5, height = 9)
 print(p)
 dev.off()
 
@@ -185,21 +203,23 @@ sel_tab_agg[, Nt:=factor(Nt, levels=Nt)]
 
 ### Overview
 
+Log2Ratio for each pattern (patterns similar to BC removed)
+
 ```{r, fig.width=8, fig.height=6}
 tmp= sel_tab_agg[sel_tab_agg$bc=="no BC"]
 tmp[, AT_content := ifelse(at_cnt==6, "AT6", ifelse(at_cnt==5, "AT5", "other"))]
+
 p = ggplot(tmp, aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") +
-  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank(), text=element_text(size=14), legend.position=c(0.9, 0.85)) +
-  geom_hline(yintercept = 0) + coord_cartesian(ylim=c(-.4, 1.2), xlim=c(-20,nrow(tmp)+10)) + 
-  fill_manual + theme(plot.title = element_text(size=14)) + theme(plot.subtitle = element_text(size=12)) +
-  labs(x="Hexanucleotide sequences", y="Mean Log2 Ratio",  title="Log2Ratio for each pattern (patterns similar to BC  and including 0 in CI removed)", subtitle = "Error bars are 95%CI of the mean") 
+  theme(axis.text.x = element_blank(), axis.ticks.x=element_blank(), text=element_text(size=28), axis.text.y=element_text(size=24), legend.position="none") +
+  geom_hline(yintercept = 0, size=0.5) + coord_cartesian(ylim=c(-.4, 1.2), xlim=c(-20,nrow(tmp)+10)) + 
+  fill_manual + labs(x="All Hexanucleotide sequences", y="Mean Log2 Ratio",  title="", subtitle = "") 
 
 print(p)
 
 ```
 
 ```{r}
-pdf("../../Results/2_DSB-sequence-specificity/HN_MutvsNT_all_bars.pdf", width=8, height = 6)
+pdf("../../Results/2_DSB-sequence-specificity/HN_MutvsNT_all_bars.pdf", width=10, height = 6)
 print(p)
 dev.off()
 
@@ -208,21 +228,26 @@ dev.off()
 
 ### Top 50 patterns
 
+Log2Ratio for top50 patterns (patterns similar to BC removed)
+
 ```{r, fig.width=8, fig.height=8}
 tmp= sel_tab_agg[sel_tab_agg$bc=="no BC"  ] # & sel_tab_agg$Mean-sel_tab_agg$CI > 0
 tmp[, AT_content := ifelse(at_cnt==6, "AT6", ifelse(at_cnt==5, "AT5", "other"))]
+tmp = tmp[1:50]
 
-p = ggplot(tmp[1:50], aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") + theme_classic() + #geom_point(alpha=0.52, size=2) +
+tmp2 = sel_tab[as.character(sel_tab$Nt) %in% as.character(tmp$Nt), ]
+
+p = ggplot(tmp, aes(x=Nt, y=Mean, fill=AT_content)) + geom_bar(stat="identity") + theme_classic() + #geom_point(alpha=0.52, size=2) +
   geom_errorbar(width=.1, aes(ymin=Mean-CI, ymax=Mean+CI), colour="black", alpha=0.6) + 
-  theme(axis.text.x = element_text(angle = 60, hjust = 1, size=9), text=element_text(size=16), legend.position=c(0.92, 0.85)) +
-  fill_manual + coord_cartesian(ylim=c(-.5, 2)) + theme(plot.title = element_text(size=14)) + theme(plot.subtitle = element_text(size=12)) + labs(x="Top 50 hexanucleotide sequences", y="Mean Log2 Ratio", title="Log2Ratio for top50 patterns (patterns similar to BC and including 0 in CI removed)", subtitle = "Error bars are 95%CI of the mean") 
-
+  geom_point(data=tmp2, aes(x=Nt, y=logRatio), inherit.aes = F, size=1.5) + 
+  theme(text=element_text(size=24), axis.text.x = element_text(angle = 60, hjust = 1, size=16), axis.text.y = element_text(size=24), legend.position="none") +
+  fill_manual + coord_cartesian(ylim=c(-.5, 2)) + labs(x="Top 50 hexanucleotide sequences", y="Mean Log2 Ratio", title="", subtitle = "") 
 print(p)
 
 ```
 
 ```{r}
-pdf("../../Results/2_DSB-sequence-specificity/HN_MutvsNT_top50_bars.pdf", width=8, height = 8)
+pdf("../../Results/2_DSB-sequence-specificity/HN_MutvsNT_top50_bars.pdf", width=14.5, height = 9)
 print(p)
 dev.off()
 

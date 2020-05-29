@@ -43,7 +43,7 @@ source("./compute_distance_to_motif_center.R")
 We want to understand the positional distribution of BLISS break ends in selected hexanucleotide patterns. 
 
 ```{r}
-pattern_dict = DNAStringSet(c("AAATTT","AAAATT","AATATT", "TAAAAA","CAAAAA", "AAAAAG", "ATATAG", "AACGTT", "AAGCTT","TTCGTA" ,"TTGGTA","TTCTTA","CGCGCT", "TTTAAA"))
+pattern_dict = DNAStringSet(c("AAATTT","AAAATT","AATATT", "TAAAAA", "ATATAG", "TTTAAA"))
 
 pattern_pos = vmatchPDict(pattern_dict, Hsapiens)
 pattern_pos$pattern = as.character(pattern_dict)[as.integer(pattern_pos$index)]
@@ -109,6 +109,7 @@ for (n in 1:length(pattern_dict)) {
 ```
 
 ## All conditions
+
 ```{r, fig.height=8, fig.width=12}
 sel_motifs = c( "AAATTT", "AAAATT", "AATATT", "TAAAAA","TTTAAA","ATATAG")
 
@@ -118,11 +119,14 @@ tmp_tab[, total:=sum(count), by=c("sampleID", "pattern")]
 tmp_tab[, prop_dir:=count_dir / total]
 tmp_tab_anno = merge(tmp_tab, ed, by="sampleID", all.x=T)
 
-sel_conditions = c("EcoliMut", "EcoliWT", "Ctrl")
+sel_conditions = c( "EcoliWT", "EcoliMut" ,"Ctrl")
 
 final_tab = subset(tmp_tab_anno, cells == "Caco2" & condition %in% sel_conditions & !technical_replicate)
 final_tab_agg = final_tab[, .(mean_count_dir = mean(count_dir), sd_count_dir = sd(count_dir), mean_prop_dir = mean(prop_dir), sd_prop_dir = sd(prop_dir), rep_cnt=.N) , by=c("strand","condition","pattern", "dist")]
-final_tab_agg = final_tab_agg[, CI_prop_dir:=qt(0.975, rep_cnt)*(sd_prop_dir/sqrt(rep_cnt))]
+final_tab_agg = final_tab_agg[, CI_prop_dir:=qt(0.975, rep_cnt-1)*(sd_prop_dir/sqrt(rep_cnt))]
+
+final_tab[, condition:=factor(condition, levels=sel_conditions)]
+final_tab_agg[, condition:=factor(condition, levels=sel_conditions)]
 
 text_labels = data.frame(t = unlist(strsplit(sel_motifs, "")), x=0:5, y=rep(0,6))
 text_labels$pattern = rep(sel_motifs, each=6)
@@ -134,23 +138,30 @@ text_all = rbind(text_labels, text_lines)
 ```
 
 ```{r, fig.height=9, fig.width=8}
-pdf(file="../../Results/5_Break-ends-analysis/Break_ends_HN_all_conditions.pdf", width = 8, height = 9)
+
 p = ggplot(final_tab_agg, aes(x=dist, y=mean_prop_dir, fill=strand)) + geom_bar(stat = "identity", width = 0.8) + 
   geom_errorbar(width=.1, aes(ymin=mean_prop_dir-CI_prop_dir, ymax=mean_prop_dir+CI_prop_dir), alpha=0.4, col="grey30") + 
+  geom_point(data = final_tab, aes(x=dist, y=prop_dir), col="black", size=1.5, alpha=0.7) + 
   facet_grid( condition ~ pattern) + 
   geom_hline(yintercept = 0, col="red") + scale_x_continuous(limits=c(-1, 6)) + 
-  #geom_text(data=text_labels, aes(x=x, y=y, label=t), inherit.aes = F, size=4, col="black") +
-  #geom_text(data=text_lines, aes(x=x, y=y, label=t), inherit.aes = F, size=4, col="blue1") + 
   theme_few() +
-  theme(text = element_text(size=16), strip.text.x = element_text(size = 16), strip.text.y = element_text(size = 20)) + 
+  theme(text = element_text(size=20), strip.text.x = element_text(size = 16), strip.text.y = element_text(size = 20)) + 
   xlab("Break position") + ylab("Mean proportion of break ends at position") + 
   theme(legend.position="none", axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank() ) 
+print(p) 
+
+```
+
+
+```{r}
+pdf(file="../../Results/5_Break-ends-analysis/Break_ends_HN_all_conditions.pdf", width = 8, height = 9)
 print(p) 
 dev.off()
 ```
 
 
 ## EcoliWT vs. EcoliMut
+
 ```{r, fig.height=6, fig.width=12}
 sel_motifs = c( "AAATTT", "AAAATT", "AATATT", "TAAAAA","TTTAAA","ATATAG")
 
@@ -167,7 +178,7 @@ tmp_wt_mut_sw[, diff:=EcoliWT-EcoliMut]
 
 final_tab = tmp_wt_mut_sw
 final_tab_agg = final_tab[, .(mean_diff = mean(diff), sd_diff = sd(diff), rep_cnt=.N) , by=c("strand","pattern", "dist")]
-final_tab_agg = final_tab_agg[, CI_diff:=qt(0.975, rep_cnt)*(sd_diff/sqrt(rep_cnt))]
+final_tab_agg = final_tab_agg[, CI_diff:=qt(0.975, rep_cnt-1)*(sd_diff/sqrt(rep_cnt))]
 
 text_labels = data.frame(t = unlist(strsplit(sel_motifs, "")), x=0:5, y=rep(0,6))
 text_labels$pattern = rep(sel_motifs, each=6)
@@ -179,24 +190,28 @@ text_all = rbind(text_labels, text_lines)
 ```
 
 ```{r, fig.height=3.8, fig.width=10}
-pdf(file="../../Results/5_Break-ends-analysis/Break_ends_HN_WT_vs_Mut.pdf", width = 10, height = 3.8)
-
 p = ggplot(subset(final_tab_agg, mean_diff*ifelse(strand=="f",1,-1) > 0), aes(x=dist, y=mean_diff, fill=strand)) + 
   geom_bar(stat = "identity", width = 0.8) + 
   geom_errorbar(width=.1, aes(ymin=mean_diff-CI_diff, ymax=mean_diff+CI_diff), alpha=0.4,col="grey30") +
+  geom_point(data = final_tab, aes(x=dist, y=diff), col="black", size=1.5, alpha=0.6) + 
   facet_grid( . ~ pattern) + 
   geom_hline(yintercept = 0, col="red") + scale_x_continuous(limits=c(-1, 6)) + 
-  #geom_text(data=text_labels, aes(x=x, y=y, label=t), inherit.aes = F, size=4, col="black") +
-  #geom_text(data=text_lines, aes(x=x, y=y, label=t), inherit.aes = F, size=4, col="blue1") + 
   theme_few() + 
-  theme(text = element_text(size=12), strip.text.x = element_text(size = 16), strip.text.y = element_text(size = 20)) + 
+  theme(text = element_text(size=16), axis.text.y=element_text(size=18), strip.text.x = element_text(size = 16), strip.text.y = element_text(size = 20)) + 
   xlab("Break position") + ylab("Mean difference EcoliWT - EcoliMut") +
   theme(legend.position="none", axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank() )
   print(p)
+```
+
+```{r}
+pdf(file="../../Results/5_Break-ends-analysis/Break_ends_HN_WT_vs_Mut.pdf", width = 10, height = 3.8)
+print(p)
 dev.off()
 ```
 
+
 # Software versions
+
 ```{r}
 sessionInfo()
 ```

@@ -52,12 +52,9 @@ trinuc_change = ifelse(nuc_change %in% plus_strand_nuc_changes_accepted,
 rownames(trinuc_change_mat) = trinuc_change
 trinuc_change_mat = trinuc_change_mat[order(rownames(trinuc_change_mat)),]
 
-ed = data.frame(sampleID=colnames(data)[2:ncol(data)], stringsAsFactors = F)
-tt = regmatches(ed$sampleID, regexpr("(.+)_T_", ed$sampleID))
-ed$ID = make.names(substr(tt, 1, nchar(tt)-3))
-tt2 = sapply(strsplit(ed$sampleID,"-"), `[`,1 )
-ed$group = ifelse(tt2 %in% c("POLE","MSI"), tt2, "other" )
-rownames(ed) = ed$sampleID
+ed = read.table("../../../Data/WGS_cohort/Mutation_counts_at_motifs/Sample_sequencing_overview.txt", sep="\t", header=T, comment.char = "", stringsAsFactors = F)
+rownames(ed) = ed$sample_id
+ed$sampleID = ed$sample_id
 ```
 
 # Known signatures
@@ -186,5 +183,11 @@ pheatmap(cc, main="Correlation of signature contribution across samples")
 
 ```{r}
 save(signature_weight_mat, file="../../../Data/WGS_cohort/SBS_Trinucleotide_signature_contributions/Signature_weights_WGS_cohort_Alexandrov2018_and_LeeSix.Rdata")
+```
+
+# Software versions
+
+```{r}
+sessionInfo()
 ```
 

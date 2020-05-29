@@ -1,3 +1,4 @@
+#autor: paulina dziubanska-kusibab, contribution: hilmar berger
 library(Biostrings)
 library(stringr)
 

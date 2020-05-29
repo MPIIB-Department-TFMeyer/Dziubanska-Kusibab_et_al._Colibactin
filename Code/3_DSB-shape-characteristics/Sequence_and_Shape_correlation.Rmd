@@ -29,6 +29,7 @@ library(Biostrings)
 ```
 
 # Introduction
+
 Here we would like to correlate identified sequence enrichments in DSBs flanking regions of colibactin-induced breaks (+/7nt) with DNA shape parameters.  
 Normalized logRatios for hexanucleotides of 4 replicates and information whether hexanucleotide is associated with barcode or not, are being imported.  
   

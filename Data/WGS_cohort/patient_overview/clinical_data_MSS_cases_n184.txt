@@ -1,0 +1,185 @@
+patient_id	sex	cancer_sample_age	detailed_location_I	detailed_location_II	location	cb_mut_proportion
+P_142	M	79	sigmoid colon	descending and sigmoid colon	distal	0.024639424
+P_22	M	65	sigmoid colon	descending and sigmoid colon	distal	0.07976566
+P_137	F	68	sigmoid colon	descending and sigmoid colon	distal	0.009986973
+P_113	F	79	sigmoid colon	descending and sigmoid colon	distal	0.00982801
+P_57	M	60	sigmoid colon	descending and sigmoid colon	distal	0.016503122
+P_173	F	87	sigmoid colon	descending and sigmoid colon	distal	0.036327794
+P_38	F	84	sigmoid colon	descending and sigmoid colon	distal	0.03239264
+P_175	F	72	rectum	rectum	distal	0.017515924
+P_64	M	75	rectum	rectum	distal	0.019096117
+P_23	M	72	rectum	rectum	distal	0.017384432
+P_182	F	68	rectum	rectum	distal	0.026364477
+P_184	F	24	rectum	rectum	distal	0.020801233
+P_120	F	67	rectum	rectum	distal	0.013061651
+P_97	M	61	rectum	rectum	distal	0.03589109
+P_169	M	60	rectum	rectum	distal	0.10354511
+P_91	M	63	rectum	rectum	distal	0.08523654
+P_134	F	80	rectum	rectum	distal	0.027291812
+P_129	M	63	rectum	rectum	distal	0.03859555
+P_98	M	65	rectum	rectum	distal	0.04475183
+P_101	M	64	rectum	rectum	distal	0.012442396
+P_16	M	75	rectum	rectum	distal	0.19157356
+P_4	F	73	rectum	rectum	distal	0.02327044
+P_88	M	86	rectum	rectum	distal	0.01404185
+P_115	F	67	rectum	rectum	distal	0.04707792
+P_92	M	74	rectum	rectum	distal	0.023370553
+P_60	M	75	rectum	rectum	distal	0.01925754
+P_121	M	62	rectum	rectum	distal	0.015054452
+P_123	M	67	rectum	rectum	distal	0.012823615
+P_176	F	74	rectum	rectum	distal	0.08112059
+P_110	F	77	rectum	rectum	distal	0.021975992
+P_82	M	79	rectum	rectum	distal	0.047528114
+P_80	M	66	ascending colon	ascending and transverse colon	proximal	0.013439813
+P_107	M	71	transverse colon	ascending and transverse colon	proximal	0.008858603
+P_143	F	66	transverse colon	ascending and transverse colon	proximal	0.022170268
+P_140	F	72	transverse colon	ascending and transverse colon	proximal	0.011559975
+P_25	F	54	caecum and appendix	caecum and appendix	proximal	0.027980296
+P_55	M	79	caecum and appendix	caecum and appendix	proximal	0.010548935
+P_51	M	60	descending colon	descending and sigmoid colon	distal	0.01127089
+P_168	M	50	descending colon	descending and sigmoid colon	distal	0.009992006
+P_163	M	70	descending colon	descending and sigmoid colon	distal	0.008581389
+P_54	F	78	descending colon	descending and sigmoid colon	distal	0.016378663
+P_102	M	73	sigmoid colon	descending and sigmoid colon	distal	0.019637462
+P_145	M	67	sigmoid colon	descending and sigmoid colon	distal	0.018610422
+P_39	M	48	sigmoid colon	descending and sigmoid colon	distal	0.06671779
+P_89	M	68	sigmoid colon	descending and sigmoid colon	distal	0.013975903
+P_185	F	87	sigmoid colon	descending and sigmoid colon	distal	0.017939815
+P_48	F	57	sigmoid colon	descending and sigmoid colon	distal	0.008161679
+P_170	F	70	sigmoid colon	descending and sigmoid colon	distal	0.12837394
+P_77	M	58	sigmoid colon	descending and sigmoid colon	distal	0.011090573
+P_132	M	75	sigmoid colon	descending and sigmoid colon	distal	0.016597511
+P_78	M	72	sigmoid colon	descending and sigmoid colon	distal	0.014979905
+P_131	F	76	sigmoid colon	descending and sigmoid colon	distal	0.01029464
+P_68	M	58	sigmoid colon	descending and sigmoid colon	distal	0.021004098
+P_136	F	70	sigmoid colon	descending and sigmoid colon	distal	0.012431777
+P_56	M	80	sigmoid colon	descending and sigmoid colon	distal	0.010763538
+P_10	F	75	sigmoid colon	descending and sigmoid colon	distal	0.015803631
+P_161	M	80	sigmoid colon	descending and sigmoid colon	distal	0.013663315
+P_128	F	76	sigmoid colon	descending and sigmoid colon	distal	0.010812481
+P_13	M	67	sigmoid colon	descending and sigmoid colon	distal	0.021255264
+P_8	M	67	sigmoid colon	descending and sigmoid colon	distal	0.00960145
+P_87	M	71	sigmoid colon	descending and sigmoid colon	distal	0.014572212
+P_32	F	61	sigmoid colon	descending and sigmoid colon	distal	0.01998702
+P_154	F	75	sigmoid colon	descending and sigmoid colon	distal	0.01389861
+P_130	F	79	sigmoid colon	descending and sigmoid colon	distal	0.050160192
+P_45	M	80	sigmoid colon	descending and sigmoid colon	distal	0.010128798
+P_99	M	45	rectum	rectum	distal	0.028387098
+P_160	M	76	rectum	rectum	distal	0.014683153
+P_124	F	74	rectum	rectum	distal	0.023334954
+P_42	F	69	rectum	rectum	distal	0.016120644
+P_167	F	85	rectum	rectum	distal	0.011328528
+P_46	M	67	rectum	rectum	distal	0.017667845
+P_127	M	84	rectum	rectum	distal	0.046533126
+P_37	F	85	rectum	rectum	distal	0.016021883
+P_157	F	71	rectum	rectum	distal	0.020182908
+P_147	F	77	rectum	rectum	distal	0.0201594
+P_151	M	74	rectum	rectum	distal	0.015281173
+P_63	F	81	rectum	rectum	distal	0.020879941
+P_70	F	73	rectum	rectum	distal	0.012068549
+P_33	F	77	rectum	rectum	distal	0.013546202
+P_156	M	74	rectum	rectum	distal	0.017597888
+P_141	F	74	rectum	rectum	distal	0.017669532
+P_172	M	64	rectum	rectum	distal	0.060308095
+P_81	F	74	rectum	rectum	distal	0.015405528
+P_96	M	69	rectum	rectum	distal	0.018399265
+P_15	M	49	rectum	rectum	distal	0.026850095
+P_53	M	84	rectum	rectum	distal	0.076017134
+P_158	M	73	rectum	rectum	distal	0.16010816
+P_122	F	68	rectum	rectum	distal	0.013933206
+P_72	M	81	ascending colon	ascending and transverse colon	proximal	0.011167985
+P_183	F	76	ascending colon	ascending and transverse colon	proximal	0.024350269
+P_103	M	82	ascending colon	ascending and transverse colon	proximal	0.012002527
+P_58	F	82	ascending colon	ascending and transverse colon	proximal	0.013851168
+P_181	F	74	ascending colon	ascending and transverse colon	proximal	0.014214947
+P_7	M	61	ascending colon	ascending and transverse colon	proximal	0.018874774
+P_95	F	72	ascending colon	ascending and transverse colon	proximal	0.008632783
+P_27	M	66	ascending colon	ascending and transverse colon	proximal	0.028193576
+P_118	F	48	caecum and appendix	caecum and appendix	proximal	0.02255489
+P_178	F	77	caecum and appendix	caecum and appendix	proximal	0.022025723
+P_133	F	55	caecum and appendix	caecum and appendix	proximal	0.018553004
+P_125	F	66	caecum and appendix	caecum and appendix	proximal	0.01689441
+P_84	M	91	caecum and appendix	caecum and appendix	proximal	0.01611279
+P_112	F	76	caecum and appendix	caecum and appendix	proximal	0.015658747
+P_135	F	78	caecum and appendix	caecum and appendix	proximal	0.013518733
+P_126	M	73	caecum and appendix	caecum and appendix	proximal	0.013278127
+P_20	M	53	caecum and appendix	caecum and appendix	proximal	0.013212353
+P_40	F	77	caecum and appendix	caecum and appendix	proximal	0.011768661
+P_150	F	86	caecum and appendix	caecum and appendix	proximal	0.011453951
+P_116	M	76	caecum and appendix	caecum and appendix	proximal	0.010348071
+P_139	F	70	caecum and appendix	caecum and appendix	proximal	0.009386282
+P_111	M	76	descending colon	descending and sigmoid colon	distal	0.03494139
+P_18	F	83	descending colon	descending and sigmoid colon	distal	0.013774716
+P_117	M	52	descending colon	descending and sigmoid colon	distal	0.019248566
+P_155	F	59	descending colon	descending and sigmoid colon	distal	0.026472304
+P_24	M	75	sigmoid colon	descending and sigmoid colon	distal	0.012471655
+P_105	M	64	sigmoid colon	descending and sigmoid colon	distal	0.026661927
+P_74	F	62	sigmoid colon	descending and sigmoid colon	distal	0.018609744
+P_49	M	70	sigmoid colon	descending and sigmoid colon	distal	0.04541746
+P_28	M	50	sigmoid colon	descending and sigmoid colon	distal	0.014772727
+P_36	F	75	sigmoid colon	descending and sigmoid colon	distal	0.07343072
+P_165	F	65	sigmoid colon	descending and sigmoid colon	distal	0.017077798
+P_2	M	70	sigmoid colon	descending and sigmoid colon	distal	0.122395836
+P_83	M	57	sigmoid colon	descending and sigmoid colon	distal	0.019442886
+P_73	F	71	sigmoid colon	descending and sigmoid colon	distal	0.010715816
+P_31	M	63	rectum	rectum	distal	0.017667845
+P_94	M	57	rectum	rectum	distal	0.024484536
+P_114	M	63	rectum	rectum	distal	0.015668202
+P_146	M	74	rectum	rectum	distal	0.015944196
+P_6	F	46	rectum	rectum	distal	0.023764057
+P_109	M	82	rectum	rectum	distal	0.013836478
+P_144	M	70	rectum	rectum	distal	0.016372796
+P_11	M	61	rectum	rectum	distal	0.061208576
+P_152	F	83	rectum	rectum	distal	0.015902465
+P_180	F	83	rectum	rectum	distal	0.023452157
+P_76	M	79	rectum	rectum	distal	0.023406375
+P_52	M	81	rectum	rectum	distal	0.014559894
+P_34	M	72	rectum	rectum	distal	0.023716325
+P_19	M	67	rectum	rectum	distal	0.015267176
+P_79	F	62	rectum	rectum	distal	0.15014963
+P_149	M	70	rectum	rectum	distal	0.036254905
+P_5	F	77	ascending colon	ascending and transverse colon	proximal	0.017342452
+P_59	M	60	ascending colon	ascending and transverse colon	proximal	0.007763401
+P_93	F	70	ascending colon	ascending and transverse colon	proximal	0.011832716
+P_47	M	65	ascending colon	ascending and transverse colon	proximal	0.012564992
+P_100	M	72	transverse colon	ascending and transverse colon	proximal	0.013215859
+P_174	M	72	transverse colon	ascending and transverse colon	proximal	0.017141197
+P_177	M	66	transverse colon	ascending and transverse colon	proximal	0.010626703
+P_67	F	65	transverse colon	ascending and transverse colon	proximal	0.023533672
+P_171	F	80	caecum and appendix	caecum and appendix	proximal	0.020329945
+P_164	M	54	caecum and appendix	caecum and appendix	proximal	0.016655259
+P_35	F	69	caecum and appendix	caecum and appendix	proximal	0.016401846
+P_104	F	73	caecum and appendix	caecum and appendix	proximal	0.014486578
+P_75	F	69	caecum and appendix	caecum and appendix	proximal	0.012547052
+P_62	M	36	caecum and appendix	caecum and appendix	proximal	0.012306887
+P_153	M	66	caecum and appendix	caecum and appendix	proximal	0.011636107
+P_3	F	51	caecum and appendix	caecum and appendix	proximal	0.010087424
+P_69	F	77	caecum and appendix	caecum and appendix	proximal	0.008803729
+P_138	F	76	caecum and appendix	caecum and appendix	proximal	0.008339651
+P_85	F	81	descending colon	descending and sigmoid colon	distal	0.018847007
+P_65	F	74	sigmoid colon	descending and sigmoid colon	distal	0.01649258
+P_41	M	62	sigmoid colon	descending and sigmoid colon	distal	0.013690106
+P_66	M	67	sigmoid colon	descending and sigmoid colon	distal	0.011046512
+P_86	F	68	sigmoid colon	descending and sigmoid colon	distal	0.008148631
+P_44	M	58	sigmoid colon	descending and sigmoid colon	distal	0.013884786
+P_29	M	53	sigmoid colon	descending and sigmoid colon	distal	0.014499621
+P_30	F	51	rectum	rectum	distal	0.02581262
+P_9	M	74	rectum	rectum	distal	0.011803588
+P_12	M	56	rectum	rectum	distal	0.020664206
+P_159	M	71	rectum	rectum	distal	0.1335192
+P_50	F	74	rectum	rectum	distal	0.039671294
+P_17	F	83	rectum	rectum	distal	0.015163197
+P_179	F	79	rectum	rectum	distal	0.030821031
+P_106	M	68	rectum	rectum	distal	0.029397648
+P_71	M	74	rectum	rectum	distal	0.060428075
+P_148	M	77	ascending colon	ascending and transverse colon	proximal	0.014763553
+P_162	F	71	transverse colon	ascending and transverse colon	proximal	0.02310606
+P_166	M	31	transverse colon	ascending and transverse colon	proximal	0.035765972
+P_119	F	90	transverse colon	ascending and transverse colon	proximal	0.015737984
+P_90	M	74	caecum and appendix	caecum and appendix	proximal	0.054021608
+P_14	M	78	caecum and appendix	caecum and appendix	proximal	0.04301985
+P_108	F	73	caecum and appendix	caecum and appendix	proximal	0.037846483
+P_43	F	49	caecum and appendix	caecum and appendix	proximal	0.021429427
+P_26	F	89	caecum and appendix	caecum and appendix	proximal	0.017205577
+P_61	F	68	caecum and appendix	caecum and appendix	proximal	0.012142858
+P_21	M	76	caecum and appendix	caecum and appendix	proximal	0.009947892

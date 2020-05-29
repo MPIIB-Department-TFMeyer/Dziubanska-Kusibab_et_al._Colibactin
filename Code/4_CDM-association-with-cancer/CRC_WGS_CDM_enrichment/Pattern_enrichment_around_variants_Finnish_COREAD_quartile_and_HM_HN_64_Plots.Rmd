@@ -21,19 +21,14 @@ library(GenomicRanges)
 library(ggplot2)
 library(knitr)
 library(data.table)
-#library(gridExtra)
+
 library(ggpubr)
 rm(list=ls())
 ```
 
 ```{r}
 ed = read.table("../../../Data/WGS_cohort/Mutation_counts_at_motifs/Sample_sequencing_overview.txt", sep="\t", header=T, comment.char = "", stringsAsFactors = F)
-tt = regmatches(ed$X.Sample, regexpr("(.+)_T_", ed$X.Sample))
-ed$ID = make.names(substr(tt, 1, nchar(tt)-3))
-rownames(ed) = make.names(ed$X.Sample)
-
-tt2 = sapply(strsplit(ed$X.Sample,"-"), `[`,1 )
-ed$group = ifelse(tt2 %in% c("POLE","MSI"), tt2, "other" )
+rownames(ed) = ed$sample_id
 ```
 
 # Overview

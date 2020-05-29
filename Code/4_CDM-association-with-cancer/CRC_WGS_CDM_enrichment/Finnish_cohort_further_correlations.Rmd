@@ -19,35 +19,35 @@ clin = fread("../../../Data/WGS_cohort/patient_overview/clinical_data_MSS_cases_
 ```{r}
 seq_overview = fread("../../../Data/WGS_cohort/Mutation_counts_at_motifs/Sample_sequencing_overview.txt")
 
-rownames(seq_overview) = make.names(seq_overview$'#Sample')
+rownames(seq_overview) = seq_overview$sample_id
 ```
 
 ```{r}
-seq_and_clin_overview = merge(seq_overview, clin, by.x="clin_id", by.y="sample_name", all.x=TRUE, sort=F)
+seq_and_clin_overview = merge(seq_overview, clin, by.x="clin_id", by.y="patient_id", all.x=TRUE, sort=F)
 ```
 
 ```{r}
 pn_enrichment_results_snv = fread("../../../Data/WGS_cohort/Per_sample_results_PN_SNV_enrichment.txt")
 hn_enrichment_results_snv = fread("../../../Data/WGS_cohort/Per_sample_results_HN_SNV_enrichment.txt")
 
-sel_cols_snv_HN = c('total_pattern_sites_AAAATT','total_pattern_sites_AAATTT','pattern_bp_AAAATT','pattern_bp_AAATTT','mutation_hit_AAAATT','mutation_hit_AAATTT','hit_per_bp_in_pattern_AAAATT','hit_per_bp_in_pattern_AAATTT','log2ratio_adjusted_AAAATT','log2ratio_adjusted_AAATTT','p_at6','padj_at6','mean_log2r_colibactin_HN','total_mut_count_colibactin_HN','total_mut_proportion_colibactin_HN','sample_name_full')
+sel_cols_snv_HN = c('total_pattern_sites_AAAATT','total_pattern_sites_AAATTT','pattern_bp_AAAATT','pattern_bp_AAATTT','mutation_hit_AAAATT','mutation_hit_AAATTT','hit_per_bp_in_pattern_AAAATT','hit_per_bp_in_pattern_AAATTT','log2ratio_adjusted_AAAATT','log2ratio_adjusted_AAATTT','p_at6','padj_at6','mean_log2r_colibactin_HN','total_mut_count_colibactin_HN','total_mut_proportion_colibactin_HN','entity')
 
-sel_cols_snv_PN = c('mutation_hit_AAAAT','mutation_hit_AAATT','hit_per_bp_in_pattern_AAAAT','hit_per_bp_in_pattern_AAATT','log2ratio_adjusted_AAAAT','log2ratio_adjusted_AAATT','p_at5','padj_at5','mean_log2r_colibactin_PN','total_mut_count_colibactin_PN','total_mut_proportion_colibactin_PN','sample_name_full')
+sel_cols_snv_PN = c('mutation_hit_AAAAT','mutation_hit_AAATT','hit_per_bp_in_pattern_AAAAT','hit_per_bp_in_pattern_AAATT','log2ratio_adjusted_AAAAT','log2ratio_adjusted_AAATT','p_at5','padj_at5','mean_log2r_colibactin_PN','total_mut_count_colibactin_PN','total_mut_proportion_colibactin_PN','entity')
 
 
 hn_enrichment = hn_enrichment_results_snv[, sel_cols_snv_HN, with=F]
-names_to_be_changed = !grepl("_HN$|sample_name_full",colnames(hn_enrichment), perl=T)
+names_to_be_changed = !grepl("_HN$|entity",colnames(hn_enrichment), perl=T)
 colnames(hn_enrichment)[names_to_be_changed] = paste0(colnames(hn_enrichment)[names_to_be_changed], "_HN")
 
 
 pn_enrichment = pn_enrichment_results_snv[, sel_cols_snv_PN, with=F]
-names_to_be_changed = !grepl("_PN$|sample_name_full",colnames(pn_enrichment), perl=T)
+names_to_be_changed = !grepl("_PN$|entity",colnames(pn_enrichment), perl=T)
 colnames(pn_enrichment)[names_to_be_changed] = paste0(colnames(pn_enrichment)[names_to_be_changed], "_PN")
 
-seq_clin_enrichment = merge(seq_and_clin_overview, hn_enrichment, by.x="#Sample", by.y="sample_name_full", all.x=TRUE, sort=F)
-seq_clin_enrichment = merge(seq_clin_enrichment, pn_enrichment, by.x="#Sample", by.y="sample_name_full", all.x=TRUE, sort=F)
+seq_clin_enrichment = merge(seq_and_clin_overview, hn_enrichment, by.x="sample_id", by.y="entity", all.x=TRUE, sort=F)
+seq_clin_enrichment = merge(seq_clin_enrichment, pn_enrichment, by.x="sample_id", by.y="entity", all.x=TRUE, sort=F)
 
-colnames(seq_clin_enrichment) = gsub("#Sample", "SampleID", colnames(seq_clin_enrichment))
+colnames(seq_clin_enrichment) = gsub("sample_id", "SampleID", colnames(seq_clin_enrichment))
 ```
 
 
@@ -67,7 +67,7 @@ fwrite(seq_clin_enrichment, file="../../../Data/WGS_cohort/patient_overview/Comb
 # Colibactin motif mutation rate and tumor location
 
 ```{r, fig.height=6}
-dd = subset(seq_clin_enrichment, group=="other" & !is.na(detailed_location_I))
+dd = subset(seq_clin_enrichment, group=="MSS" & !is.na(detailed_location_I))
 dd[, detailed_location_I:= factor(detailed_location_I, levels=c("caecum and appendix","ascending colon","transverse colon","descending colon","sigmoid colon","rectum" ))]
 
 kruskal.test(dd$cb_mut_proportion ~ dd$detailed_location_I)

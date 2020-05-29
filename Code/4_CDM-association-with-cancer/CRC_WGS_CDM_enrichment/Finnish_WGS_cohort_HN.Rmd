@@ -18,14 +18,6 @@ library(Biostrings)
 data = read.table("../../../Data/WGS_cohort/Mutation_counts_at_motifs/HN_WWWWWW_mut_counts_CRC_WGS_n200.txt", sep="\t", header=T, comment.char = "")
 
 ed = read.table("../../../Data/WGS_cohort/Mutation_counts_at_motifs/Sample_sequencing_overview.txt", sep="\t", header=T, comment.char = "", stringsAsFactors = F)
-tt = regmatches(ed$X.Sample, regexpr("(.+)_T_", ed$X.Sample))
-ed$ID = make.names(substr(tt, 1, nchar(tt)-3))
-rownames(ed) = make.names(ed$X.Sample)
-
-tt2 = sapply(strsplit(ed$X.Sample,"-"), `[`,1 )
-ed$group = ifelse(tt2 %in% c("POLE","MSI"), tt2, "other" )
-
-colnames(data)[2:ncol(data)] = ed[colnames(data)[2:ncol(data)], "ID"]
 ```
 
 ```{r}
@@ -51,7 +43,7 @@ tmp = data[data$X.motif %in% all_W6_pattern_norevcomp$pattern,]
 mm = as.matrix(tmp[, 2:ncol(tmp)])
 rownames(mm) = tmp$X.motif
 col_anno = ed[, "group", drop=F]
-rownames(col_anno) = ed$ID
+rownames(col_anno) = ed$sample_id
 row_anno = all_W6_pattern_norevcomp[, "a_cnt",drop=F]
 rownames(row_anno)   = all_W6_pattern_norevcomp$pattern
 #png(file="WWWWWW_motif_freq_HM.png", width=1800, height=900)
@@ -67,7 +59,7 @@ boxplot(log10(t(mm)+1), las=2)
 ```{r}
 # mutation hits is number of unique mutation sites overlapped by a given pattern
 ed2 = ed
-rownames(ed2) = ed$ID
+rownames(ed2) = ed$sample_id
 d = as.data.table(melt(data, id.vars = "X.motif"))
 colnames(d) = c("pattern","entity","mutation_hit")
 d$pattern = as.character(d$pattern)
@@ -102,7 +94,7 @@ tmp = dcast(combined_tab, pattern ~ entity, value.var="hit_per_bp_in_pattern")
 tmp2 = as.matrix(tmp[, 2:ncol(tmp)])
 rownames(tmp2) = tmp$pattern
 col_anno = ed[, "group", drop=F]
-rownames(col_anno) = ed$ID
+rownames(col_anno) = ed$sample_id
 #png(file="WWWWWW_motif_freq_HM.png", width=1800, height=900)
 pheatmap(tmp2, scale="column", annotation_col = col_anno, show_colnames = F, fontsize_row = 10, main = "WWWWWW motif mutation rates (mutations/bp covered), scaled per sample")
 ```

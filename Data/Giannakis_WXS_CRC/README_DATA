@@ -1,0 +1,7 @@
+Data from Giannakis et al. Cell Rep. 2016 Apr 26;15(4):857-865. doi: 10.1016/j.celrep.2016.03.075 
+
+To obtain data tables for import in R, download 'Document S2. Tables S1–S10' (mmc2.xlsx) from Supplementary Information
+
+Extract Table S1 and S3 as tab-separated text files Giannakis_sample_description.txt.csv / Giannakis_som_mutations.txt.csv. 
+
+Run R import script in .../Code/4_CDM-association-with-cancer/import_data_sets

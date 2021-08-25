@@ -1,0 +1,8 @@
+Downloaded from https://cancer.sanger.ac.uk/cosmic/file_download/GRCh37/cosmic/v87/ in 2019-03 using curl.
+
+Download the following files: 
+ 
+CosmicCodingMuts.vcf.gz  
+CosmicGenomeScreensMutantExport.tsv.gz
+
+Then run import script in Code folder.
